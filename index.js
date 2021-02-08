@@ -1702,9 +1702,9 @@ bot.on("message", msg => {
 					{name: "Auto Mod", value: "`"+prefix[msg.guild.id]+"help automod`", inline: true},
 					{name: "Auto Post", value: "`"+prefix[msg.guild.id]+"autopost`\n\u200B", inline: true},
 					{name: "Filter", value: "`"+prefix[msg.guild.id]+"help filter`\n\u200B", inline: true},
-					{name: "Slow Mode", value: "`"+prefix[msg.guild.id]+"help slowmode`\u200B", inline: true},
-					{name: "Ban URL", value: "`"+prefix[msg.guild.id]+"help banurl`", inline: true},
-					{name: "Give Role", value: "`"+prefix[msg.guild.id]+"help giverole`"}
+					{name: "Slow Mode", value: "`"+prefix[msg.guild.id]+"help slowmode`\n\u200B", inline: true},
+					{name: "Ban URL", value: "`"+prefix[msg.guild.id]+"help banurl`\n\u200B", inline: true},
+					{name: "Give Role", value: "`"+prefix[msg.guild.id]+"help giverole`\n\u200B", inline: true}
 				)
 				msg_channel_send(msg, help_module_embed);
 			// Music
