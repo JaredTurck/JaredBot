@@ -21,7 +21,7 @@ With AutoPost you can configure JaredBot to automatically post photos after a sp
 See which users have sent the most messages on your server, the levelling feature will keep track of the number of messages each user sends, you can view the leaderboard at any time with the level command.
 
 
-## Instilation
+## Installation
 The bot is designed to be run on a Windows, it has specific software dependencies that I suspect won’t be compatible with Linux or Mac. Although I haven’t tested it on another OS, so feel free to test it yourself.
 
 #### Software Dependencies
@@ -45,3 +45,11 @@ The bot is designed to be run on a Windows, it has specific software dependencie
 
 #### API Dependencies
 * You will need a [Safe Browsing API key](https://developers.google.com/safe-browsing) from Google, this is used in the malicious link checking feature.
+
+## Social links
+* Invite the bot to your server [here](https://discord.com/oauth2/authorize?client_id=767561850404864071&scope=bot&permissions=1610088439)
+* [JaredBot website](https://jaredbot.uk/)
+* [Commands List](https://jaredbot.uk/command)
+* [Support Server](https://discord.com/invite/QDeUXq4)
+* [My Steam Account](https://steamcommunity.com/id/jaredcat)
+* [JaredBot YouTube](https://www.youtube.com/channel/UCZMhn0olhq5G2ttBqNOv1IQ)
