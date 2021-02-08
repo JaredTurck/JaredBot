@@ -23,23 +23,23 @@ See which users have sent the most messages on your server, the levelling featur
 The bot is designed to be run on a Windows, it has specific software dependencies that I suspect won’t be compatible with Linux or Mac. Although I haven’t tested it on another OS, so feel free to test it yourself.
 
 #### Software Dependencies
-*Make sure you have the latest version of node.js installed, you can download node from the [node.js website](https://nodejs.org/).
-*Most of the video commands like `-mp4` wont work unless you have ffmpeg install and have added it to your Path environment variables, you can download ffmpeg [here]( https://ffmpeg.org/).
-*The `-execute` command requires Python 3 to be installed, download python [here]( https://www.python.org/)
-*The `-ig` command requires instaloader, please see the docs [here]( https://instaloader.github.io/)
-*The `-speedtest` command requires [Ooklas Speedtest CLI]( https://www.speedtest.net/apps/cli)
-*The `-whois` command requires a copy of the Whois executable, which you can download from Microsoft website [here]( https://docs.microsoft.com/en-us/sysinternals/downloads/whois)
-*The `-render` command requires melt.exe, which you can get by downloading Shotcut video editor [here]( https://shotcut.org/)
-*Make sure to add all of these software dependencies above to your Path environment variable, so that the bot can find the executables.
+* Make sure you have the latest version of node.js installed, you can download node from the [node.js website](https://nodejs.org/).
+* Most of the video commands like `-mp4` wont work unless you have ffmpeg install and have added it to your Path environment variables, you can download ffmpeg [here]( https://ffmpeg.org/).
+* The `-execute` command requires Python 3 to be installed, download python [here]( https://www.python.org/)
+* The `-ig` command requires instaloader, please see the docs [here]( https://instaloader.github.io/)
+* The `-speedtest` command requires [Ooklas Speedtest CLI]( https://www.speedtest.net/apps/cli)
+* The `-whois` command requires a copy of the Whois executable, which you can download from Microsoft website [here]( https://docs.microsoft.com/en-us/sysinternals/downloads/whois)
+* The `-render` command requires melt.exe, which you can get by downloading Shotcut video editor [here]( https://shotcut.org/)
+* Make sure to add all of these software dependencies above to your Path environment variable, so that the bot can find the executables.
 
 #### Node Package Manager Dependencies
-*[Discord.js]( https://www.npmjs.com/package/discord.js)
-*[City-TimeZones]( https://www.npmjs.com/package/city-timezones)
-*[ytdl-Core](https://www.npmjs.com/package/ytdl-core)
-*[scrape-youtube](https://www.npmjs.com/package/scrape-youtube)
-*[jimp](https://www.npmjs.com/package/jimp)
-*[node-fetch](https://www.npmjs.com/package/node-fetch)
-*[extract-zip](https://www.npmjs.com/package/extract-zip)
+* [Discord.js]( https://www.npmjs.com/package/discord.js)
+* [City-TimeZones]( https://www.npmjs.com/package/city-timezones)
+* [ytdl-Core](https://www.npmjs.com/package/ytdl-core)
+* [scrape-youtube](https://www.npmjs.com/package/scrape-youtube)
+* [jimp](https://www.npmjs.com/package/jimp)
+* [node-fetch](https://www.npmjs.com/package/node-fetch)
+* [extract-zip](https://www.npmjs.com/package/extract-zip)
 
 #### API Dependencies
-*You will need a [Safe Browsing API key](https://developers.google.com/safe-browsing) from Google, this is used in the malicious link checking feature.
+* You will need a [Safe Browsing API key](https://developers.google.com/safe-browsing) from Google, this is used in the malicious link checking feature.
