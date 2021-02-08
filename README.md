@@ -1,28 +1,28 @@
 # JaredBot
  JaredBot is a multipurpose discord bot with a huge range of  features, from music, moderation, levels, to image commands.
 
-##Features
+## Features
 
-####Content Filtering
+#### Content Filtering
 Content filtering is a feature that allows the bot to automatically remove and warn users who post, adult content, phishing links, spam, promotions, tags, and use offensive language.
 
-####AuoMod
+#### AuoMod
 Automod is a powerful tool that allows the bot to automatically mute, kick or ban users who break specifically defined rules. Automod is designed to run alongside content filtering, acting as a way to punish users who get to many warnings. As well as counting content filtering warnings, it will also keep track of warnings moderators and admins give.
 
-####Music
+#### Music
 The bot has a built in music player, play or stream high quality music (96 kbps) directly into your discord server. The music player supports all of the standard commands, play, skip, np, pause, resume, remove, move, loop, shuffle, replay, join, songinfo, forward, seek, rewind and volume.
 JaredBot also supports a feature called freeplay, where once the end of the queue is reached, the bot will automatically choose another song for you, that is similar to the song you where listening to.
 
-####AutoPost
+#### AutoPost
 With AutoPost you can configure JaredBot to automatically post photos after a specified period of time, for example "automeme on 60" will post a new meme every hour in the specified channel. AutoPost can also be configured to post other types of photos such as animals like: birds, cats, dogs, and snakes.
 
-####Levels
+#### Levels
 See which users have sent the most messages on your server, the levelling feature will keep track of the number of messages each user sends, you can view the leaderboard at any time with the level command.
 
-##instilation
+## instilation
 The bot is designed to be run on a Windows, it has specific software dependencies that I suspect won’t be compatible with Linux or Mac. Although I haven’t tested it on another OS, so feel free to test it yourself.
 
-####Software Dependencies
+#### Software Dependencies
 *Make sure you have the latest version of node.js installed, you can download node from the [node.js website](https://nodejs.org/).
 *Most of the video commands like `-mp4` wont work unless you have ffmpeg install and have added it to your Path environment variables, you can download ffmpeg [here]( https://ffmpeg.org/).
 *The `-execute` command requires Python 3 to be installed, download python [here]( https://www.python.org/)
@@ -32,7 +32,7 @@ The bot is designed to be run on a Windows, it has specific software dependencie
 *The `-render` command requires melt.exe, which you can get by downloading Shotcut video editor [here]( https://shotcut.org/)
 *Make sure to add all of these software dependencies above to your Path environment variable, so that the bot can find the executables.
 
-####Node Package Manager Dependencies
+#### Node Package Manager Dependencies
 *[Discord.js]( https://www.npmjs.com/package/discord.js)
 *[City-TimeZones]( https://www.npmjs.com/package/city-timezones)
 *[ytdl-Core](https://www.npmjs.com/package/ytdl-core)
@@ -41,5 +41,5 @@ The bot is designed to be run on a Windows, it has specific software dependencie
 *[node-fetch](https://www.npmjs.com/package/node-fetch)
 *[extract-zip](https://www.npmjs.com/package/extract-zip)
 
-####API Dependencies
+#### API Dependencies
 *You will need a [Safe Browsing API key](https://developers.google.com/safe-browsing) from Google, this is used in the malicious link checking feature.
