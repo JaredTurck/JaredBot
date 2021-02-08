@@ -47,7 +47,7 @@ The bot is designed to be run on a Windows, it has specific software dependencie
 * You will need a [Safe Browsing API key](https://developers.google.com/safe-browsing) from Google, this is used in the malicious link checking feature.
 
 ## Social links
-* Invite the bot to your server [here](https://discord.com/oauth2/authorize?client_id=767561850404864071&scope=bot&permissions=1610088439)
+* [JaredBot Invite Link](https://discord.com/oauth2/authorize?client_id=767561850404864071&scope=bot&permissions=1610088439)
 * [JaredBot website](https://jaredbot.uk/)
 * [Commands List](https://jaredbot.uk/command)
 * [Support Server](https://discord.com/invite/QDeUXq4)
