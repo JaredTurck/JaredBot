@@ -19,7 +19,7 @@ With AutoPost you can configure JaredBot to automatically post photos after a sp
 #### Levels
 See which users have sent the most messages on your server, the levelling feature will keep track of the number of messages each user sends, you can view the leaderboard at any time with the level command.
 
-## instilation
+## Instilation
 The bot is designed to be run on a Windows, it has specific software dependencies that I suspect won’t be compatible with Linux or Mac. Although I haven’t tested it on another OS, so feel free to test it yourself.
 
 #### Software Dependencies
