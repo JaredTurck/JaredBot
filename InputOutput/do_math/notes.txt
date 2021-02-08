@@ -1,0 +1,3 @@
+have a queue (solve each equation in the queue)
+
+has question changed

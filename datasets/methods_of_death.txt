@@ -1,0 +1,541 @@
+Died from coronavirus
+Died from Smallpox
+Died from The Plague
+Died from Malaria
+Died from Influenza
+Died from Tuberculosis
+Died from HIV
+Died from AIDS
+Died from Cholera
+Died from Rabies
+Died from Pneumonia
+Died from Ebola
+Died from Variant Creutzfeldt-Jakob disease
+Died from Marburg
+Died from Middle East respiratory syndrome (MERS)
+Died from Dengue
+Died from Yellow fever
+Died from Hantaviruses
+Died from Anthrax
+Died from MRSA 
+Died from Pertussis
+Died from Tetanus
+Died from Meningitis
+Died from Syphilis
+Died from SARS
+Died from Leprosy
+Died from Measles
+Died from Zika
+Died from Ischemic heart disease
+Died from coronary artery disease
+Died from a Stroke
+Died from a Lower respiratory infections
+Died from Chronic obstructive pulmonary disease
+Died from lung cancers
+Died from Diabetes mellitus
+Died from Alzheimer’s disease
+Died from Dementias
+Died from Dehydration
+Died from diarrheal disease
+Died from Tuberculosis
+Died from Cirrhosis
+A shotgun shell to the dead
+Died from Lethal injection
+Died from Electrocution
+Died from Gas inhalation
+Was killed by a blood eagle
+Was boiled to death
+Was trampled by a brazen bull
+Died by crucifixion
+Was crushed to death
+Died from disembowelment
+Died from Dismemberment
+Was drowned to death
+Fell from a high building
+Died from flaying (slowly removing skin from the body with a knife)
+Died from immurement
+Was stoned to death
+Was throw over the side of a ship (keelhauling)
+Was poisoned by a Pitohui
+Was poisoned by a Blue-capped ifrit
+Was poisoned by a Little shrikethrush
+Was poisoned by a Spur-winged goose[1] (diet-dependent)
+Was poisoned by a Common quail
+Was poisoned by a American toad
+Was poisoned by a Asiatic toad
+Was poisoned by a Cane toad
+Was poisoned by a Colorado River toad
+Was poisoned by a Common toad
+Was poisoned by a Corroboree frog
+Was poisoned by a European green toad
+Was poisoned by a Fowler's toad
+Was poisoned by a Mantella
+Was poisoned by a Poison dart frog
+Was poisoned by a Blue-ringed octopus
+Was poisoned by a Pfeffer's flamboyant cuttlefish
+Was poisoned by a Blister beetle
+Was poisoned by a Birdwings
+Was poisoned by a Diamphidia
+Was stabbed with a knife
+Was stabbed with a sword
+Was stabbed with a chisel
+Was stabbed with a saw
+Was stabbed with a scissors
+Was stabbed with a razor
+Was stabbed with a razorblades
+Was stabbed with a box cutter
+Was stabbed with a pin
+Was stabbed with a thorn
+Was stabbed with a needle
+Was stabbed with a dagger
+Was stabbed with a pencil
+Was stabbed with a thumb tack
+Was stabbed with a vegetable peeler
+Was stabbed with a axe
+Was stabbed with a hatchet
+Was stabbed with a safety pin
+Was stabbed with a cactus needle
+Was stabbed with a porcupine quills
+Was stabbed with a bold cutters
+Was stabbed with a garden shears
+Was stabbed with a fingernail clipper
+Was stabbed with a letter opener
+Was stabbed with a fork
+Was stabbed with a prong
+Was stabbed with a red-hot poker
+Was stabbed with a rough diamond
+Was stabbed with a jagged edge
+Was stabbed with a piano keys
+Was stabbed with a ice-skate blade
+Was stabbed with a bayonet
+Died from touching molten Lithium
+Died from touching molten Beryllium
+Died from touching molten Aluminum
+Died from touching molten Potassium
+Died from touching molten Scandium
+Died from touching molten Titanium
+Died from touching molten Vanadium
+Died from touching molten Chromium
+Died from touching molten Iron
+Died from touching molten Cobalt
+Died from touching molten Nickel
+Died from touching molten Copper
+Died from touching molten Gallium
+Died from touching molten Strontium
+Died from touching molten Yttrium
+Died from touching molten Zirconium
+Died from touching molten Niobium
+Died from touching molten Molybdenum
+Died from touching molten Technetium
+Died from touching molten Ruthenium
+Died from touching molten Rhodium
+Died from touching molten Palladium
+Died from touching molten Silver
+Died from touching molten Cadmium
+Died from touching molten Indium
+Died from touching molten Tin
+Died from inhaling Ammonia
+Died from inhaling Arsine
+Died from inhaling Boron Trichloride
+Died from inhaling Boron Trifluoride
+Died from inhaling 1,3-Butadience
+Died from inhaling Carbon Monoxide
+Died from inhaling Chlorine
+Died from inhaling Diborane
+Died from inhaling Dichlorosilane
+Died from inhaling Dimethylamine
+Died from inhaling Ethlene Oxide
+Died from inhaling Fluorine
+Died from inhaling Hydrogen Bromide
+Died from inhaling Hydrogen Chloride
+Died from inhaling Hydrogen Cyanide
+Died from inhaling Hydrogen Fluoride
+Died from inhaling Hydrogen Sulfide
+Died from inhaling Methyl Chloride
+Died from inhaling Monomethylamine
+Died from inhaling Nitric Oxide
+Died from inhaling Nitrogen Dioxide
+Died from inhaling Ozone
+Died from inhaling Phosgene
+Died from inhaling Phosphine
+Died from inhaling Sulfur Dioxide
+Died from inhaling Sulfur Tetrafluoride
+Died from inhaling Trimethylamine
+Died from inhaling Vinyl Chloride
+Was shot with a antiaircraft gun
+Was shot with a antitank weapon
+Was shot with a Big Bertha
+Was shot with a cannon
+Was shot with a Vulcan automatic cannon
+Was shot with a coastal artillery
+Was shot with a Maxim machine gun
+Was shot with a mortar
+Was shot with a Panzerfaust
+Was shot with a Panzerschreck
+Was shot with a Paris Gun
+Was shot with a Schwarzlose machine gun
+Was shot with a AR-15
+Was shot with a Browning Auto 5
+Was shot with a The Ruger 10/22
+Was shot with a Remington Model 700
+Was shot with a Winchester Model 21
+Was shot with a Hawken Rifle 
+Was shot with a Weatherby Mark V 
+Was shot with a Savage 220
+Was shot with a A.H. Fox 
+Was shot with a Model 1903 Springfield 
+Was shot with a Remington Nylon Model 66
+Was shot with a Smith & Wesson Model 29
+Was shot with a TarHunt RSG 
+Was shot with a Beretta 680
+Was shot with a Barrett M82A1 
+Was shot with a Mossberg 500 
+Was shot with a Marlin Model 1895 SSBL
+Was shot with a Perazzi M
+Was shot with a Winchester Model 12 
+Was shot with a Merkel 200E
+Was shot with a Colt 911A1 .45 ACP
+Was shot with a Ruger Single Six Convertible .22/22 Mag
+Was shot with a Ruger Super Blackhawk
+Was shot with a Walther P-38
+Was shot with a Browning Hi-Power
+Was shot with a S&W Model 29
+Was shot with a S&W Model 60 Chief's Special
+Was shot with a CZ 75
+Was shot with a Glock G17
+Was shot with a T/C Contender
+Was shot with a S&W Model 41
+Was shot with a Winchester 1886 45/70
+Was shot with a AK-47
+Was shot with a M-14
+Was shot with a Mauser Model 98
+Was shot with a Springfield 1903
+Was shot with a T/C Classic .22
+Was shot with a Arisaka
+Was shot with a Armalite AR-7
+Was shot with a Armalite AR-30
+Was shot with a Baker rifle
+Was shot with a Berkut rifle
+Was shot with a Blaser R8
+Was shot with a Browning BLR
+Was shot with a Bushmaster M17S
+Was shot with a Cei-Rigotti
+Was shot with a Colt C-19
+Was shot with a CZ 452
+Was shot with a CZ 455
+Was shot with a CZ 511
+Was shot with a Ferguson rifle
+Was shot with a USP-S
+Was shot with a P2000
+Was shot with a P250
+Was shot with a Five-Seven
+Was shot with a CZ75-Auto
+Was shot with a Dual Berettas
+Was shot with a Desert Eagle
+Was shot with a FAMAS
+Was shot with a M4A4
+Was shot with a M4A1-S
+Was shot with a AUG
+Was shot with a SCAR-20
+Was shot with a SSG08
+Was shot with a AWP
+Was shot with a MP9
+Was shot with a PP-Bizon
+Was shot with a MP7
+Was shot with a UMP-45
+Was shot with a P90
+Was shot with a MAG-7
+Was shot with a Nova
+Was shot with a XM1014
+Was shot with a M249
+Was shot with a The Negev
+Was shot with a Glock-18
+Was shot with a Tec-9
+Was shot with a Galil AR
+Was shot with a AK-47
+Was shot with a SG 553
+Was shot with a G3SG1
+Was shot with a MAC-10
+Was shot with a P90
+Was shot with a Sawed-Off
+Was shot with a Nova
+Was shot with a M249
+Died from anthrax
+Died from plague
+Died from Q fever
+Died from ricin
+Died from smallpox
+Died from yellow rain
+Died from adamsite
+Died from diphosgene
+Died from hydrogen cyanide
+Died from lewisite
+Died from nerve gas
+Died from phosgene
+Died from tear gas
+Died from bola
+Died from boomerang
+Died from bow and arrow
+Died from crossbow
+Died from longbow
+Died from grapeshot
+Died from flamethrower
+Died from sling
+Died from spear
+Killed with a bayonet
+Killed with a club
+Killed with a dagger
+Killed with a halberd
+Killed with a lance
+Killed with a pike
+Killed with a quarterstaff
+Killed with a sabre
+Killed with a sword
+Killed with a tomahawk
+eaten by a Canidae
+eaten by a Felidae
+eaten by a Cat
+stomped on by a Cattle
+ripped to pieces by a Dog
+stomped on by a Donkey
+stomped on by a Goat
+nibbled to death by a Guinea pig
+stomped on by a Horse
+eaten alive by a Pig
+nibbled to death by a Rabbit
+nibbled to death by a Fancy rat varieties
+nibbled to death by a laboratory rat strains
+stomped on by a Sheep breeds
+stomped on by a Water buffalo breeds
+pecked to death by a Chicken breeds
+pecked to death by a Duck breeds
+pecked to death by a Goose breeds
+pecked to death by a Pigeon breeds
+pecked to death by a Turkey breeds
+nibbled to death by a Aardvark
+chewed to death by a Aardwolf
+stomped on by a African buffalo
+stomped on by a African elephant
+ripped to pieces by a African leopard
+pecked to death by a Albatross
+chewed to death by a Alligator
+chewed to death by a Alpaca
+ripped to pieces by a American buffalo (bison)
+pecked to death by a American robin
+poisoned to death by a Amphibian
+bitten to death by a Anaconda
+poisoned to death by a Angelfish
+eaten alive by a Anglerfish
+nibbled to death by a Ant
+nibbled to death by a Anteater
+stomped on by a Antelope
+bitten to death by a Antlion
+ripped to pieces by a Ape
+bitten to death by a Aphid
+ripped to pieces by a Arabian leopard
+ripped to pieces by a Arctic Fox
+ripped to pieces by a Arctic Wolf
+ripped to pieces by a Armadillo
+ripped to pieces by a Arrow crab
+ripped to pieces by a Asp
+ripped to pieces by a Ass (donkey)
+ripped to pieces by a Baboon
+ripped to pieces by a Badger
+pecked to death by a Bald eagle
+pecked to death by a Bandicoot
+stabbed to death by a Barnacle
+killed by a Barracuda
+poisoned to death by a Basilisk
+killed by a Bass
+killed by a Bat
+eaten by a Beaked whale
+ripped to pieces by a Bear
+killed by a list
+killed by a Beaver
+killed by a Bedbug
+stung by a Bee
+stung by a Beetle
+pecked to death by a Bird
+pecked to death by a Blackbird
+ripped to pieces by a Black panther
+poisoned to death by a Black widow spider
+pecked to death by a Blue bird
+pecked to death by a Blue jay
+eaten by a Blue whale
+eaten by a Boa
+eaten by a Boar
+ripped to pieces by a Bobcat
+ripped to pieces by a Bobolink
+eaten by a Bonobo
+killed by a Booby
+stung by a Box jellyfish
+killed by a Bovid
+stomped on by a Buffalo
+stomped on by a Buffalo
+nibbled to death by a Bug
+nibbled to death by a Butterfly
+pecked to death by a Buzzard
+eaten by a Camel
+Choked on a Hot dog
+Choked on a Some Nuts and seeds
+Choked on a Chunks of meat
+Choked on a Whole grape
+Choked on a Hard sticky candy
+Choked on a Popcorn
+Choked on a Chunks of peanut butter
+Choked on a Raw vegetable
+Choked on a Raisins
+Choked on a Chewing gum
+Choked on a Marshmallow
+Choked on a Latex balloon
+Choked on a Coin
+Choked on a Marbles
+Choked on a Pen
+Choked on a marker cap
+Choked on a Small ball
+Choked on a Button batterie
+Choked on a Medicine syringe
+Choked on a Hair barrettes and bead
+strangled to death with rope
+strangled to death with chain
+strangled to death with string
+strangled to death with cable
+strangled to death with cord
+strangled to death with tape
+strangled to death with rubber band
+strangled to death with twine
+Was buried alive in a Coffin
+Was buried alive in a Tree trunk
+Was buried alive in a car
+Was beat to death with a Alarm clock
+Was beat to death with a Armoire
+Was beat to death with a Backpack
+Was beat to death with a Binder
+Was beat to death with a Blanket
+Was beat to death with a Blind
+Was beat to death with a Bookcase
+Was beat to death with a Book
+Was beat to death with a Broom
+Was beat to death with a Brush
+Was beat to death with a Bucket
+Was beat to death with a Calendar
+Was beat to death with a Candle
+Was beat to death with a Carpet
+Was beat to death with a Chair
+Was beat to death with a Chair
+Was beat to death with a China
+Was beat to death with a Clock
+Was beat to death with a Coffee table
+Was beat to death with a Comb
+Was beat to death with a Comforter
+Was beat to death with a Computer
+Was beat to death with a Container
+Was beat to death with a Couch
+Was beat to death with a Credenza
+Was beat to death with a Cup
+Was beat to death with a Curtain
+Was beat to death with a Cushion
+Was beat to death with a Desk
+Was beat to death with a Dish towel
+Was beat to death with a Dishwasher
+Was beat to death with a Door stop
+Was beat to death with a Drape
+Was beat to death with a Dresser
+Was beat to death with a Drill
+Was beat to death with a Dryer
+Was beat to death with a Dust pan
+Was beat to death with a Duvet
+Was beat to death with a table
+Was beat to death with a Extension cord
+Was beat to death with a Fan
+Was beat to death with a Figurine
+Was beat to death with a File cabinet
+Was beat to death with a Fire extinguisher
+Was beat to death with a Flashlight
+Was beat to death with a Flatware
+Was beat to death with a Flowers
+Was beat to death with a Fork
+Was beat to death with a Furnace
+Was beat to death with a sheet of Glass
+Was beat to death with a Hammer
+Was beat to death with a Heater
+Was beat to death with a Houseplant
+Was beat to death with a IPhone
+Was beat to death with a IPod
+Was beat to death with a Iron
+Was beat to death with a Ironing board
+Was beat to death with a Lamp
+Was beat to death with a Light bulb
+Was beat to death with a Light switch
+Was beat to death with a Magnet
+Was beat to death with a Marker
+Was beat to death with a Mementos
+Was beat to death with a Microwave
+Was beat to death with a Mop
+Was beat to death with a Mug
+Was beat to death with a Musical instrument
+Was beat to death with a Napkin
+Was beat to death with a Nick-knack
+Was beat to death with a Note paper
+Was beat to death with a Oven
+Was beat to death with a Painting
+Was beat to death with a Pan
+Was beat to death with a Sheet of Paper
+Was beat to death with a Pen
+Was beat to death with a Pencil
+Was beat to death with a Phone
+Was beat to death with a Photograph
+Was beat to death with a Piano
+Was beat to death with a Picture
+Was beat to death with a Pillow
+Was beat to death with a Plant
+Was beat to death with a Plastic plate
+Was beat to death with a Plate
+Was beat to death with a Plier
+Was beat to death with a Pot
+Was beat to death with a Prescription Medication
+Was beat to death with a Tablecloth
+Was beat to death with a Table
+Was beat to death with a Telephone
+Was beat to death with a Timer
+Was beat to death with a Tissue
+Was beat to death with a Toaster
+Was beat to death with a Toilet paper
+Was beat to death with a Toothbrush
+Was beat to death with a Toothpaste
+Was beat to death with a Towel
+Was beat to death with a Toy
+Was beat to death with a TV
+Was beat to death with a Vacuum
+Was beat to death with a Vase
+Was beat to death with a Washer
+Was beat to death with a Washing machine
+Was run over by a Van
+Was run over by a Taxi
+Was run over by a Police car
+Was run over by a Bus
+Was run over by a Ambulance
+Was run over by a Skateboard
+Was run over by a Baby carriage
+Was run over by a Pram
+Was run over by a Bicycle
+Was run over by a Mountain bike
+Was run over by a Scooter
+Was run over by a Motorcycle
+Was run over by a Fire engine
+Was run over by a Crane
+Was run over by a Forklift
+Was run over by a Tractor
+Was run over by a Recycling truck
+Was run over by a Cement mixer
+Was run over by a Dump truck
+Was run over by a Subway
+Was run over by a Aerial tramway
+Was run over by a Helicopter
+Was run over by a Airplane
+Was run over by a Tram
+Was run over by a Streetcar
+Was run over by a Carriage
+Was run over by a Rowboat
+Was run over by a Boat
+Was run over by a Train
