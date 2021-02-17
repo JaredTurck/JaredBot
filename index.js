@@ -963,6 +963,16 @@ function e(html, elms) {
 	}
 }
 
+// remove repeating character
+function remove_dup_chars(txt, sep, sep2) {
+	new_txt = txt;
+	txt_length = txt.split(sep2).length;
+	for (i=0;i<txt_length;i++) {
+		new_txt = new_txt.split(sep).join(sep2);
+	}
+	return new_txt;
+}
+
 // seconds to days, days, hours, mins
 function sec_to_days_mins_hours(seconds) {
 	seconds = seconds*1000;
@@ -1577,7 +1587,7 @@ bot.on("message", msg => {
 			} else if (module_name == "animal" || msg.content == prefix[msg.guild.id]+"animal") {
 				// animal
 				help_module_embed.setTitle("Help Animal Image Commands");
-				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"`help autopost`!\n\u200B");
+				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"help autopost`!\n\u200B");
 				help_module_embed.addFields (
 					{name: prefix[msg.guild.id]+"random animal", value: "`"+prefix[msg.guild.id]+"help random animal`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"cat "+prefix[msg.guild.id]+"meow", value: "`"+prefix[msg.guild.id]+"help cat`\n\u200B", inline: true},
@@ -1593,7 +1603,7 @@ bot.on("message", msg => {
 			} else if (module_name == "nsfw" || msg.content == prefix[msg.guild.id]+"nsfw") {
 				// nsfw
 				help_module_embed.setTitle("Help NSFW Image Commands");
-				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"`help autopost`!\n\u200B");
+				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"help autopost`!\n\u200B");
 				help_module_embed.addFields (
 					{name: prefix[msg.guild.id]+"hentai", value: "`"+prefix[msg.guild.id]+"help hentai`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"boob", value: "`"+prefix[msg.guild.id]+"help boob`\n\u200B", inline: true},
@@ -1609,7 +1619,7 @@ bot.on("message", msg => {
 			} else if (module_name == "meme") {
 				// meme
 				help_module_embed.setTitle("Help Meme Image Commands");
-				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"`help autopost`!\n\u200B");
+				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"help autopost`!\n\u200B");
 				help_module_embed.addFields (
 					{name: prefix[msg.guild.id]+"meme", value: "`"+prefix[msg.guild.id]+"help meme`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"catmeme", value: "`"+prefix[msg.guild.id]+"help catmeme`\n\u200B", inline: true},
@@ -1619,7 +1629,7 @@ bot.on("message", msg => {
 			} else if (module_name == "photos" || msg.content == prefix[msg.guild.id]+"photos") {
 				// photo
 				help_module_embed.setTitle("Help Photo Image Commands");
-				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"`help autopost`!\n\u200B");
+				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"help autopost`!\n\u200B");
 				help_module_embed.addFields (
 					{name: prefix[msg.guild.id]+"heli "+prefix[msg.guild.id]+"chpper", value: "`"+prefix[msg.guild.id]+"help heli`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"car", value: "`"+prefix[msg.guild.id]+"help car`\n\u200B", inline: true},
@@ -1632,7 +1642,7 @@ bot.on("message", msg => {
 			} else if (module_name == "reaction" || msg.content == prefix[msg.guild.id]+"reaction") {
 				// reaction
 				help_module_embed.setTitle("Help Reaction Image Commands");
-				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"`help autopost`!\n\u200B");
+				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"help autopost`!\n\u200B");
 				help_module_embed.addFields (
 					{name: prefix[msg.guild.id]+"owo", value: "`"+prefix[msg.guild.id]+"help owo`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"hug @user", value: "`"+prefix[msg.guild.id]+"help hug`\n\u200B", inline: true},
@@ -1658,8 +1668,8 @@ bot.on("message", msg => {
 			} else if (module_name == "math" || module_name == "maths" || msg.content == prefix[msg.guild.id]+"math" || msg.content == prefix[msg.guild.id]+"maths") {
 				help_module_embed.setTitle("Help Maths");
 				help_module_embed.addFields (
-					{name: "Hex Bin Oct", value: "`"+prefix[msg.guild.id]+"help hex`\n`"+prefix[msg.guild.id]+"`help bin`\n`"+prefix[msg.guild.id]+"`help oct`\n\u200B", inline: true},
-					{name: "Bin2Int Oct2Int Hex2Int", value: "`"+prefix[msg.guild.id]+"help bin2int`\n`"+prefix[msg.guild.id]+"`help oct2int`\n`"+prefix[msg.guild.id]+"`help hex2int`\n\u200B", inline: true},
+					{name: "Hex Bin Oct", value: "`"+prefix[msg.guild.id]+"help hex`\n`"+prefix[msg.guild.id]+"help bin`\n`"+prefix[msg.guild.id]+"help oct`\n\u200B", inline: true},
+					{name: "Bin2Int Oct2Int Hex2Int", value: "`"+prefix[msg.guild.id]+"help bin2int`\n`"+prefix[msg.guild.id]+"help oct2int`\n`"+prefix[msg.guild.id]+"help hex2int`\n\u200B", inline: true},
 					{name: "bin2text, "+prefix[msg.guild.id]+"oct2text, "+prefix[msg.guild.id]+"hex2text", value: "`"+prefix[msg.guild.id]+"help bin2text`\n`"+prefix[msg.guild.id]+"help oct2text`\n`"+prefix[msg.guild.id]+"help hex2text`\n\u200B", inline: true},
 					{name: "Base", value: "`"+prefix[msg.guild.id]+"help base`\n\u200B", inline: true},
 					{name: "Is Leap/Is Prime", value: "`"+prefix[msg.guild.id]+"help isleap`\n`"+prefix[msg.guild.id]+"isprime`\n\u200B", inline: true},
@@ -1725,37 +1735,37 @@ bot.on("message", msg => {
 			
 			// Tools
 			} else if (module_name == "remind me" || msg.content == prefix[msg.guild.id]+"remind me") {
-				embed_help_reply(msg, {name: "remind me {reminder} {No. min/sec}", value: "sets a reminder, the bot will ping you in the specified number of seconds. For example `"+prefix[msg.guild.id]+"`remind me to check steam in 10 mins`, will ping you in 10 mins telling you to check steam.\n\u200B"});
+				embed_help_reply(msg, {name: "remind me {reminder} {No. min/sec}", value: "sets a reminder, the bot will ping you in the specified number of seconds. For example `"+prefix[msg.guild.id]+"remind me to check steam in 10 mins`, will ping you in 10 mins telling you to check steam.\n\u200B"});
 			} else if (module_name == "timer" || msg.content == prefix[msg.guild.id]+"timer") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"timer", value: "sets a timer, the bot will ping you after the specified number of seconds, for example `"+prefix[msg.guild.id]+"`timer 00:10:30`, will ping you after 10 mins and 30 seconds.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"timer", value: "sets a timer, the bot will ping you after the specified number of seconds, for example `"+prefix[msg.guild.id]+"timer 00:10:30`, will ping you after 10 mins and 30 seconds.\n\u200B"});
 			} else if (module_name == "stopwatch" || msg.content == prefix[msg.guild.id]+"stopwatch") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"stopwatch", value: " `"+prefix[msg.guild.id]+"`stopwatch start` starts a stopwatch, to stop the stopwatch you can then type `"+prefix[msg.guild.id]+"`stopwatch stop`, the bot will then tell you how much time has passed between you starting and stopping the stopwatch.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"stopwatch", value: " `"+prefix[msg.guild.id]+"stopwatch start` starts a stopwatch, to stop the stopwatch you can then type `"+prefix[msg.guild.id]+"stopwatch stop`, the bot will then tell you how much time has passed between you starting and stopping the stopwatch.\n\u200B"});
 			} else if (module_name == "execute" || msg.content == prefix[msg.guild.id]+"execute") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"execute {code}", value: "executes some Python code, for example `"+prefix[msg.guild.id]+"`execute print(list(filter(None, [i if i%2==0 else '' for i in range(100)])))` will print all even number up to 100.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"execute {code}", value: "executes some Python code, for example `"+prefix[msg.guild.id]+"execute print(list(filter(None, [i if i%2==0 else '' for i in range(100)])))` will print all even number up to 100.\n\u200B"});
 			} else if (module_name == "translate" || msg.content == prefix[msg.guild.id]+"translate") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"translate {text}", value: "Translate text in other languages back into English, for example `"+prefix[msg.guild.id]+"`translate cómo estás` will display `how are you`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"translate {text}", value: "Translate text in other languages back into English, for example `"+prefix[msg.guild.id]+"translate cómo estás` will display `how are you`.\n\u200B"});
 			} else if (module_name == "roman" || msg.content == prefix[msg.guild.id]+"roman") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"roman {num}", value: "Converts an integer into roman numerals, for example `"+prefix[msg.guild.id]+"`roman 2020` will display `MMXX`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"roman {num}", value: "Converts an integer into roman numerals, for example `"+prefix[msg.guild.id]+"roman 2020` will display `MMXX`.\n\u200B"});
 			} else if (module_name == "suggest" || msg.content == prefix[msg.guild.id]+"suggest" || module_name == "suggestion" || 
 				msg.content == prefix[msg.guild.id]+"suggestion" || module_name == "bug" || msg.content == prefix[msg.guild.id]+"bug") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"suggest "+prefix[msg.guild.id]+"bug", value: "use this command to make a suggestion on how to improve the server, or to report a bug, syntax for the command is `"+prefix[msg.guild.id]+"`bug {text}` or `"+prefix[msg.guild.id]+"`suggest {text}`, your suggestion will automtically appear on the Jared Network suggestions channel.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"suggest "+prefix[msg.guild.id]+"bug", value: "use this command to make a suggestion on how to improve the server, or to report a bug, syntax for the command is `"+prefix[msg.guild.id]+"bug {text}` or `"+prefix[msg.guild.id]+"suggest {text}`, your suggestion will automtically appear on the Jared Network suggestions channel.\n\u200B"});
 			} else if (module_name == "time" || module_name == "timezone" || msg.content == prefix[msg.guild.id]+"time" || msg.content == prefix[msg.guild.id]+"timezone") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"time {city}", value: "get the time in a current city.\n\u200B"});
 			} else if (module_name == "weather") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"weather {city}", value: "get the weather for a given city.\n\u200B"});
 			} else if (module_name == "embed") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"embed", value: "Embed generator, allows you to create custom embeds, type `"+prefix[msg.guild.id]+"`embed` for more information.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"embed", value: "Embed generator, allows you to create custom embeds, type `"+prefix[msg.guild.id]+"embed` for more information.\n\u200B"});
 			} else if (module_name == "pychallenge") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"pychallenge", value: "Gives you a random python challenge, useful if your stuck and dont know what to code.\n\u200B"});
 			} else if (module_name == "short" || module_name == "shortner" || msg.content == prefix[msg.guild.id]+"short" ||
 				msg.content == prefix[msg.guild.id]+"shortner" || module_name == "shorturl" || msg.content == prefix[msg.guild.id]+"shorturl") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"short", value: "takes a long URL and makes it shorter, for example: ```"+prefix[msg.guild.id]+"`short https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg``` produces ```https://jaredbot.uk/a/lqqGV``` it took a long URL that is 162 characters, and created a short URL that is only 27."})
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"short", value: "takes a long URL and makes it shorter, for example: ```"+prefix[msg.guild.id]+"short https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg``` produces ```https://jaredbot.uk/a/lqqGV``` it took a long URL that is 162 characters, and created a short URL that is only 27."})
 			} else if (module_name == "upscale") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"upscale", value: "upscales an image, increases resolution, add the comment `-upscale {amount}` when uploading a photo, for example `-upscale 4` will multiple the images resolution by 4.\n\u200B"});
 			
 			// Info
 			} else if (module_name == "invitelink") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"invitelink "+prefix[msg.guild.id]+"invite", value: "`"+prefix[msg.guild.id]+"invitelink` shows an invite link to the Jared Network discord server, `"+prefix[msg.guild.id]+"`invite` creates an invite for your server.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"invitelink "+prefix[msg.guild.id]+"invite", value: "`"+prefix[msg.guild.id]+"invitelink` shows an invite link to the Jared Network discord server, `"+prefix[msg.guild.id]+"invite` creates an invite for your server.\n\u200B"});
 			} else if (module_name == "author") {	
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"author", value: "Shows who the bot was created by Jared Turck, and displays links to steam account so you can contact me.\n\u200B"});
 			} else if (module_name == "membercount") {	
@@ -1776,34 +1786,34 @@ bot.on("message", msg => {
 				msg.content == prefix[msg.guild.id]+"inventory" || module_name == "steamdown") {	
 				help_steam(msg);
 			} else if (module_name == "prefix") {	
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"prefix", value: "shows the current prefix used by the bot, the default prefix used by the bot is `"+prefix[msg.guild.id]+"``.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"prefix", value: "shows the current prefix used by the bot, the default prefix used by the bot is `"+prefix[msg.guild.id]+"`.\n\u200B"});
 			} else if (module_name == "rule" || msg.content == prefix[msg.guild.id]+"rule") {	
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"rule [1-8]", value: "display a specific rule, for example `"+prefix[msg.guild.id]+"`rule 8` will display the 8th rule on the server.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"rule [1-8]", value: "display a specific rule, for example `"+prefix[msg.guild.id]+"rule 8` will display the 8th rule on the server.\n\u200B"});
 			} else if (module_name == "tos") {	
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"tos", value: "Shows the Discord Community Guidelines."});
 			} else if (module_name == "element") {	
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"element {elm num}", value: "displays statistics about a specific element on the periodic table, for example `"+prefix[msg.guild.id]+"`element 79` will displays stats on gold.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"element {elm num}", value: "displays statistics about a specific element on the periodic table, for example `"+prefix[msg.guild.id]+"element 79` will displays stats on gold.\n\u200B"});
 			} else if (module_name == "table" || module_name == "periodictable") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"table", value: "displays a photo of the periodic table, you can use this command for example to get the number of an element, and then use the `"+prefix[msg.guild.id]+"`element` command to get more info on that element.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"table", value: "displays a photo of the periodic table, you can use this command for example to get the number of an element, and then use the `"+prefix[msg.guild.id]+"element` command to get more info on that element.\n\u200B"});
 			} else if (module_name == "pokemon") {	
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"pokemon", value: "displays information on pokemon, you can specify a pokemon by index, for example "+prefix[msg.guild.id]+"pokemon 39 will show info for Jigglypuff , or by name e.g. `"+prefix[msg.guild.id]+"`pokemon Pikachu` for info on Pikachu!\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"pokemon", value: "displays information on pokemon, you can specify a pokemon by index, for example "+prefix[msg.guild.id]+"pokemon 39 will show info for Jigglypuff , or by name e.g. `"+prefix[msg.guild.id]+"pokemon Pikachu` for info on Pikachu!\n\u200B"});
 			} else if (module_name == "perm") {	
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"perm @user", value: "displays users permissions for the server they are currently on.\n\u200B"});
 			} else if (module_name == "userinfo") {	
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"userinfo @user", value: "displays information about a specific discord user.\n\u200B"});
 			} else if (module_name == "medicine") {	
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"medicine {name}", value: "displays information about a medicine, type `"+prefix[msg.guild.id]+"`medicine` for more information..\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"medicine {name}", value: "displays information about a medicine, type `"+prefix[msg.guild.id]+"medicine` for more information..\n\u200B"});
 				
 			// Chat
 			} else if (module_name == "default dance") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"default dance", value: "does the default dance.\n\u200B"});
 			} else if (module_name == "say" || msg.content == prefix[msg.guild.id]+"say") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"say {text}", value: "The bot will repeat whatever you say, for example `"+prefix[msg.guild.id]+"`say Hello` will make the bot will say `Hello` back.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"say {text}", value: "The bot will repeat whatever you say, for example `"+prefix[msg.guild.id]+"say Hello` will make the bot will say `Hello` back.\n\u200B"});
 			} else if (module_name == "do you" || module_name == "is" || module_name == "will" || 
 				msg.content == prefix[msg.guild.id]+"do you" || msg.content == prefix[msg.guild.id]+"is" || msg.content == prefix[msg.guild.id]+"will") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"do you/is/will {question}", value: "The bot will answer a yes or no question, for example `"+prefix[msg.guild.id]+"`do you think there will be a WW3?`, `"+prefix[msg.guild.id]+"`is the earth flat?`, `"+prefix[msg.guild.id]+"`will i ever get a gf?` the bot will then answer yes or no.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"do you/is/will {question}", value: "The bot will answer a yes or no question, for example `"+prefix[msg.guild.id]+"do you think there will be a WW3?`, `"+prefix[msg.guild.id]+"is the earth flat?`, `"+prefix[msg.guild.id]+"will i ever get a gf?` the bot will then answer yes or no.\n\u200B"});
 			} else if (module_name == "howgay") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"howgay @user", value: "Gives a percentage of how gay you are `"+prefix[msg.guild.id]+"`howgay` or how gay another user is for example `"+prefix[msg.guild.id]+"`hoygay @Jared` will show hoy gay Jared is.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"howgay @user", value: "Gives a percentage of how gay you are `"+prefix[msg.guild.id]+"howgay` or how gay another user is for example `"+prefix[msg.guild.id]+"hoygay @Jared` will show hoy gay Jared is.\n\u200B"});
 			} else if (module_name == "imbored") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"imbored", value: "Gives you something random to do, use this command to get sugestions of stuff to do when you bored and dont know what to do.\n\u200B"});
 			} else if (module_name == "random name") {
@@ -1817,13 +1827,13 @@ bot.on("message", msg => {
 			} else if (module_name == "autoresponse") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"autoresponse", value: "enabled autoresponse, the bot will begin randomly repeating messages again.\n\u200B"});
 			} else if (module_name == "replychance") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"replychance {num}", value: "sets how often the bots auto response will reply to messages, the higher the value the less the bot will respond to messages, for example `"+prefix[msg.guild.id]+"`replychance 2` the bot will respond 50% of the time, `"+prefix[msg.guild.id]+"`replychance 4` the bot will respond 25% of the time.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"replychance {num}", value: "sets how often the bots auto response will reply to messages, the higher the value the less the bot will respond to messages, for example `"+prefix[msg.guild.id]+"replychance 2` the bot will respond 50% of the time, `"+prefix[msg.guild.id]+"replychance 4` the bot will respond 25% of the time.\n\u200B"});
 			} else if (module_name == "choose" || module_name == "choice" || msg.content == prefix[msg.guild.id]+"choose" || msg.content == prefix[msg.guild.id]+"choice") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"choose or "+prefix[msg.guild.id]+"choice", value: "the bot will randomly choose an option from a list, each item in your list can be seperated with commas or a number and dot, for example `"+prefix[msg.guild.id]+"`choose cat, dog, mouse, fish` or `"+prefix[msg.guild.id]+"`choice 1. cat 2. dog 3. mouse 4. fish` the bot will random pick of of those 4 animals.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"choose or "+prefix[msg.guild.id]+"choice", value: "the bot will randomly choose an option from a list, each item in your list can be seperated with commas or a number and dot, for example `"+prefix[msg.guild.id]+"choose cat, dog, mouse, fish` or `"+prefix[msg.guild.id]+"choice 1. cat 2. dog 3. mouse 4. fish` the bot will random pick of of those 4 animals.\n\u200B"});
 			} else if (module_name == "8ball" || msg.content == prefix[msg.guild.id]+"8ball") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"8ball {question}", value: "lets you ask the 8ball a question, and see what the response is.\n\u200B"});
 			} else if (module_name == "font" || msg.content == prefix[msg.guild.id]+"font") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"font {font num} {text}", value: "converts text into a fancy unicode font, for example `"+prefix[msg.guild.id]+"`font 1 Jared` will be converted to `𝓳𝓪𝓻𝓮𝓭`, the font number is the font you would like to use on the text. (im still working on this feature it's currently broken).\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"font {font num} {text}", value: "converts text into a fancy unicode font, for example `"+prefix[msg.guild.id]+"font 1 Jared` will be converted to `𝓳𝓪𝓻𝓮𝓭`, the font number is the font you would like to use on the text. (im still working on this feature it's currently broken).\n\u200B"});
 			} else if (module_name == "letteremoji" || msg.content == prefix[msg.guild.id]+"letteremoji") {
 				help_letteremoji(msg);
 			} else if (module_name == "dict" || msg.content == prefix[msg.guild.id]+"dict" || module_name == "urban" || 
@@ -1890,7 +1900,7 @@ bot.on("message", msg => {
 		
 			// Games
 			} else if (module_name == "rock" || module_name == "paper" || module_name == "scissors" || module_name == "rps") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"rock, "+prefix[msg.guild.id]+"paper, "+prefix[msg.guild.id]+"scissors", value: "Play a game of rock paper scissors with the bot, you can type `"+prefix[msg.guild.id]+"`rock` for rock, `"+prefix[msg.guild.id]+"`paper` for paper, or `"+prefix[msg.guild.id]+"`scissors` for scissors.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"rock, "+prefix[msg.guild.id]+"paper, "+prefix[msg.guild.id]+"scissors", value: "Play a game of rock paper scissors with the bot, you can type `"+prefix[msg.guild.id]+"rock` for rock, `"+prefix[msg.guild.id]+"paper` for paper, or `"+prefix[msg.guild.id]+"scissors` for scissors.\n\u200B"});
 			} else if (module_name == "higherlower") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"higherlower", value: "Play a game where you have to try and guess a secret number between 1 and 100 in as few tries as possible, after every guess the bot will tell you if your guess was higher or lower then there secret number.\n\u200B"});
 			} else if (module_name == "ttt") {
@@ -1899,32 +1909,32 @@ bot.on("message", msg => {
 			// Maths
 			} else if (module_name == "hex" || module_name == "bin" || module_name == "oct" || 
 				msg.content == prefix[msg.guild.id]+"hex" || msg.content == prefix[msg.guild.id]+"bin" || msg.content == prefix[msg.guild.id]+"oct") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"hex, "+prefix[msg.guild.id]+"bin, "+prefix[msg.guild.id]+"oct", value: "these commands convert a decimal integer to the base 2, 8 and 16 number system, i.e. `"+prefix[msg.guild.id]+"`hex` converts decimal to hexadecimal `"+prefix[msg.guild.id]+"`hex 4003` becomes `fa3`, `"+prefix[msg.guild.id]+"`oct` converts decimal to octal decimal `"+prefix[msg.guild.id]+"`oct 59` becomes `73`, `"+prefix[msg.guild.id]+"`bin` converts decimal to binary so `"+prefix[msg.guild.id]+"`bin 456` becomes `111001000`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"hex, "+prefix[msg.guild.id]+"bin, "+prefix[msg.guild.id]+"oct", value: "these commands convert a decimal integer to the base 2, 8 and 16 number system, i.e. `"+prefix[msg.guild.id]+"hex` converts decimal to hexadecimal `"+prefix[msg.guild.id]+"hex 4003` becomes `fa3`, `"+prefix[msg.guild.id]+"oct` converts decimal to octal decimal `"+prefix[msg.guild.id]+"oct 59` becomes `73`, `"+prefix[msg.guild.id]+"bin` converts decimal to binary so `"+prefix[msg.guild.id]+"bin 456` becomes `111001000`.\n\u200B"});
 			} else if (module_name == "base") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"base{base}", value: "This command converts a decimal integer to any specified number system, for example `"+prefix[msg.guild.id]+"`base24 258` becomes `ai`, or `"+prefix[msg.guild.id]+"`base14 69` becomes `4d`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"base{base}", value: "This command converts a decimal integer to any specified number system, for example `"+prefix[msg.guild.id]+"base24 258` becomes `ai`, or `"+prefix[msg.guild.id]+"base14 69` becomes `4d`.\n\u200B"});
 			} else if (module_name == "bin2int" || module_name == "oct2int" || module_name == "hex2int" || 
 				msg.content == prefix[msg.guild.id]+"bin2int" || msg.content == prefix[msg.guild.id]+"oct2int" || msg.content == prefix[msg.guild.id]+"hex2int") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"bin2int, "+prefix[msg.guild.id]+"oct2int, "+prefix[msg.guild.id]+"hex2int", value: "Converts a base 2, 8, or 16 integers to base 10 denary, for example `"+prefix[msg.guild.id]+"`bin2int 1010101101` becomes `685`, `"+prefix[msg.guild.id]+"`oct2int 25360` becomes `10992`, and `"+prefix[msg.guild.id]+"`hex2int ff2ac2` becomes `16722626`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"bin2int, "+prefix[msg.guild.id]+"oct2int, "+prefix[msg.guild.id]+"hex2int", value: "Converts a base 2, 8, or 16 integers to base 10 denary, for example `"+prefix[msg.guild.id]+"bin2int 1010101101` becomes `685`, `"+prefix[msg.guild.id]+"oct2int 25360` becomes `10992`, and `"+prefix[msg.guild.id]+"hex2int ff2ac2` becomes `16722626`.\n\u200B"});
 			} else if (module_name == "bin2text" || module_name == "oct2text" || module_name == "hex2text" || 
 				msg.content == prefix[msg.guild.id]+"bin2text" || msg.content == prefix[msg.guild.id]+"oct2text" || msg.content == prefix[msg.guild.id]+"hex2text") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"bin2text, "+prefix[msg.guild.id]+"oct2text, "+prefix[msg.guild.id]+"hex2text", value: "Converts base 2, 8, or 16 list of integers (seperated by spaces) to base 10 denary, then converts the integers to unicode characters. For example `"+prefix[msg.guild.id]+"`bin2text 1101000 1100101 1101100 1101100 1101111` becomes `hello`, `"+prefix[msg.guild.id]+"`oct2text 150 145 171` becomes `hey`, and `"+prefix[msg.guild.id]+"`hex2text 4a 61 72 65 64 20 69 73 20 61 77 65 73 6f 6d 65` becomes `Jared is awesome`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"bin2text, "+prefix[msg.guild.id]+"oct2text, "+prefix[msg.guild.id]+"hex2text", value: "Converts base 2, 8, or 16 list of integers (seperated by spaces) to base 10 denary, then converts the integers to unicode characters. For example `"+prefix[msg.guild.id]+"bin2text 1101000 1100101 1101100 1101100 1101111` becomes `hello`, `"+prefix[msg.guild.id]+"oct2text 150 145 171` becomes `hey`, and `"+prefix[msg.guild.id]+"hex2text 4a 61 72 65 64 20 69 73 20 61 77 65 73 6f 6d 65` becomes `Jared is awesome`.\n\u200B"});
 			} else if (module_name == "isleap" || msg.content == prefix[msg.guild.id]+"isleap") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"isleap {year}", value: "Checks if the specified year is a leap year, for example `"+prefix[msg.guild.id]+"`isleap 2020` returns `true`, or `"+prefix[msg.guild.id]+"`isleap 1966` returns `false`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"isleap {year}", value: "Checks if the specified year is a leap year, for example `"+prefix[msg.guild.id]+"isleap 2020` returns `true`, or `"+prefix[msg.guild.id]+"isleap 1966` returns `false`.\n\u200B"});
 			} else if (module_name == "isprime" || msg.content == prefix[msg.guild.id]+"isprime") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"isprime {num}", value: "Checks if the specified number is prime, for exmaple `"+prefix[msg.guild.id]+"`isprime 31` returns true, and `"+prefix[msg.guild.id]+"`isprime 32` returns false."});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"isprime {num}", value: "Checks if the specified number is prime, for exmaple `"+prefix[msg.guild.id]+"isprime 31` returns true, and `"+prefix[msg.guild.id]+"isprime 32` returns false."});
 			} else if (module_name == "bmi" || msg.content == prefix[msg.guild.id]+"bmi") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"bmi {height cm} {weight kg}", value: "calculates the bmi of the specified height and weight values, for example `"+prefix[msg.guild.id]+"`bmi 180 50` displays underweight.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"bmi {height cm} {weight kg}", value: "calculates the bmi of the specified height and weight values, for example `"+prefix[msg.guild.id]+"bmi 180 50` displays underweight.\n\u200B"});
 			} else if (module_name == "c" || module_name == "f" || msg.content == prefix[msg.guild.id]+"c" || msg.content == prefix[msg.guild.id]+"f") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"c and "+prefix[msg.guild.id]+"f", value: "converts between Celsius (-c) and Fahrenheit (-f), for example `"+prefix[msg.guild.id]+"`c 24` becomes `75.2` Fahrenheit, or `"+prefix[msg.guild.id]+"`f 110` becomes `43.3` Celsius.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"c and "+prefix[msg.guild.id]+"f", value: "converts between Celsius (-c) and Fahrenheit (-f), for example `"+prefix[msg.guild.id]+"c 24` becomes `75.2` Fahrenheit, or `"+prefix[msg.guild.id]+"f 110` becomes `43.3` Celsius.\n\u200B"});
 			} else if (module_name == "saynum" || module_name == "int2text" || msg.content == prefix[msg.guild.id]+"saynum" || msg.content == prefix[msg.guild.id]+"int2text") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"saynum {num}", value: "converts a base 10 denary integer to written english, for example `"+prefix[msg.guild.id]+"`saynum 1` becomes `one`, and `"+prefix[msg.guild.id]+"`saynum -47623.9` becomes `minus fourty seven thousand, six hundred and twenty three point nine`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"saynum {num}", value: "converts a base 10 denary integer to written english, for example `"+prefix[msg.guild.id]+"saynum 1` becomes `one`, and `"+prefix[msg.guild.id]+"saynum -47623.9` becomes `minus fourty seven thousand, six hundred and twenty three point nine`.\n\u200B"});
 			} else if (module_name == "shift" || module_name == "caesar" || module_name == "shift cipher" || 
 				msg.content == prefix[msg.guild.id]+"shift" || msg.content == prefix[msg.guild.id]+"caesar" || msg.content == prefix[msg.guild.id]+"cipher") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"shift{num} {text}", value: "Uses the Caesar Shift Cipher, to shift the characters in a string the specified number of times, for example `"+prefix[msg.guild.id]+"`shift2 aaa` becomes `ccc` (still working on this command).\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"shift{num} {text}", value: "Uses the Caesar Shift Cipher, to shift the characters in a string the specified number of times, for example `"+prefix[msg.guild.id]+"shift2 aaa` becomes `ccc` (still working on this command).\n\u200B"});
 			} else if (module_name == "calc" || module_name == "add" || module_name == "subtract" || module_name == "times" || module_name == "divide" ||
 				msg.content == prefix[msg.guild.id]+"calc" || msg.content == prefix[msg.guild.id]+"add" || msg.content == prefix[msg.guild.id]+"subtract" || 
 				msg.content == prefix[msg.guild.id]+"times" || msg.content == prefix[msg.guild.id]+"divide") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"calc {equation}", value: "allows you to preform a mathimatical calculation, for example `"+prefix[msg.guild.id]+"`calc 2**10 + 4/7` returns `146.8`, type `"+prefix[msg.guild.id]+"`calc` for more information on the command.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"calc {equation}", value: "allows you to preform a mathimatical calculation, for example `"+prefix[msg.guild.id]+"calc 2**10 + 4/7` returns `146.8`, type `"+prefix[msg.guild.id]+"calc` for more information on the command.\n\u200B"});
 			} else if (msg.content == prefix[msg.guild.id]+"calendar" || module_name == "calendar") {
 				help_calendar(msg);
 			} else if (msg.content == prefix[msg.guild.id]+"fib" || module_name == "fib") {
@@ -1937,31 +1947,31 @@ bot.on("message", msg => {
 			} else if (module_name == "announce" || msg.content == prefix[msg.guild.id]+"announce") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"announce {text}", value: "Sends an announcement!\n\u200B"});
 			} else if (module_name == "mute") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"mute @user", value: "Mutes a user preventing them from speaking and messaging in channels, beaware that muted users can still read the chat, they just cannot respond or talk back. the syntax for the command is `"+prefix[msg.guild.id]+"`mute @user`, you can also specify a reason after the @ tag for the mute if you want too, for example `"+prefix[msg.guild.id]+"`mute @jared for spamming!`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"mute @user", value: "Mutes a user preventing them from speaking and messaging in channels, beaware that muted users can still read the chat, they just cannot respond or talk back. the syntax for the command is `"+prefix[msg.guild.id]+"mute @user`, you can also specify a reason after the @ tag for the mute if you want too, for example `"+prefix[msg.guild.id]+"mute @jared for spamming!`.\n\u200B"});
 			} else if (module_name == "unmute") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"unmute @user", value: "unmutes the user allowing them to talk again in both text and voice channels on the server, beaware that users that have been unmuted will be able to edit previos messages and fully interact within the channels channels again, the syntax for the command is `"+prefix[msg.guild.id]+"`unmute @user`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"unmute @user", value: "unmutes the user allowing them to talk again in both text and voice channels on the server, beaware that users that have been unmuted will be able to edit previos messages and fully interact within the channels channels again, the syntax for the command is `"+prefix[msg.guild.id]+"unmute @user`.\n\u200B"});
 			} else if (module_name == "tempmute") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"tempmute @user {length mins}", value: "allows you to temporerly mute a user for a specified amount of time, the bot will then unmute that user after the specified length of time is complete, the syntax for the command is `"+prefix[msg.guild.id]+"`tempmute @user {length in mins}`, for example `"+prefix[msg.guild.id]+"`tempmute @jared 5` will mute jared for 5 mins. Make sure that your length is an integer, if you want to mute a user for an hour you would type 60, and 24 hours 1 day would be 1440 mins e.g. `"+prefix[msg.guild.id]+"`tempmute @user 1440`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"tempmute @user {length mins}", value: "allows you to temporerly mute a user for a specified amount of time, the bot will then unmute that user after the specified length of time is complete, the syntax for the command is `"+prefix[msg.guild.id]+"tempmute @user {length in mins}`, for example `"+prefix[msg.guild.id]+"tempmute @jared 5` will mute jared for 5 mins. Make sure that your length is an integer, if you want to mute a user for an hour you would type 60, and 24 hours 1 day would be 1440 mins e.g. `"+prefix[msg.guild.id]+"tempmute @user 1440`.\n\u200B"});
 			} else if (module_name == "invisible") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"invisible @user", value: "makes the user invisible, invisible users cannot see any channels on the server, the syntax for the command is `"+prefix[msg.guild.id]+"`invsible @user` for example `"+prefix[msg.guild.id]+"`invisible @jared` will make jared invisible.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"invisible @user", value: "makes the user invisible, invisible users cannot see any channels on the server, the syntax for the command is `"+prefix[msg.guild.id]+"invsible @user` for example `"+prefix[msg.guild.id]+"invisible @jared` will make jared invisible.\n\u200B"});
 			} else if (module_name == "visible") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"visible @user", value: "makes the user visable so that they can see all the channels on the server after being made invisible, the syntax for the command is `"+prefix[msg.guild.id]+"`vsible @user` for example `"+prefix[msg.guild.id]+"`visible @jared` will make jared visible.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"visible @user", value: "makes the user visable so that they can see all the channels on the server after being made invisible, the syntax for the command is `"+prefix[msg.guild.id]+"vsible @user` for example `"+prefix[msg.guild.id]+"visible @jared` will make jared visible.\n\u200B"});
 			} else if (module_name == "kick") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"kick @user", value: "kicks a user from the server, beaware that once a user has been kicked from the server they can still join back if they have an invite link. Once a user is kicked all of there roles are lost, so if they do join back they wont have any of the previous roles they had. The syntax for the command is `"+prefix[msg.guild.id]+"`kick @user`, for example `"+prefix[msg.guild.id]+"`kick @jared` will kick Jared from the server, you can also sepcify a reason for the kick e.g. `"+prefix[msg.guild.id]+"`kick @jared for spamming`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"kick @user", value: "kicks a user from the server, beaware that once a user has been kicked from the server they can still join back if they have an invite link. Once a user is kicked all of there roles are lost, so if they do join back they wont have any of the previous roles they had. The syntax for the command is `"+prefix[msg.guild.id]+"kick @user`, for example `"+prefix[msg.guild.id]+"kick @jared` will kick Jared from the server, you can also sepcify a reason for the kick e.g. `"+prefix[msg.guild.id]+"kick @jared for spamming`.\n\u200B"});
 			} else if (module_name == "ban") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"ban @user", value: "Bans a user from the server, once a user is banned they cannot join the server again even if they have an invite link, bans are also IP based which in most cases prevents from from joining the server again on an alt account. The syntax for the command is `"+prefix[msg.guild.id]+"`ban @user`, for example `"+prefix[msg.guild.id]+"`ban @jared` ban Jared from the server, you can also specify a reason for the ban e.g. `"+prefix[msg.guild.id]+"`ban @jared for organsing a raid`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"ban @user", value: "Bans a user from the server, once a user is banned they cannot join the server again even if they have an invite link, bans are also IP based which in most cases prevents from from joining the server again on an alt account. The syntax for the command is `"+prefix[msg.guild.id]+"ban @user`, for example `"+prefix[msg.guild.id]+"ban @jared` ban Jared from the server, you can also specify a reason for the ban e.g. `"+prefix[msg.guild.id]+"ban @jared for organsing a raid`.\n\u200B"});
 			} else if (module_name == "unban") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"unban {User ID}", value: "Allows you to unban a user from the server, you can't @ someone who isn't in the server, so you will need to specify the users ID when unbanning them. You can get the banned users ID by right clicking on a previous message they have sent and clicking copy ID, for example to unban Jared from a server the command would be `"+prefix[msg.guild.id]+"`unban 738484352568262747`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"unban {User ID}", value: "Allows you to unban a user from the server, you can't @ someone who isn't in the server, so you will need to specify the users ID when unbanning them. You can get the banned users ID by right clicking on a previous message they have sent and clicking copy ID, for example to unban Jared from a server the command would be `"+prefix[msg.guild.id]+"unban 738484352568262747`.\n\u200B"});
 			} else if (module_name == "tempban") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"tempban @user {length mins}", value: "Temporerly bans a user from the server for a specified length of time, then unbans them. Syntax is `"+prefix[msg.guild.id]+"`tempban @user {length in mins}` for example `"+prefix[msg.guild.id]+"`tempban @jared 60` would ban jared for 1 hour, for 24 hours 1 day you would type 1440 mins.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"tempban @user {length mins}", value: "Temporerly bans a user from the server for a specified length of time, then unbans them. Syntax is `"+prefix[msg.guild.id]+"tempban @user {length in mins}` for example `"+prefix[msg.guild.id]+"tempban @jared 60` would ban jared for 1 hour, for 24 hours 1 day you would type 1440 mins.\n\u200B"});
 			} else if (module_name == "logging" || msg.content == prefix[msg.guild.id]+"logging") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"logging [on/off]", value: "Toggle between turning logging on or off, logging is where messages are recorded in the server and saved to a log file, turning logging on will result in all messages being saved to a log file, this is very useful for looking at conversation history.\n\u200B"});
 			} else if (module_name == "prefix") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"prefix {prefix}", value: "Allows you to change the prefix of the bot, the syntax for this command is `"+prefix[msg.guild.id]+"`prefix {new prefix}` for example to change JaredBot's prefix to `.` you would type `"+prefix[msg.guild.id]+"`prefix .`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"prefix {prefix}", value: "Allows you to change the prefix of the bot, the syntax for this command is `"+prefix[msg.guild.id]+"prefix {new prefix}` for example to change JaredBot's prefix to `.` you would type `"+prefix[msg.guild.id]+"prefix .`.\n\u200B"});
 			} else if (module_name == "snipe") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"snipe", value: "This command shows all messages that have been recently deleted, please beaware the command could show some inappropriate or offensive content, as it also shows messages that where deleted by JaredBot's contenting filtering, as tell as message which where manually deleted by a user. also be beaware the log file is clear every 24 hours, so you wont be able to see deleted messages from a few days ago.\n\u200B"});
 			} else if (module_name == "snipping" || msg.content == prefix[msg.guild.id]+"snipping") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"snipping [on/off]", value: "turn snipping on or off, snipping is a feature that logs recently deleted messages, turnning snipping on `"+prefix[msg.guild.id]+"`snipping on` will result in all messages that where recently deleted being logged. You can then view the contents on this log file with the `"+prefix[msg.guild.id]+"`snipe` command.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"snipping [on/off]", value: "turn snipping on or off, snipping is a feature that logs recently deleted messages, turnning snipping on `"+prefix[msg.guild.id]+"snipping on` will result in all messages that where recently deleted being logged. You can then view the contents on this log file with the `"+prefix[msg.guild.id]+"snipe` command.\n\u200B"});
 			} else if (module_name == "filter") {
 				filter_help(msg);
 			} else if (module_name == "exit") {
@@ -1985,9 +1995,9 @@ bot.on("message", msg => {
 					msg.content == prefix[msg.guild.id]+"autonude" || msg.content == prefix[msg.guild.id]+"autonsfw") {
 				autopost_nsfw(msg);
 			} else if (module_name == "slowmode" || msg.content == prefix[msg.guild.id]+"slowmode") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"slowmode", value: "Enables slow mode on the channel you type it in, the syntax for the command is `"+prefix[msg.guild.id]+"`slowmode {MM:SS}` for example `"+prefix[msg.guild.id]+"`slowmode 5:45` would set slowmode to 5 mins and 45 seconds.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"slowmode", value: "Enables slow mode on the channel you type it in, the syntax for the command is `"+prefix[msg.guild.id]+"slowmode {MM:SS}` for example `"+prefix[msg.guild.id]+"slowmode 5:45` would set slowmode to 5 mins and 45 seconds.\n\u200B"});
 			} else if (module_name == "banurl" || msg.content == prefix[msg.guild.id]+"banurl") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"banurl", value: "Lets you ban a URL, preventing users from posting it. For example `"+prefix[msg.guild.id]+"`banurl http://reddit.com/r/boobs` would ban the boobs subreddit."});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"banurl", value: "Lets you ban a URL, preventing users from posting it. For example `"+prefix[msg.guild.id]+"banurl http://reddit.com/r/boobs` would ban the boobs subreddit."});
 			} else if (module_name == "giverole") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"giverole", value: "`"+prefix[msg.guild.id]+"-giverole @user @role` Gives one or more roles to a user, for exmaple `"+prefix[msg.guild.id]+"giverole @jared @member @green` would give user Jared the roles member and Green."});
 			
@@ -1995,19 +2005,19 @@ bot.on("message", msg => {
 			} else if (module_name == "hash") {
 				hash_help(msg);
 			} else if (module_name == "md4" || msg.content == prefix[msg.guild.id]+"md4") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"md4", value: "Generates an MD4 hash, for example `"+prefix[msg.guild.id]+"`md4 Hello` produces `a58fc871f5f68e4146474ac1e2f07419`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"md4", value: "Generates an MD4 hash, for example `"+prefix[msg.guild.id]+"md4 Hello` produces `a58fc871f5f68e4146474ac1e2f07419`.\n\u200B"});
 			} else if (module_name == "md5" || msg.content == prefix[msg.guild.id]+"md5") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"md5", value: "Generates an MD5 hash, for example `"+prefix[msg.guild.id]+"`md5 Hello` produces `8b1a9953c4611296a827abf8c47804d7`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"md5", value: "Generates an MD5 hash, for example `"+prefix[msg.guild.id]+"md5 Hello` produces `8b1a9953c4611296a827abf8c47804d7`.\n\u200B"});
 			} else if (module_name == "sha1" || msg.content == prefix[msg.guild.id]+"sha1") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha1", value: "Generates an SHA1 hash, for example `"+prefix[msg.guild.id]+"`sha1 Hello` produces `2cb42271c614a1f32dee3a8cc7d7e4d62dc04be7`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha1", value: "Generates an SHA1 hash, for example `"+prefix[msg.guild.id]+"sha1 Hello` produces `2cb42271c614a1f32dee3a8cc7d7e4d62dc04be7`.\n\u200B"});
 			} else if (module_name == "sha224" || msg.content == prefix[msg.guild.id]+"sha224") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha224", value: "Generates an SHA224 hash, for example `"+prefix[msg.guild.id]+"`sha224 Hello` produces `3315a79f00f1179473f3b86aed44f7db56009d14b971d6361e705de2`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha224", value: "Generates an SHA224 hash, for example `"+prefix[msg.guild.id]+"sha224 Hello` produces `3315a79f00f1179473f3b86aed44f7db56009d14b971d6361e705de2`.\n\u200B"});
 			} else if (module_name == "sha256" || msg.content == prefix[msg.guild.id]+"sha256") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha256", value: "Generates an SHA256 hash, for example `"+prefix[msg.guild.id]+"`sha256 Hello` produces `62fa62853835a432efe7c8e82723b5e66be7319780033746dcdce168f0ec8554`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha256", value: "Generates an SHA256 hash, for example `"+prefix[msg.guild.id]+"sha256 Hello` produces `62fa62853835a432efe7c8e82723b5e66be7319780033746dcdce168f0ec8554`.\n\u200B"});
 			} else if (module_name == "sha384" || msg.content == prefix[msg.guild.id]+"sha384") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha384", value: "Generates an SHA384 hash, for example `"+prefix[msg.guild.id]+"`sha384 Hello` produces `6be6ea8b48cebdbf0cd1629b2203b5ba58f754948f2dadb6f006f4b49f89e8eefe1b6dfcd4cb2bbb458783d9e1f13a48`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha384", value: "Generates an SHA384 hash, for example `"+prefix[msg.guild.id]+"sha384 Hello` produces `6be6ea8b48cebdbf0cd1629b2203b5ba58f754948f2dadb6f006f4b49f89e8eefe1b6dfcd4cb2bbb458783d9e1f13a48`.\n\u200B"});
 			} else if (module_name == "sha512" || msg.content == prefix[msg.guild.id]+"sha512") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha512", value: "Generates an SHA512 hash, for example `"+prefix[msg.guild.id]+"`sha512 Hello` produces `f6317fb1129b48c616400af50db8b5b458e68eb08555a6289bbb858e91166ce8d51850ee9b4c77da8579f977fd22c2d627bbe471af628309bc1c023a9c4e3718`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"sha512", value: "Generates an SHA512 hash, for example `"+prefix[msg.guild.id]+"sha512 Hello` produces `f6317fb1129b48c616400af50db8b5b458e68eb08555a6289bbb858e91166ce8d51850ee9b4c77da8579f977fd22c2d627bbe471af628309bc1c023a9c4e3718`.\n\u200B"});
 			} else if (module_name == "rhash" || msg.content == prefix[msg.guild.id]+"rhash") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"rhash", value: "Decrypt a hash using rainbow tables, for example `-rhash 420d97235124da5bf24c51a35edb1119f653ce09` returns the decrypt text `jared`.\n\u200B"});
 			
@@ -2018,7 +2028,7 @@ bot.on("message", msg => {
 				embed_rules_help.setTitle("Help Rules");
 				embed_rules_help.addFields(
 					{name: prefix[msg.guild.id]+"rules", value: "shows a list of the rules for the Jared Network discord server.\n\u200B"},
-					{name: prefix[msg.guild.id]+"rule [1-8]", value: "display a specific rule, for example `"+prefix[msg.guild.id]+"`rule 8` will display the 8th rule on the server.\n\u200B"},
+					{name: prefix[msg.guild.id]+"rule [1-8]", value: "display a specific rule, for example `"+prefix[msg.guild.id]+"rule 8` will display the 8th rule on the server.\n\u200B"},
 					{name: prefix[msg.guild.id]+"tos", value: "Shows the Discord Community Guidelines.\n\u200B"}
 				)
 				embed_rules_help.setTimestamp();
@@ -2030,63 +2040,63 @@ bot.on("message", msg => {
 			} else if (module_name == "warnlist" || module_name == "automod warnlist") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"automod warnlist", value: "Shows a list of users with the most warnnings on the server.\n\u200B"});
 			} else if (module_name == "automod remove" || module_name == "remove") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"automod remove", value: "lets you remove an automod rule, The syntax for the command is `"+prefix[msg.guild.id]+"`automod remove {rule number}`, for example `"+prefix[msg.guild.id]+"`automod remove 1` will remove the first active rule, i strongly suggest running `"+prefix[msg.guild.id]+"`automod rules` first to get a list of all of the rules currently on your sever, then use the automod remove command after.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"automod remove", value: "lets you remove an automod rule, The syntax for the command is `"+prefix[msg.guild.id]+"automod remove {rule number}`, for example `"+prefix[msg.guild.id]+"automod remove 1` will remove the first active rule, i strongly suggest running `"+prefix[msg.guild.id]+"automod rules` first to get a list of all of the rules currently on your sever, then use the automod remove command after.\n\u200B"});
 			
 			// autopost
 			} else if (module_name == "automeme") {
-				embed_help_reply(msg, {name: "AutoMeme", value: "Automatically posts a meme after a specified period of time, for example `"+prefix[msg.guild.id]+"`automeme on 5` will post a meme every 5 mins, to turn automeme off type `"+prefix[msg.guild.id]+"`automeme off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoMeme", value: "Automatically posts a meme after a specified period of time, for example `"+prefix[msg.guild.id]+"automeme on 5` will post a meme every 5 mins, to turn automeme off type `"+prefix[msg.guild.id]+"automeme off`.\n\u200B"});
 			} else if (module_name == "autophoto") {
-				embed_help_reply(msg, {name: "AutoPhoto", value: "Automatically posts a photography image after a specified period of time, for example `"+prefix[msg.guild.id]+"`autophoto on 5` will post photo every 5 mins, to turn autophoto off type `"+prefix[msg.guild.id]+"`autophoto off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoPhoto", value: "Automatically posts a photography image after a specified period of time, for example `"+prefix[msg.guild.id]+"autophoto on 5` will post photo every 5 mins, to turn autophoto off type `"+prefix[msg.guild.id]+"autophoto off`.\n\u200B"});
 			} else if (module_name == "autobird") {
-				embed_help_reply(msg, {name: "AutoBird", value: "Automatically posts a bird photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autobird on 5` will post a bird every 5 mins, to turn autobird off type `"+prefix[msg.guild.id]+"`autobird off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoBird", value: "Automatically posts a bird photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autobird on 5` will post a bird every 5 mins, to turn autobird off type `"+prefix[msg.guild.id]+"autobird off`.\n\u200B"});
 			} else if (module_name == "autocar") {
-				embed_help_reply(msg, {name: "AutoCar", value: "Automatically posts a car photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autocar on 5` will post a car every 5 mins, to turn autocar off type `"+prefix[msg.guild.id]+"`autocar off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoCar", value: "Automatically posts a car photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autocar on 5` will post a car every 5 mins, to turn autocar off type `"+prefix[msg.guild.id]+"autocar off`.\n\u200B"});
 			} else if (module_name == "autocat") {
-				embed_help_reply(msg, {name: "AutoCat", value: "Automatically posts a cat photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autocat on 5` will post a cat every 5 mins, to turn autocat off type `"+prefix[msg.guild.id]+"`autocat off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoCat", value: "Automatically posts a cat photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autocat on 5` will post a cat every 5 mins, to turn autocat off type `"+prefix[msg.guild.id]+"autocat off`.\n\u200B"});
 			} else if (module_name == "autodog") {
-				embed_help_reply(msg, {name: "AutoDog", value: "Automatically posts a dog photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autodog on 5` will post a dog every 5 mins, to turn autodog off type `"+prefix[msg.guild.id]+"`autodog off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoDog", value: "Automatically posts a dog photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autodog on 5` will post a dog every 5 mins, to turn autodog off type `"+prefix[msg.guild.id]+"autodog off`.\n\u200B"});
 			} else if (module_name == "autosnake") {
-				embed_help_reply(msg, {name: "AutoSnake", value: "Automatically posts a snake photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autosnake on 5` will post a snake every 5 mins, to turn autosnake off type `"+prefix[msg.guild.id]+"`autosnake off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoSnake", value: "Automatically posts a snake photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autosnake on 5` will post a snake every 5 mins, to turn autosnake off type `"+prefix[msg.guild.id]+"autosnake off`.\n\u200B"});
 			} else if (module_name == "autopost") {
 				autopost_help(msg);
 			} else if (module_name == "autoanime") {
-				embed_help_reply(msg, {name: "AutoAnime", value: "Automatically posts an anime photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autoanime on 5` will post an anime photo every 5 mins, to turn autoanime off type `"+prefix[msg.guild.id]+"`autoanime off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoAnime", value: "Automatically posts an anime photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoanime on 5` will post an anime photo every 5 mins, to turn autoanime off type `"+prefix[msg.guild.id]+"autoanime off`.\n\u200B"});
 			} else if (module_name == "autovideo") {
-				embed_help_reply(msg, {name: "AutoVideo", value: "Automatically posts a video after a specified period of tine, for example `"+prefix[msg.guild.id]+"`autovideo on 20` will post a video every 20 mins, to turn autovideo off type `"+prefix[msg.guild.id]+"`autovideo off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoVideo", value: "Automatically posts a video after a specified period of tine, for example `"+prefix[msg.guild.id]+"autovideo on 20` will post a video every 20 mins, to turn autovideo off type `"+prefix[msg.guild.id]+"autovideo off`.\n\u200B"});
 			
 			// autopost NSFW
 			} else if (module_name == "autohentai") {
-				embed_help_reply(msg, {name: "AutoHentai", value: "Automatically posts Hentai after a specified period of time, for example `"+prefix[msg.guild.id]+"`autohentai on 5` will post a Hentai photo every 5 mins, to turn autohentai off type `"+prefix[msg.guild.id]+"`autohentai off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoHentai", value: "Automatically posts Hentai after a specified period of time, for example `"+prefix[msg.guild.id]+"autohentai on 5` will post a Hentai photo every 5 mins, to turn autohentai off type `"+prefix[msg.guild.id]+"autohentai off`.\n\u200B"});
 			} else if (module_name == "autonude") {
-				embed_help_reply(msg, {name: "AutoNude", value: "Automatically posts a nude after a specified period of time, for example `"+prefix[msg.guild.id]+"`autonude on 5` will post a nude photo every 5 mins, to turn autonude off type `"+prefix[msg.guild.id]+"`autonude off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoNude", value: "Automatically posts a nude after a specified period of time, for example `"+prefix[msg.guild.id]+"autonude on 5` will post a nude photo every 5 mins, to turn autonude off type `"+prefix[msg.guild.id]+"autonude off`.\n\u200B"});
 			} else if (module_name == "autoporngif") {
-				embed_help_reply(msg, {name: "AutoPornGif", value: "Automatically posts a porn gif after a specified period of time, for example `"+prefix[msg.guild.id]+"`autoporngif on 5` will post a Porn gif every 5 mins, to turn autoporngif off type `"+prefix[msg.guild.id]+"`autoporngif off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoPornGif", value: "Automatically posts a porn gif after a specified period of time, for example `"+prefix[msg.guild.id]+"autoporngif on 5` will post a Porn gif every 5 mins, to turn autoporngif off type `"+prefix[msg.guild.id]+"autoporngif off`.\n\u200B"});
 			} else if (module_name == "autoboob") {
-				embed_help_reply(msg, {name: "AutoBoob", value: "Automatically posts boob photos after a specified period of time, for example `"+prefix[msg.guild.id]+"`autoboob on 5` will post a boobs every 5 mins, to turn autoboob off type `"+prefix[msg.guild.id]+"`autoboob off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoBoob", value: "Automatically posts boob photos after a specified period of time, for example `"+prefix[msg.guild.id]+"autoboob on 5` will post a boobs every 5 mins, to turn autoboob off type `"+prefix[msg.guild.id]+"autoboob off`.\n\u200B"});
 			} else if (module_name == "autopussy") {
-				embed_help_reply(msg, {name: "AutoPussy", value: "Automatically posts vagina photos after a specified period of time, for example `"+prefix[msg.guild.id]+"`autopussy on 5` will post pussy photo every 5 mins, to turn autopussy off type `"+prefix[msg.guild.id]+"`autopussy off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoPussy", value: "Automatically posts vagina photos after a specified period of time, for example `"+prefix[msg.guild.id]+"autopussy on 5` will post pussy photo every 5 mins, to turn autopussy off type `"+prefix[msg.guild.id]+"autopussy off`.\n\u200B"});
 			} else if (module_name == "autoass") {
-				embed_help_reply(msg, {name: "AutoAss", value: "Automatically posts an ass photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autoass on 5` will post an ass every 5 mins, to turn autoass off type `"+prefix[msg.guild.id]+"`autoass off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoAss", value: "Automatically posts an ass photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoass on 5` will post an ass every 5 mins, to turn autoass off type `"+prefix[msg.guild.id]+"autoass off`.\n\u200B"});
 			} else if (module_name == "autoanal") {
-				embed_help_reply(msg, {name: "AutoAnal", value: "Automatically posts an anal photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autoanal on 5` will post an anal photo every 5 mins, to turn autoanal off type `"+prefix[msg.guild.id]+"`autoanal off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoAnal", value: "Automatically posts an anal photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoanal on 5` will post an anal photo every 5 mins, to turn autoanal off type `"+prefix[msg.guild.id]+"autoanal off`.\n\u200B"});
 			} else if (module_name == "autoblowjob") {
-				embed_help_reply(msg, {name: "AutoBlowjob", value: "Automatically posts a blowjob photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autoblowjob on 5` will post a blowjob photo every 5 mins, to turn autoblowjob off type `"+prefix[msg.guild.id]+"`autoblowjob off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoBlowjob", value: "Automatically posts a blowjob photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoblowjob on 5` will post a blowjob photo every 5 mins, to turn autoblowjob off type `"+prefix[msg.guild.id]+"autoblowjob off`.\n\u200B"});
 			} else if (module_name == "autofingering") {
-				embed_help_reply(msg, {name: "AutoFingering", value: "Automatically posts a fingering pussy photo after a specified period of time, for example `"+prefix[msg.guild.id]+"`autofingering on 5` will post a fingering photo every 5 mins, to turn autofingering off type `"+prefix[msg.guild.id]+"`autofingering off`.\n\u200B"});
+				embed_help_reply(msg, {name: "AutoFingering", value: "Automatically posts a fingering pussy photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autofingering on 5` will post a fingering photo every 5 mins, to turn autofingering off type `"+prefix[msg.guild.id]+"autofingering off`.\n\u200B"});
 			} else if (module_name == prefix[msg.guild.id]+"autonsfw") {
 				autopost_nsfw(msg);
 			
 			// Music
 			} else if (module_name == "play" || msg.content == prefix[msg.guild.id]+"play") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"play {song name/URL}", value:"Adds a song to the queue, you can add a song via the name or YouTube URL for example `"+prefix[msg.guild.id]+"`play sicko mode` or `"+prefix[msg.guild.id]+"`play https://youtu.be/6ONRf7h3Mdk` Will add the song Sicko mode to the queue.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"play {song name/URL}", value:"Adds a song to the queue, you can add a song via the name or YouTube URL for example `"+prefix[msg.guild.id]+"play sicko mode` or `"+prefix[msg.guild.id]+"play https://youtu.be/6ONRf7h3Mdk` Will add the song Sicko mode to the queue.\n\u200B"});
 			} else if (module_name == "forceplay" || msg.content == prefix[msg.guild.id]+"forceplay") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"forceplay {song name/URL}", value:"Forces a song to be played, stopping anything currently playing and ingoring the queue. The syntax for forceplay is the same as play, just specify a song via name or URL, e.g. `"+prefix[msg.guild.id]+"`forceplay the rich kid plug walk`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"forceplay {song name/URL}", value:"Forces a song to be played, stopping anything currently playing and ingoring the queue. The syntax for forceplay is the same as play, just specify a song via name or URL, e.g. `"+prefix[msg.guild.id]+"forceplay the rich kid plug walk`.\n\u200B"});
 			} else if (module_name == "skipplay" ||module_name == "playskip" ) {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"playskip {song name/URL}", value:"Forces a song to be played, stopping anything currently playing and ingoring the queue. The syntax for forceplay is the same as play, just specify a song via name or URL, e.g. `"+prefix[msg.guild.id]+"`playskip the rich kid plug walk`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"playskip {song name/URL}", value:"Forces a song to be played, stopping anything currently playing and ingoring the queue. The syntax for forceplay is the same as play, just specify a song via name or URL, e.g. `"+prefix[msg.guild.id]+"playskip the rich kid plug walk`.\n\u200B"});
 			} else if (module_name == "skip") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"skip", value:"Skips to the next song in the queue.\n\u200B"});
 			} else if ( module_name == "skipto") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"skipto {index}", value:"Skips to a song at the specified index e.g. `"+prefix[msg.guild.id]+"`skipto 2` skips to the second song in the queue.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"skipto {index}", value:"Skips to a song at the specified index e.g. `"+prefix[msg.guild.id]+"skipto 2` skips to the second song in the queue.\n\u200B"});
 			} else if (module_name == "disconnect") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"disconnect", value:"Disconnects JaredBot from the voice channel, the queue will also be cleared when the bot disconnects.\n\u200B"});
 			} else if (module_name == "np") {
@@ -2100,13 +2110,13 @@ bot.on("message", msg => {
 			} else if (module_name == "playtop" || module_name == "reverse") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"playtop "+prefix[msg.guild.id]+"reverse", value:"Reverses the queue, the last songs in the queue are played next, after the current song is finished.\n\u200B"});
 			} else if (module_name == "remove" || msg.content == prefix[msg.guild.id]+"remove") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"remove {index}", value:"Removes a song from the queue, for example `"+prefix[msg.guild.id]+"`remove 4` will remove the 4th song in the queue.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"remove {index}", value:"Removes a song from the queue, for example `"+prefix[msg.guild.id]+"remove 4` will remove the 4th song in the queue.\n\u200B"});
 			} else if (module_name == "move" || msg.content == prefix[msg.guild.id]+"move") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"move {index 1} {index 2}", value:"Moves a song in the queue to a diffrent position, for example `"+prefix[msg.guild.id]+"`move 1 5` would move the 1st song to the 5th position in the queue.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"move {index 1} {index 2}", value:"Moves a song in the queue to a diffrent position, for example `"+prefix[msg.guild.id]+"move 1 5` would move the 1st song to the 5th position in the queue.\n\u200B"});
 			} else if (module_name == "loop") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"loop", value: "`"+prefix[msg.guild.id]+"loop` loops the current song, repeating it endlessly until you toggle the loop off again with `"+prefix[msg.guild.id]+"`loop`.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"loop", value: "`"+prefix[msg.guild.id]+"loop` loops the current song, repeating it endlessly until you toggle the loop off again with `"+prefix[msg.guild.id]+"loop`.\n\u200B"});
 			} else if (module_name == "loopq") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"loopq", value: "The `"+prefix[msg.guild.id]+"`loopq` command will loop the entire queue, once the end of the queue is reached JaredBot will start playing the same songs in the queue from the beginning again.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"loopq", value: "The `"+prefix[msg.guild.id]+"loopq` command will loop the entire queue, once the end of the queue is reached JaredBot will start playing the same songs in the queue from the beginning again.\n\u200B"});
 			} else if (module_name == "clearq") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"clearq", value: "Clears the song queue, removing all songs currently queued.\n\u200B"});
 			} else if (module_name == "removedupes") {
@@ -2120,7 +2130,7 @@ bot.on("message", msg => {
 			} else if (module_name == "resume") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"resume", value: "`resume` then resumes the song.\n\u200B"});
 			} else if (module_name == "seek" || msg.content == prefix[msg.guild.id]+"seek") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"seek {MM:SS}", value: "forwards to the specified time stamp, e.g. `"+prefix[msg.guild.id]+"`seek 1:05` will go to 1 min 5 seconds in the track.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"seek {MM:SS}", value: "forwards to the specified time stamp, e.g. `"+prefix[msg.guild.id]+"seek 1:05` will go to 1 min 5 seconds in the track.\n\u200B"});
 			} else if (module_name == "songinfo") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"songinfo", value: "Similar to np, but shows more detailed information about the current song playing.\n\u200B"});
 			} else if (module_name == "streaminfo") {
@@ -2132,7 +2142,7 @@ bot.on("message", msg => {
 			} else if (module_name == "rewind" || msg.content == prefix[msg.guild.id]+"rewind") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"rewind {MM:SS}", value: "Rewind the song the specified number of seconds.\n\u200B"});
 			} else if (module_name == "volume" || msg.content == prefix[msg.guild.id]+"volume") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"volume %", value: "Lets you change the volume of the music, e.g. `"+prefix[msg.guild.id]+"`volume 50` sets the sound to 50%.\n\u200B"});
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"volume %", value: "Lets you change the volume of the music, e.g. `"+prefix[msg.guild.id]+"volume 50` sets the sound to 50%.\n\u200B"});
 			} else if (module_name == "freeplay" || msg.content == prefix[msg.guild.id]+"freeplay") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"freeplay [on/off]", value: "Freeplay is a feature where JaredBot will automatically play a random song after the end of the queue is reached."});
 		
@@ -2159,9 +2169,9 @@ bot.on("message", msg => {
 		
 			// levels
 			} else if (module_name == "addscore") {
-				embed_help_reply(msg, {name: "Add Score", value: "`"+prefix[msg.guild.id]+"addscore {User ID},{msg count}` admin command, lets you manually change or add a score on the leaderboard, for example `"+prefix[msg.guild.id]+"`addscore 364787379518701569,100` would set my message count to 100.\n\u200B"});
+				embed_help_reply(msg, {name: "Add Score", value: "`"+prefix[msg.guild.id]+"addscore {User ID},{msg count}` admin command, lets you manually change or add a score on the leaderboard, for example `"+prefix[msg.guild.id]+"addscore 364787379518701569,100` would set my message count to 100.\n\u200B"});
 			} else if (module_name == "rank") {
-				embed_help_reply(msg, {name: "Rank", value: "`"+prefix[msg.guild.id]+"rank @user` shows your or another users rank, for example `"+prefix[msg.guild.id]+"`rank @jared` will shows Jareds rank.\n\u200B"});
+				embed_help_reply(msg, {name: "Rank", value: "`"+prefix[msg.guild.id]+"rank @user` shows your or another users rank, for example `"+prefix[msg.guild.id]+"rank @jared` will shows Jareds rank.\n\u200B"});
 			} else if (module_name == "restorebackup") {
 				embed_help_reply(msg, {name: "Restore Backup", value: "`"+prefix[msg.guild.id]+"restorebackup` Restores a backup copy of the leaderboard, from the last message that was sent on the server, up to 30 seconds ago.\n\u200B"});
 		
@@ -2184,7 +2194,7 @@ bot.on("message", msg => {
 				help_network_cmd(msg);
 			} else if (module_name == "port") {
 				embed_help_reply(msg, {name: "Port Scan", value: "`"+prefix[msg.guild.id]+"port {port} {host}` checks if a specific port is open on the host, " +
-				"for example `"+prefix[msg.guild.id]+"`port 80 jaredbot.uk` will check if port 80 is open on JaredBot servers. You can also enter port ranges e.g. " +
+				"for example `"+prefix[msg.guild.id]+"port 80 jaredbot.uk` will check if port 80 is open on JaredBot servers. You can also enter port ranges e.g. " +
 				"`"+prefix[msg.guild.id]+"port 20-100 jaredbot.uk` will check all the ports between 20 and 100, be aware that entering a large port range could take " +
 				"a long time to complete."});
 		
@@ -2226,7 +2236,7 @@ bot.on("message", msg => {
 			// not a valid module error
 			} else {
 				if (module_name != "") {
-					embed_error(msg, "Not a valid module! Please type `"+prefix[msg.guild.id]+"`help` for a list of modules!");
+					embed_error(msg, "Not a valid module! Please type `"+prefix[msg.guild.id]+"help` for a list of modules!");
 				}
 			}
 		}
@@ -2475,7 +2485,7 @@ bot.on("message", msg => {
 					break;
 				default:
 					embed_rule.setColor(embed_colour_error);
-					embed_rule.addField("Error", "Invalid Rule! the Syntax for command is `"+prefix[msg.guild.id]+"`rule [1-8]`!");
+					embed_rule.addField("Error", "Invalid Rule! the Syntax for command is `"+prefix[msg.guild.id]+"rule [1-8]`!");
 					msg_channel_send(msg, embed_rule);
 					break;
 			}
@@ -2570,7 +2580,7 @@ bot.on("message", msg => {
 			if (authorised_IDs.indexOf(msg.author.id) > -1) {
 				// write guild ID to file
 				create_file_then_append_data(msg, letteremoji_filename, "true", endl="", overwrite=true);
-				embed_chat_reply(msg, "turned letter emojis on, type `"+prefix[msg.guild.id]+"`letteremoji off` to turn off!");
+				embed_chat_reply(msg, "turned letter emojis on, type `"+prefix[msg.guild.id]+"letteremoji off` to turn off!");
 				letter_emojis[msg.guild.id] = "true";
 				
 			} else {
@@ -3077,7 +3087,7 @@ bot.on("message", msg => {
 				msg_channel_send(msg, embed_time);
 			} else {
 				embed_error(msg, "Unable to find the specified city, please make sure you spelt it correctly, " +
-				"the format for the command is `"+prefix[msg.guild.id]+"`time {city}`, for example `"+prefix[msg.guild.id]+"`time London` will show the current time in London UK!");
+				"the format for the command is `"+prefix[msg.guild.id]+"time {city}`, for example `"+prefix[msg.guild.id]+"time London` will show the current time in London UK!");
 			}
 		}
 	}
@@ -3325,25 +3335,25 @@ function help_owo(msg) {
 		embed_owo.setAuthor("JaredBot | Command list", lion_profile_pic);
 		embed_owo.setThumbnail(lion_profile_pic);
 		embed_owo.addFields(
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo bite`\n`"+prefix[msg.guild.id]+"`owo blush`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo boop`\n`"+prefix[msg.guild.id]+"`owo bully`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo cry`\n`"+prefix[msg.guild.id]+"`owo cuddle`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo dance`\n`"+prefix[msg.guild.id]+"`owo greet`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo grin`\n`"+prefix[msg.guild.id]+"`owo handholding`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo happy`\n`"+prefix[msg.guild.id]+"`owo highfive`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo hold`\n`"+prefix[msg.guild.id]+"`owo hug`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo kill`\n`"+prefix[msg.guild.id]+"`owo kiss`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo lewd`\n`"+prefix[msg.guild.id]+"`owo lick`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo nom`\n`"+prefix[msg.guild.id]+"`owo pat`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo poke`\n`"+prefix[msg.guild.id]+"`owo pout`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo punch`\n`"+prefix[msg.guild.id]+"`owo scoff`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo shrug`\n`"+prefix[msg.guild.id]+"`owo thinking`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo smile`\n`"+prefix[msg.guild.id]+"`owo smug`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo thumbs`\n`"+prefix[msg.guild.id]+"`owo thumbsup`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo slap`\n`"+prefix[msg.guild.id]+"`owo sleepy`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo snuggle`\n`"+prefix[msg.guild.id]+"`owo stare`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo tickle`\n`"+prefix[msg.guild.id]+"`owo triggered`", inline: true},
-			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo wag`\n`"+prefix[msg.guild.id]+"`owo wave`\n\u200B", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo bite`\n`"+prefix[msg.guild.id]+"owo blush`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo boop`\n`"+prefix[msg.guild.id]+"owo bully`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo cry`\n`"+prefix[msg.guild.id]+"owo cuddle`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo dance`\n`"+prefix[msg.guild.id]+"owo greet`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo grin`\n`"+prefix[msg.guild.id]+"owo handholding`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo happy`\n`"+prefix[msg.guild.id]+"owo highfive`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo hold`\n`"+prefix[msg.guild.id]+"owo hug`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo kill`\n`"+prefix[msg.guild.id]+"owo kiss`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo lewd`\n`"+prefix[msg.guild.id]+"owo lick`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo nom`\n`"+prefix[msg.guild.id]+"owo pat`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo poke`\n`"+prefix[msg.guild.id]+"owo pout`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo punch`\n`"+prefix[msg.guild.id]+"owo scoff`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo shrug`\n`"+prefix[msg.guild.id]+"owo thinking`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo smile`\n`"+prefix[msg.guild.id]+"owo smug`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo thumbs`\n`"+prefix[msg.guild.id]+"owo thumbsup`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo slap`\n`"+prefix[msg.guild.id]+"owo sleepy`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo snuggle`\n`"+prefix[msg.guild.id]+"owo stare`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo tickle`\n`"+prefix[msg.guild.id]+"owo triggered`", inline: true},
+			{name: "\u200B", value: "`"+prefix[msg.guild.id]+"owo wag`\n`"+prefix[msg.guild.id]+"owo wave`\n\u200B", inline: true},
 		)
 		embed_owo.setTimestamp();
 		msg_channel_send(msg, embed_owo);
@@ -3553,10 +3563,10 @@ function configure_autopost(msg, commands, description, intervals, channel_file,
 						command = msg.content.slice(commands.length+1, commands.length+4);
 						if (command == "on ") {
 							autohenati_mins = msg.content.slice(commands.length+command.length, msg.content.length);
-							ErrorMessageEnd = "The correct syntax for the command is `"+prefix[msg.guild.id]+"`auto"+description+" on {length}` for example `"+prefix[msg.guild.id]+"`auto"+description+" on 10` will post a new "+description+" photo every 10 mins!";
+							ErrorMessageEnd = "The correct syntax for the command is `"+prefix[msg.guild.id]+"auto"+description+" on {length}` for example `"+prefix[msg.guild.id]+"auto"+description+" on 10` will post a new "+description+" photo every 10 mins!";
 							if (isInt(msg, autohenati_mins, 1, 1440, "length", ErrorMessageEnd) == true) {
 								create_file_then_append_data(msg, channel_file, msg.channel.id + "," + autohenati_mins + ";", endl="");
-								embed_info_reply(msg, "Auto"+description+" has been enabled, "+(description+"s").replace("ss","s")+" will be posted every " + autohenati_mins + " mins! You can type `"+prefix[msg.guild.id]+"`auto"+description+" off` to clear any Auto"+description+" rules!");
+								embed_info_reply(msg, "Auto"+description+" has been enabled, "+(description+"s").replace("ss","s")+" will be posted every " + autohenati_mins + " mins! You can type `"+prefix[msg.guild.id]+"auto"+description+" off` to clear any Auto"+description+" rules!");
 								console_log("Auto"+description+" has been enabled for server " + msg.guild.id, error=false, mod=true);
 							
 								// timeout
@@ -3619,8 +3629,8 @@ function configure_autopost(msg, commands, description, intervals, channel_file,
 							} clear_hentai_rules();
 						
 						} else {
-							embed_error(msg, "Invalid Input, the syntax for the command is `"+prefix[msg.guild.id]+"`auto"+description+" on {length}` for example `"+prefix[msg.guild.id]+"`auto"+description+
-							" 5` will post a meme every 5 mins. To turn off auto"+description+" you can type `"+prefix[msg.guild.id]+"`auto"+description+" off`.")
+							embed_error(msg, "Invalid Input, the syntax for the command is `"+prefix[msg.guild.id]+"auto"+description+" on {length}` for example `"+prefix[msg.guild.id]+"auto"+description+
+							" 5` will post a meme every 5 mins. To turn off auto"+description+" you can type `"+prefix[msg.guild.id]+"auto"+description+" off`.")
 						}
 					} else {
 						embed_error(msg, "This command can only be used in NSFW channels!");
@@ -4413,7 +4423,7 @@ bot.on("message", msg => {
 			"for managing your server, like announce, warn, mute, unmute, kick, " +
 			"ban, unban, to logging which saves a copy of every message allowing " +
 			"you to retrieve messages even after they have been deleted.\n\u200B" +
-			"\n\u200BFor information on how to use the bot type `"+prefix[msg.guild.id]+"`help`! If you have any " +
+			"\n\u200BFor information on how to use the bot type `"+prefix[msg.guild.id]+"help`! If you have any " +
 			"suggestions, improvements, or you just want to talk to me, feel free to contact me using the links below.\n\u200B"
 		)
 		embed_author_jared.setColor(embed_colour_info);
@@ -5232,7 +5242,7 @@ bot.on("message", msg => {
 		
 			// message user
 			embed_chat_reply(msg, "Just one game started on "+msg.guild.name+" in channel "+msg.channel.name+", " +
-			"type `"+prefix[msg.guild.id]+"`justone join` to join the game! Once all of the user have joined the game, ask an admin to type `"+prefix[msg.guild.id]+"`justone ready` " +
+			"type `"+prefix[msg.guild.id]+"justone join` to join the game! Once all of the user have joined the game, ask an admin to type `"+prefix[msg.guild.id]+"justone ready` " +
 			"this will beging sending the words to the users");
 			
 			// to do:
@@ -5253,7 +5263,7 @@ bot.on("message", msg => {
 			// check if file exists
 			if (fs_read.existsSync(justone_path) == false) {
 				embed_chat_reply(msg, "Unable to join just one game, there is no game currently setup on the server, " +
-				"please type `"+prefix[msg.guild.id]+"`justone start` to start a new game!");
+				"please type `"+prefix[msg.guild.id]+"justone start` to start a new game!");
 				return false;
 			}
 			
@@ -5372,7 +5382,7 @@ bot.on("message", msg => {
 										embed_justone.setTitle("Just One");
 										embed_justone.setDescription("Hi! Welcome to the game: Just One! Below is the list of you words, please reply to " + 
 										"this message with a word clue for each word listed. \n\u200B\n\u200B" +
-										"How to Reply? Use the `"+prefix[msg.guild.id]+"`justone clues` command, you need to give a one word clue for each of the " +
+										"How to Reply? Use the `"+prefix[msg.guild.id]+"justone clues` command, you need to give a one word clue for each of the " +
 										"words listed. Make sure to separate your clues with a comma `,` if any of your clues contains spaces ` ` e.g. " +
 										"multiple words, then your clues will be reject and you will be asked to give your clues again.\n\u200B" +
 										"\n\u200BLets say for example your words are `apple`, `coat`, `toothpaste`, then you could reply something like this " +
@@ -5420,7 +5430,7 @@ bot.on("message", msg => {
 			clear_file(msg, justone_words_fname);		// clear words
 			
 			// message
-			embed_chat_reply(msg, "Just one game has ended! Members database cleared, type `"+prefix[msg.guild.id]+"`justone start` to start a new game!");
+			embed_chat_reply(msg, "Just one game has ended! Members database cleared, type `"+prefix[msg.guild.id]+"justone start` to start a new game!");
 		}
 	}
 })
@@ -5669,7 +5679,7 @@ bot.on("message", msg => {
 					embed_chat_reply(msg, "Ok i will remind you!");
 				} else if (msg.content != prefix[msg.guild.id]+"remind me") {
 					embed_help_reply(msg, {name: "remind me {reminder} {No. min/sec}", value: "sets a reminder, the bot will ping you in the " +
-					"specified number of seconds. For example `"+prefix[msg.guild.id]+"`remind me to check steam in 10 mins`, will ping you in 10 mins telling you to " +
+					"specified number of seconds. For example `"+prefix[msg.guild.id]+"remind me to check steam in 10 mins`, will ping you in 10 mins telling you to " +
 					"check steam.\n\u200B"});
 				}
 			} catch (error) {
@@ -5835,7 +5845,7 @@ function higher_lower_show_leaderboard(msg) {
 			})
 		} else {
 			embed_error(msg, "The Higher Lower scoreboard does not exist for your server, you can create a new scoreboard by" +
-			" playing a game of higher lower, type `"+prefix[msg.guild.id]+"`higherlower` to start the game.");
+			" playing a game of higher lower, type `"+prefix[msg.guild.id]+"higherlower` to start the game.");
 		}
 	} catch (err) {
 		console_log("Error thrown in higher_lower_show_leaderboard function! " + err, error=true);
@@ -5861,8 +5871,8 @@ bot.on("message", msg => {
 			higher_lower_show_leaderboard(msg);
 		} else if (msg.content.toLowerCase().slice(0, 13) == prefix[msg.guild.id]+"higherlower ") {
 			if (msg.guild != null && msg.content.slice(13, msg.content.length).length > 0) {
-				embed_error(msg, "Invalid parameter, please type `"+prefix[msg.guild.id]+"`higherlower` to start the game, "+
-				"or if you would like to see the scoreboard type `"+prefix[msg.guild.id]+"`higherlower scoreboard` or `"+prefix[msg.guild.id]+"`higherlower leaderboard`!");
+				embed_error(msg, "Invalid parameter, please type `"+prefix[msg.guild.id]+"higherlower` to start the game, "+
+				"or if you would like to see the scoreboard type `"+prefix[msg.guild.id]+"higherlower scoreboard` or `"+prefix[msg.guild.id]+"higherlower leaderboard`!");
 			}
 		}
 	}
@@ -6195,6 +6205,7 @@ function help_steam(msg) {
 		{name: prefix[msg.guild.id]+"sl {Steam ID}", value: "Displays steam ladders stats for the specified account.\n\u200B"},
 		{name: prefix[msg.guild.id]+"achiv {Steam ID}", value: "Shows the number of achievements a Steam User has.\n\u200B"},
 		{name: prefix[msg.guild.id]+"inv {Steam ID}", value: "Shows the value of a users CSGO inventory.\n\u200B"},
+		{name: prefix[msg.guild.id]+"id {Steam ID}", value: "Get Steam user info from ID\n\u200B"},
 	)
 	embed_steam.setTimestamp();
 	msg_channel_send(msg, embed_steam);
@@ -6566,6 +6577,7 @@ bot.on("message", msg => {
 		if (msg.content.slice(0, 5) == prefix[msg.guild.id]+"inv " || msg.content.slice(0, 11) == prefix[msg.guild.id]+"inventory ") {
 			// get Steam ID
 			function get_steam_inventory_value() {
+				console_log("Checking steam inventory!");
 				get_user_id(msg, function(current_user_id) {
 					if (current_user_id != false) {
 						// get HTML
@@ -6630,6 +6642,30 @@ bot.on("message", msg => {
 					}
 				})
 			} get_steam_inventory_value();
+		}
+	}
+})
+
+// find steam user by ID
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.content.slice(0, 4) == prefix[msg.guild.id]+"id ") {
+			user_id = encodeURI(msg.content.slice(3, msg.content.length));
+			console.log(user_id);
+			get_html("https://steamidfinder.com/lookup/" + user_id, function(html) {
+				pfp = remove_html_tags(format_html(e(html, [['class="img-rounded avatar"', 1], ['src="', 1], ['"', 0]])));
+				body = remove_html_tags(format_html(e(html, [['class="col-md-12"', 1], ['class="panel-body"', 1], ['<a target="_blank"', 0]])));
+				body = remove_dup_chars(remove_dup_chars(remove_dup_chars(body.replace(/[\r\t>]/g, ''), '  ', ' '), '\n\n', '\n'), ' \n', '');
+				
+				// embed
+				embed_user_id = new Discord.MessageEmbed();
+				embed_user_id.setColor(embed_color_chat);
+				embed_user_id.setThumbnail(pfp);
+				embed_user_id.addField('Steam User Info', body);
+				embed_user_id.setTimestamp();
+				msg_channel_send(msg, embed_user_id);
+				
+			})
 		}
 	}
 })
@@ -6883,8 +6919,8 @@ bot.on("message", msg => {
 			} else if (msg.content.split(" ").length == 2) {
 				role_id = msg.content.split(" ")[1];
 			} else {
-				embed_error(msg, "The role could not be found, please specify a mentionable role, e.g. `"+prefix[msg.guild.id]+"`roleinfo @member`, be aware this will " +
-				"ping all members with the specified role, to avoid this you can enter a role ID instead `"+prefix[msg.guild.id]+"`roleinfo {ID}`");
+				embed_error(msg, "The role could not be found, please specify a mentionable role, e.g. `"+prefix[msg.guild.id]+"roleinfo @member`, be aware this will " +
+				"ping all members with the specified role, to avoid this you can enter a role ID instead `"+prefix[msg.guild.id]+"roleinfo {ID}`");
 				return false;
 			}
 			
@@ -7004,7 +7040,7 @@ function geoip_lookup(msg) {
 	
 		// check if IP is valid
 		if (check_string(ip, " ghijklmnopqrstuvwxyz!@#$%^&*()_+-={}[]|;'<>,\/") == true) {
-			embed_error(msg, "Invalid IP address, please enter a valid IPv4 or IPv6 address, for example `"+prefix[msg.guild.id]+"`geoip 216.58.205.46`!");
+			embed_error(msg, "Invalid IP address, please enter a valid IPv4 or IPv6 address, for example `"+prefix[msg.guild.id]+"geoip 216.58.205.46`!");
 			return false;
 		}
 		
@@ -7235,7 +7271,7 @@ bot.on("message", msg => {
 							// check port
 							check_port(msg, parseInt(port), host, reply=true);
 						} else {
-							embed_error(msg, "Invalid host, please make sure to enter a valid domain, for example `"+prefix[msg.guild.id]+"`port 80 google.com`!");
+							embed_error(msg, "Invalid host, please make sure to enter a valid domain, for example `"+prefix[msg.guild.id]+"port 80 google.com`!");
 						}
 					}
 				
@@ -7305,7 +7341,7 @@ bot.on("message", msg => {
 				}
 				
 			} else {
-				embed_error(msg, "Invalid Syntax! please make sure to use the correct format `"+prefix[msg.guild.id]+"`port {port} {host}` for example "+
+				embed_error(msg, "Invalid Syntax! please make sure to use the correct format `"+prefix[msg.guild.id]+"port {port} {host}` for example "+
 				"`"+prefix[msg.guild.id]+"port 80 google.com` will check if port 80 is open on the host google");
 			}
 		}
@@ -8327,9 +8363,9 @@ bot.on("message", msg => {
 						}
 					} else {
 						if (msg.guild != null && msg.content.slice(0, 6) == prefix[msg.guild.id]+"clear") {
-							embed_error(msg, "Invalid Input, the number of messages to delete must be an integer! e.g. `"+prefix[msg.guild.id]+"`clear 10` will delete 10 messages!");
+							embed_error(msg, "Invalid Input, the number of messages to delete must be an integer! e.g. `"+prefix[msg.guild.id]+"clear 10` will delete 10 messages!");
 						} else {
-							embed_error(msg, "Invalid Input, the number of messages to delete must be an integer! e.g. `"+prefix[msg.guild.id]+"`purge 10` will delete 10 messages!");
+							embed_error(msg, "Invalid Input, the number of messages to delete must be an integer! e.g. `"+prefix[msg.guild.id]+"purge 10` will delete 10 messages!");
 						}
 					}
 				} else {
@@ -8351,13 +8387,13 @@ function automod_help(msg) {
 		"break specifically defined rules. When users spam, post porn links, or uses offensive language for example, JaredBot’s contenting " +
 		"filtering feature will warn them. Automod is designed to run alongside content filtering, acting as a way to punish users who get to many " +
 		"warnings. As well as counting content filtering warnings, it will also keep track of warnings moderators and admins give. " +
-		"Make sure to enable contant filtering else your automod rules wont be enforced, type `"+prefix[msg.guild.id]+"`help filter` for more info!\n\u200B");
+		"Make sure to enable contant filtering else your automod rules wont be enforced, type `"+prefix[msg.guild.id]+"help filter` for more info!\n\u200B");
 		embed_automod_helpmenu.addFields(
 			{name: prefix[msg.guild.id]+"automod help", value: "Shows this help menu.\n\u200B"},
 			{name: prefix[msg.guild.id]+"automod rules", value: "Shows a list of the active rules applied to your server.\n\u200B"},
 			{name: prefix[msg.guild.id]+"automod warnlist", value: "Shows a list of users with the most warnnings on the server.\n\u200B"},
-			{name: prefix[msg.guild.id]+"automod", value: "lets you add an automod rule, The syntax for the command is `"+prefix[msg.guild.id]+"`automod {action} after {number of} warnings in {length} {mins/hours}`, for example `"+prefix[msg.guild.id]+"`automod mute after 10 warnings in 5 mins` will mute any users who recive 5 warnings within 10 mins!\n\u200B"},
-			{name: prefix[msg.guild.id]+"automod remove", value: "lets you remove an automod rule, The syntax for the command is `"+prefix[msg.guild.id]+"`automod remove {rule number}`, for example `"+prefix[msg.guild.id]+"`automod remove 1` will remove the first active rule, i strongly suggest running `"+prefix[msg.guild.id]+"`automod rules` first to get a list of all of the rules currently on your sever, then use the automod remove command after.\n\u200B"}
+			{name: prefix[msg.guild.id]+"automod", value: "lets you add an automod rule, The syntax for the command is `"+prefix[msg.guild.id]+"automod {action} after {number of} warnings in {length} {mins/hours}`, for example `"+prefix[msg.guild.id]+"automod mute after 10 warnings in 5 mins` will mute any users who recive 5 warnings within 10 mins!\n\u200B"},
+			{name: prefix[msg.guild.id]+"automod remove", value: "lets you remove an automod rule, The syntax for the command is `"+prefix[msg.guild.id]+"automod remove {rule number}`, for example `"+prefix[msg.guild.id]+"automod remove 1` will remove the first active rule, i strongly suggest running `"+prefix[msg.guild.id]+"automod rules` first to get a list of all of the rules currently on your sever, then use the automod remove command after.\n\u200B"}
 		)
 	
 		// send message
@@ -8393,7 +8429,7 @@ bot.on("message", msg => {
 					embed_automod_rules.setColor(embed_color_chat);
 					embed_automod_rules.setTitle("Automod Active Rules")
 					embed_automod_rules.setDescription("This is a list of all active automod rules currently applied to this server, " +
-					"if you would like to remove a rule this can be done by typing `"+prefix[msg.guild.id]+"`automod remove {rule number}`!\n\u200B");
+					"if you would like to remove a rule this can be done by typing `"+prefix[msg.guild.id]+"automod remove {rule number}`!\n\u200B");
 				
 					// format data
 					automod_raw_data = data.split(";");
@@ -8420,7 +8456,7 @@ bot.on("message", msg => {
 					}
 					
 					if (automod_raw_data[0] == "") {
-						embed_automod_rules.addField("No rules currently on the server!", "See the `"+prefix[msg.guild.id]+"`automod help` menu for information on how to add a rule!\n\u200B");
+						embed_automod_rules.addField("No rules currently on the server!", "See the `"+prefix[msg.guild.id]+"automod help` menu for information on how to add a rule!\n\u200B");
 					}
 				
 					// send message
@@ -8428,10 +8464,10 @@ bot.on("message", msg => {
 					msg_channel_send(msg, embed_automod_rules);
 				})
 			} catch {
-				embed_error(msg, "Failed to display automod rules, You don't have any rules setup on your server, please see the `"+prefix[msg.guild.id]+"`automod help` menu for information on how to create a rule.");
+				embed_error(msg, "Failed to display automod rules, You don't have any rules setup on your server, please see the `"+prefix[msg.guild.id]+"automod help` menu for information on how to create a rule.");
 			}
 		} else if (msg.guild != null && msg.content.slice(0, 16) == prefix[msg.guild.id]+"automod remove ") {
-			if (msg.member.hasPermission("MANAGE_CHANNELS") == true) {
+			if (msg.member.hasPermission("MANAGE_MESSAGES") == true) {
 				rule_no = msg.content.slice(16, msg.content.length);
 				// get dir
 				automod_path = logging_path + "/" + get_server_name(msg) + "/" + automod_filename;
@@ -8460,7 +8496,7 @@ bot.on("message", msg => {
 									// message user
 									embed_info_reply(msg, "Rule " + rule_no + " has been removed!");
 								} else {
-									embed_error(msg, "Failed to remove rule, no rules are currently setup on your server, please see the `"+prefix[msg.guild.id]+"`automod help` menu for more information on how to setup a rule.")
+									embed_error(msg, "Failed to remove rule, no rules are currently setup on your server, please see the `"+prefix[msg.guild.id]+"automod help` menu for more information on how to setup a rule.")
 								}
 							} else {
 								embed_error(msg, "Invalid Input, the specific rule could not be found.");
@@ -8469,7 +8505,7 @@ bot.on("message", msg => {
 							embed_error(msg, "Invalid Input, your rule number must a number.");
 						}
 					} else {
-						embed_error(msg, "There are no rules currenly setup for this server, see `"+prefix[msg.guild.id]+"`automod help` for information on how to create a rule.");
+						embed_error(msg, "There are no rules currenly setup for this server, see `"+prefix[msg.guild.id]+"automod help` for information on how to create a rule.");
 					}
 				})
 			} else {
@@ -8523,9 +8559,9 @@ bot.on("message", msg => {
 			
 		} else if (msg.guild != null && msg.content.slice(0, 9) == prefix[msg.guild.id]+"automod ") {
 			try {
-				automod_error_text = "\n\nThe syntax for the command is `"+prefix[msg.guild.id]+"`automod {action} after {number of} warnings in {length} {mins/hours}`, " +
-				"for example `"+prefix[msg.guild.id]+"`automod mute after 10 warnings in 5 mins` will mute any users who recive 5 warnings within 10 mins!";
-				if (msg.member.hasPermission("MANAGE_CHANNELS") == true) {
+				automod_error_text = "\n\nThe syntax for the command is `"+prefix[msg.guild.id]+"automod {action} after {number of} warnings in {length} {mins/hours}`, " +
+				"for example `"+prefix[msg.guild.id]+"automod mute after 10 warnings in 5 mins` will mute any users who recive 5 warnings within 10 mins!";
+				if (msg.member.hasPermission("MANAGE_MESSAGES") == true) {
 					// get rule
 					// -automod mute after 5 warnings in 10 mins
 				
@@ -8585,7 +8621,7 @@ bot.on("message", msg => {
 															embed_info_reply(msg, "Automod rule updated! Users who get " + no_warnings + " warnings" +
 															" in " + length + " " + minSec + ", will now be " + action.replace("mute", "mut") + "ed! " +
 															"Please make sure to turn on content filtering in order for these rules to take effect " +
-															"type the `"+prefix[msg.guild.id]+"`filter on` to turn all filters on, or see `"+prefix[msg.guild.id]+"`help filter` for help on configuring filters.");
+															"type the `"+prefix[msg.guild.id]+"filter on` to turn all filters on, or see `"+prefix[msg.guild.id]+"help filter` for help on configuring filters.");
 															console_log("Audomod rule updated for " + msg.guild.id);
 														} else {
 															embed_error(msg, "Invalid Input, please sepcify `hours`, `mins` or `seconds` for your length of time!" + automod_error_text);
@@ -8823,7 +8859,7 @@ function on_warning(msg, warning_code, reason="") {
 // exit
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
-		if (msg.guild != null && msg.content == prefix[msg.guild.id]+"exit") {
+		if (msg.guild != null && msg.content == prefix[msg.guild.id]+"exit" || msg.content == prefix[msg.guild.id]+"quit") {
 			if (authorised_IDs.indexOf(msg.author.id) > -1) {
 				embed_chat_reply(msg, "JaredBot has been terminated!");
 				console_log("JaredBot has been terminated!", error=false, mod=true);
@@ -9288,7 +9324,7 @@ bot.on("message", msg => {
 				"a web browser, the URL will be `cdn.discordapp.com/emojis/` followed by an ID, simply copy the ID part of the URL "+
 				"(refer to the image below), then paste that ID into discord when using the banemoji command, for example "+
 				"`"+prefix[msg.guild.id]+"banemoji 779738708844609597` will ban an emoji of a rainbow cat.\n\u200B"},
-				{name: prefix[msg.guild.id]+"unbanemoji {emoji ID}", value: "Allows you to unban an emoji, for example `"+prefix[msg.guild.id]+"`unbanemoji 779738708844609597` "+
+				{name: prefix[msg.guild.id]+"unbanemoji {emoji ID}", value: "Allows you to unban an emoji, for example `"+prefix[msg.guild.id]+"unbanemoji 779738708844609597` "+
 				"will unban an emoji of a rainbow cat. prefer to the banemoji command description above, for information on how to get the "+
 				"emoji ID, or look at the image below.\n\u200B"},
 			)
@@ -9330,7 +9366,7 @@ bot.on("message", msg => {
 					}
 				} else {
 					embed_error(msg, "Ban URL is part of the emoji spam filter, please turn on the emoji spam filter inorder to use this feature, "+
-					"type `"+prefix[msg.guild.id]+"`filter on emojispam`, or `"+prefix[msg.guild.id]+"`filter` for more information!");
+					"type `"+prefix[msg.guild.id]+"filter on emojispam`, or `"+prefix[msg.guild.id]+"filter` for more information!");
 				}
 			}
 		}
@@ -9571,7 +9607,7 @@ function filter_help(msg) {
 			{name: prefix[msg.guild.id]+"filter on porn", value: "Turns on the porn links content filter, any links to porn sites will be removed with this filter.\n\u200B"},
 			{name: prefix[msg.guild.id]+"filter on phishing", value: "Turns on the phishing links content filter, any links to phishing sites will be removed.\n\u200B"},
 			{name: prefix[msg.guild.id]+"filter on spam", value: "Turns on the anti-spam content filter, users will be warned for typing the same message multiple times.\n\u200B"},
-			{name: prefix[msg.guild.id]+"filter on emojispam", value: "Turns on the emoji content filter, this filter will automtically ban specific emojis, type `"+prefix[msg.guild.id]+"`emoji` for more info.\n\u200B"},
+			{name: prefix[msg.guild.id]+"filter on emojispam", value: "Turns on the emoji content filter, this filter will automtically ban specific emojis, type `"+prefix[msg.guild.id]+"emoji` for more info.\n\u200B"},
 			{name: prefix[msg.guild.id]+"filter on promotion", value: "Turns on the anti-promotion filter, this filter will automatically delete discord invites to other servers.\n\u200B"},
 			{name: prefix[msg.guild.id]+"filter on tag", value: "Turns on the anti-tag filter, this filter will automatically delete here and everyone tags.\n\u200B"},
 			{name: prefix[msg.guild.id]+"filter on mod", value: "Turns on the anti-admin filter, this filter deletes messages where users beg for admin or mod.\n\u200B"},
@@ -9658,7 +9694,7 @@ bot.on("message", msg => {
 			if (msg.content != prefix+"authorise" && msg.content != prefix+"help") {
 				var error_text = "[Authorization Error]";
 				if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) == -1 && msg.content.indexOf(error_text) == -1) {
-					embed_error(msg, error_text+" Your Server is not authorised to run this command! Please type `"+prefix[msg.guild.id]+"`authorise` to authorise your server ID!");
+					embed_error(msg, error_text+" Your Server is not authorised to run this command! Please type `"+prefix[msg.guild.id]+"authorise` to authorise your server ID!");
 				}
 			}
 		}
@@ -9828,19 +9864,19 @@ bot.on("message", msg => {
 							if (secs > 60) {
 								embed_error(msg, "There are 60 seconds in a min, your seconds value can't be larger then 60!");
 							} else {
-								embed_error(msg, "Invalid format your specified seconds is not an integer between 0 and 60! The syntax for the command is `"+prefix[msg.guild.id]+"`slowmode {MM:SS}`");
+								embed_error(msg, "Invalid format your specified seconds is not an integer between 0 and 60! The syntax for the command is `"+prefix[msg.guild.id]+"slowmode {MM:SS}`");
 							}
 							return false;
 						}
 					} else {
-						embed_error(msg, "Invalid format your specified mins is not an integer! The syntax for the command is `"+prefix[msg.guild.id]+"`slowmode {MM:SS}`");
+						embed_error(msg, "Invalid format your specified mins is not an integer! The syntax for the command is `"+prefix[msg.guild.id]+"slowmode {MM:SS}`");
 						return false;
 					}
 				} else {
 					time = command;
 				}
 				
-				if (isInt(msg, time, 0, 21601, "interval", ErrorMessageEnd="The syntax for the command is `"+prefix[msg.guild.id]+"`slowmode {MM:SS}`") == true) {
+				if (isInt(msg, time, 0, 21601, "interval", ErrorMessageEnd="The syntax for the command is `"+prefix[msg.guild.id]+"slowmode {MM:SS}`") == true) {
 					msg.channel.setRateLimitPerUser(parseInt(time));
 					embed_chat_reply(msg, "Slowmode has been set to " + time + " seconds!");
 				}
@@ -9992,7 +10028,7 @@ bot.on("message", msg => {
 			
 			// send message
 			msg.channel.send(embed_custom).catch(err => {
-				embed_error(msg, "Failed to create embed, you likely entered Invalid data, please refer to `"+prefix[msg.guild.id]+"`help embed` for information on how to use the command! " + err);
+				embed_error(msg, "Failed to create embed, you likely entered Invalid data, please refer to `"+prefix[msg.guild.id]+"help embed` for information on how to use the command! " + err);
 			})
 			
 		} else if (msg.guild != null && msg.content == prefix[msg.guild.id]+"embed") {
@@ -10000,7 +10036,7 @@ bot.on("message", msg => {
 			embed_custom_help.setColor(embed_colour_info);
 			embed_custom_help.setTitle("Embed Generator");
 			embed_custom_help.setDescription("With the embed command you can create your own custom embeds, "+
-			"the syntax for the command is `"+prefix[msg.guild.id]+"`embed [tags]`, you can use any and all of the specified tags below.\n\u200B");
+			"the syntax for the command is `"+prefix[msg.guild.id]+"embed [tags]`, you can use any and all of the specified tags below.\n\u200B");
 			embed_custom_help.addFields(
 				{name: "[color][/color]", value: "Embed colour e.g. `[color]blue[/color]`.\n\u200B"},
 				{name: "[title][/title]", value: "Title e.g. `[title]Server Rules[/title]`.\n\u200B"},
@@ -10544,7 +10580,7 @@ function help_render(msg) {
 	embed_render.addFields(
 		{name: "1. Copy Files", value: "The first thing you are going to want to do is copy all of your project files into a single folder, this inclues the `.mlt` file, and any video, audio or other files you have used in the project.\n\u200B"},
 		{name: "2. Create Zip", value: "Next, create a zip file of all of your project files (you can use a program like [WinRar](https://www.rarlab.com/download.htm) or [7-Zip](https://www.7-zip.org/) to do this), make sure that the files are located in the root of the zip, i.e. they are not in any sub folder.\n\u200B"},
-		{name: "3. Upload File", value: "Now that you have your zip file ready, upload the file to discord and type the comand `"+prefix[msg.guild.id]+"`render` to begin rendering the video file.\n\u200B"},
+		{name: "3. Upload File", value: "Now that you have your zip file ready, upload the file to discord and type the comand `"+prefix[msg.guild.id]+"render` to begin rendering the video file.\n\u200B"},
 		{name: "4. Wait", value: "Finaly after the file has been successfully uploaded to discord, simply wait for the render to finish, JaredBot will post a link to the file when it is done.\n\u200B"},
 		{name: "Further help", value: "Please feel free to [watch this video](https://youtu.be/DV0tHwlGD_M) for more information!\n\u200B"}
 	)
@@ -10721,10 +10757,12 @@ bot.on("message", msg => {
 										}, 2000, output_file, msg);
 										
 										// encode
+										console.log([cmd]);
 										run_command[msg.guild.id] = exec(cmd, (err, stdout, stderr) => {
 											console_log("Finished encoding file for " + msg.guild.name + "!", error=false, mod=true);
 									
 											// check if file exists
+											console.log([output_file]);
 											if (fs_read.existsSync(output_file) == true) {
 												if (msg.content.slice(0, 7) == prefix[msg.guild.id]+"mp4low" || msg.content.slice(0, 7) == prefix[msg.guild.id]+"movlow" || 
 													msg.content.slice(0, 8) == prefix[msg.guild.id]+"webmlow") {
@@ -10800,6 +10838,8 @@ bot.on("message", msg => {
 												clearInterval(edit_interval);
 											}
 										})
+									}).catch(err => {
+										console_log("Error thrown in mp4 function! " + err, error=true);
 									})
 								})
 							})
@@ -10930,11 +10970,15 @@ bot.on("message", msg => {
 									msg.channel.send("Captioned video! " + output_online).catch(err => {
 										console_log("Failed to send captioned video file to server! " + err, error=true);
 									})
+								}).catch(err => {
+									console_log("Failed to send message! " + err, error=true);
 								})
 							} else {
 								// message user
 								msg.channel.send("Captioned video! " + output_online).catch(err => {
 									console_log("Failed to send captioned video link to server! " + err, error=true);
+								}).catch(err => {
+									console_log("Failed to send message! " + err, error=true);
 								})
 							}
 						})
@@ -10980,6 +11024,8 @@ bot.on("message", msg => {
 											msg.channel.send("Captioned Image! " + output_online).catch(err => {
 												console_log("Failed to send captioned image to server! " + err, error=true);
 											})
+										}).catch(err => {
+											console_log("Failed to send message! " + err, error=true);
 										})
 									} else {
 										// message user
@@ -11116,6 +11162,8 @@ bot.on("message", msg => {
 												clearTimeout(render_timeout);
 											}
 										})
+									}).catch(err => {
+										console_log("Failed to send message! " + err, error=true);
 									})
 								})
 							})
@@ -11204,7 +11252,7 @@ function help_download(msg) {
 		{name: prefix[msg.guild.id]+"download", value: "Downloads a YouTube video at the highest resolution (supports 8K).\n\u200B"},
 		{name: prefix[msg.guild.id]+"downloadlow", value: "Downloads a YouTube video at the lowest resolution (144p).\n\u200B"},
 		{name: prefix[msg.guild.id]+"downloadmp3", value: "Downloads only the audio of a YouTube video.\n\u200B"},
-		{name: prefix[msg.guild.id]+"yt", value: "Searchs YouTube and posts link to video, e.g. `"+prefix[msg.guild.id]+"`yt coffin dance`.\n\u200B"},
+		{name: prefix[msg.guild.id]+"yt", value: "Searchs YouTube and posts link to video, e.g. `"+prefix[msg.guild.id]+"yt coffin dance`.\n\u200B"},
 	)
 	embed_download.setTimestamp();
 	msg_channel_send(msg, embed_download);
@@ -11392,6 +11440,8 @@ bot.on("message", msg => {
 								yt_download_time[msg.guild.id] = 0;
 								yt_timeout[msg.guild.id] = false;
 							}
+						}).catch(err => {
+							console_log("Failed to send message! " + err, error=true);
 						})
 					} else {
 						embed_error(msg, "Please wait for the first video to finish download before trying to download another!");
@@ -11511,6 +11561,8 @@ bot.on("message", msg => {
 												if (err) {
 													console_log("Failed to send link to discord servers!", error=true);
 												}
+											}).catch(err => {
+												console_log("Failed to send message! " + err, error=true);
 											})
 										}
 										
@@ -11529,9 +11581,10 @@ bot.on("message", msg => {
 									// message user
 									msg.channel.send(online_location + "/" + output_file).catch(err => {
 										console_log("Failed to send file to discord server " + msg.guild.name + "!", error=true);
+									}).catch(err => {
+										console_log("Failed to send message! " + err, error=true);
 									})
 								}
-								
 							})
 						})
 					})
@@ -11649,7 +11702,7 @@ bot.on("message", msg => {
 				}
 			})
 			embed_chat_reply(msg, "Auto Python Challenge enabled, a new challenge will be posted every 24 hours in this channel!" +
-				"Type the `"+prefix[msg.guild.id]+"`autopychallenge off` to turn off!");
+				"Type the `"+prefix[msg.guild.id]+"autopychallenge off` to turn off!");
 				
 		} else if (msg.guild != null && msg.content == prefix[msg.guild.id]+"autopychallenge off" || msg.content == prefix[msg.guild.id]+"autopy off") {
 			// clear file
@@ -11763,12 +11816,12 @@ bot.on("message", msg => {
 					embed_error(msg, "Not a valid element number! make sure the number is within range 1 to 109!");
 				}
 			} else {
-				embed_error(msg, "Invalid Format! the correct format is `"+prefix[msg.guild.id]+"`element {element No.}` or `"+prefix[msg.guild.id]+"`element {name}`, " +
-				"For example `"+prefix[msg.guild.id]+"`element 94` will display information on Plutonium or `"+prefix[msg.guild.id]+"`element gold` will display information on Gold!");
+				embed_error(msg, "Invalid Format! the correct format is `"+prefix[msg.guild.id]+"element {element No.}` or `"+prefix[msg.guild.id]+"element {name}`, " +
+				"For example `"+prefix[msg.guild.id]+"element 94` will display information on Plutonium or `"+prefix[msg.guild.id]+"element gold` will display information on Gold!");
 			}
 		} else if (msg.guild != null && msg.content.slice(0, 9) == prefix[msg.guild.id]+"element") {
-			embed_error(msg, "Invalid Format! the correct format is `"+prefix[msg.guild.id]+"`element {element No.}` or `"+prefix[msg.guild.id]+"`element {name}`, " +
-			"For example `"+prefix[msg.guild.id]+"`element 94` will display information on Plutonium or `"+prefix[msg.guild.id]+"`element gold` will display information on Gold!");
+			embed_error(msg, "Invalid Format! the correct format is `"+prefix[msg.guild.id]+"element {element No.}` or `"+prefix[msg.guild.id]+"element {name}`, " +
+			"For example `"+prefix[msg.guild.id]+"element 94` will display information on Plutonium or `"+prefix[msg.guild.id]+"element gold` will display information on Gold!");
 		}
 	}
 })
@@ -11776,7 +11829,7 @@ bot.on("message", msg => {
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.guild != null && msg.content == prefix[msg.guild.id]+"periodictable" || msg.content == prefix[msg.guild.id]+"table") {
-			reply_text = "You can type `"+prefix[msg.guild.id]+"`element {elm no.}` to get more speific information about an element!";
+			reply_text = "You can type `"+prefix[msg.guild.id]+"element {elm no.}` to get more speific information about an element!";
 
 			// Send Message
 			embed_periodic_table = new Discord.MessageEmbed();
@@ -11897,12 +11950,12 @@ bot.on("message", msg => {
 					}
 				} else {
 					embed_error(msg, "The specified pokemon could not be found, you can specify a pokemon by index, " +
-					"for example `"+prefix[msg.guild.id]+"`pokemon 39` will show info for Jigglypuff , or by name e.g. `"+prefix[msg.guild.id]+"`pokemon Pikachu` for info on Pikachu!")
+					"for example `"+prefix[msg.guild.id]+"pokemon 39` will show info for Jigglypuff , or by name e.g. `"+prefix[msg.guild.id]+"pokemon Pikachu` for info on Pikachu!")
 				}
 			}, read_input_file_pokemon_dataset);
 		} else if (msg.guild != null && msg.content == prefix[msg.guild.id]+"pokemon") {
 			embed_error(msg, "Please Specify a pokemon, you can specify a pokemon by index, " +
-			"for example `"+prefix[msg.guild.id]+"`pokemon 39` will show info for Jigglypuff , or by name e.g. `"+prefix[msg.guild.id]+"`pokemon Pikachu` for info on Pikachu!")
+			"for example `"+prefix[msg.guild.id]+"pokemon 39` will show info for Jigglypuff , or by name e.g. `"+prefix[msg.guild.id]+"pokemon Pikachu` for info on Pikachu!")
 		}
 	}
 })
@@ -11971,7 +12024,7 @@ bot.on("message", msg => {
 			embed_medicine_help = new Discord.MessageEmbed();
 			embed_medicine_help.setColor(embed_colour_info);
 			embed_medicine_help.setTitle("Medicine Help");
-			embed_medicine_help.setDescription("To use the medicine command type `"+prefix[msg.guild.id]+"`medicine {name}` for example `"+prefix[msg.guild.id]+"`medicine ibuprofen` "+
+			embed_medicine_help.setDescription("To use the medicine command type `"+prefix[msg.guild.id]+"medicine {name}` for example `"+prefix[msg.guild.id]+"medicine ibuprofen` "+
 			"will show information on the Ibuprofen medicine, such as a description of what the medicine does and it's common side effects. "+
 			"Below is a list of all medicine names currently in the database:\n\u200B");
 			
@@ -12294,18 +12347,18 @@ function help_music(msg) {
 			{name: "Skip To", value: "`"+prefix[msg.guild.id]+"help skipto`\n\u200B", inline: true},
 			{name: "Disconnect", value:"`"+prefix[msg.guild.id]+"help disconnect`\n\u200B", inline: true},
 			{name: "Now Playing", value:"`"+prefix[msg.guild.id]+"help np`\n\u200B", inline: true},
-			{name: "Test Audio", value:"`"+prefix[msg.guild.id]+"help ping`\n`"+prefix[msg.guild.id]+"`help testaudio`\n\u200B", inline: true},
+			{name: "Test Audio", value:"`"+prefix[msg.guild.id]+"help ping`\n`"+prefix[msg.guild.id]+"help testaudio`\n\u200B", inline: true},
 			{name: "Queue", value:"`"+prefix[msg.guild.id]+"help queue`\n\u200B", inline: true},
 			{name: "Reverse", value:"`"+prefix[msg.guild.id]+"help playtop`\n\u200B", inline: true},
 			{name: "Remove", value:"`"+prefix[msg.guild.id]+"help remove`\n\u200B", inline: true},
 			{name: "Move", value:"`"+prefix[msg.guild.id]+"help move`\n\u200B", inline: true},
-			{name: "Loop", value: "`"+prefix[msg.guild.id]+"help loop`\n`"+prefix[msg.guild.id]+"`help loopq`\n\u200B", inline: true},
+			{name: "Loop", value: "`"+prefix[msg.guild.id]+"help loop`\n`"+prefix[msg.guild.id]+"help loopq`\n\u200B", inline: true},
 			{name: "Clear Queue", value: "`"+prefix[msg.guild.id]+"help clearq`\n\u200B", inline: true},
 			{name: "Del Duplicate", value: "`"+prefix[msg.guild.id]+"help removedupes`\n\u200B", inline: true},
 			{name: "Shuffle", value: "`"+prefix[msg.guild.id]+"help shuffle`\n\u200B", inline: true},
 			{name: "Replay", value: "`"+prefix[msg.guild.id]+"help replay`\n\u200B", inline: true},
 			{name: "Join", value: "`"+prefix[msg.guild.id]+"help join`\n\u200B", inline: true},
-			{name: "Pause Resume", value: "`"+prefix[msg.guild.id]+"help pause`\n`"+prefix[msg.guild.id]+"`help resume`\n\u200B", inline: true},
+			{name: "Pause Resume", value: "`"+prefix[msg.guild.id]+"help pause`\n`"+prefix[msg.guild.id]+"help resume`\n\u200B", inline: true},
 			{name: "Song Info", value: "`"+prefix[msg.guild.id]+"help songinfo`\n\u200B", inline: true},
 			{name: "Seek", value: "`"+prefix[msg.guild.id]+"help seek`\n\u200B", inline: true},
 			{name: "Forward", value: "`"+prefix[msg.guild.id]+"help forward`\n\u200B", inline: true},
@@ -12327,9 +12380,9 @@ function help_clear(msg) {
 		embed_clear_help.setTitle("Help Clear");
 		embed_clear_help.addFields(
 		{name: prefix[msg.guild.id]+"clear {no messages}", value: "`clear` is a mod/admin command that delete messages, it is the same as `purge`, "+
-		"the syntax for the command is `"+prefix[msg.guild.id]+"`clear {no messages}` for example `"+prefix[msg.guild.id]+"`clear 10` will delete 10 messages.\n\u200B"},
+		"the syntax for the command is `"+prefix[msg.guild.id]+"clear {no messages}` for example `"+prefix[msg.guild.id]+"clear 10` will delete 10 messages.\n\u200B"},
 		{name: prefix[msg.guild.id]+"clearq", value: "If you are listenning to music and would like to clear the song queue, then use the music "+
-		"command `"+prefix[msg.guild.id]+"`clearq`, clearq will clear the song queue removing any songs in the queue.\n\u200B"},
+		"command `"+prefix[msg.guild.id]+"clearq`, clearq will clear the song queue removing any songs in the queue.\n\u200B"},
 		{name: prefix[msg.guild.id]+"clearwelcome", value: "the `"+prefix[msg.guild.id]+"clearwelcome` and `"+prefix[msg.guild.id]+"clearleave` " +
 		"are used to clear the welcome and leave channels."}
 		)
@@ -12502,7 +12555,7 @@ bot.on("message", msg => {
 				
 				// skipto {index} (skip to certain point in queue)
 				} else if (msg.guild != null && msg.content == prefix[msg.guild.id]+"skipto") {
-					embed_error(msg, "Unable to skip to song, invalid input, the syntax for the command is `"+prefix[msg.guild.id]+"`skipto {song index}`!")
+					embed_error(msg, "Unable to skip to song, invalid input, the syntax for the command is `"+prefix[msg.guild.id]+"skipto {song index}`!")
 					return false;
 				} else if (msg.guild != null && msg.content.slice(0, 8) == prefix[msg.guild.id]+"skipto ") {
 					// check if queue contains less than 2 songs
@@ -12525,7 +12578,7 @@ bot.on("message", msg => {
 				
 				// check if queue is empty
 				if (song_queus[msg.guild.id].length == 0) {
-					disconnect(msg, customMessage="End of queue reached, to play another song type `"+prefix[msg.guild.id]+"`play {song name / URL}`!");
+					disconnect(msg, customMessage="End of queue reached, to play another song type `"+prefix[msg.guild.id]+"play {song name / URL}`!");
 					return;
 					
 				} else {
@@ -12634,6 +12687,13 @@ bot.on("message", msg => {
 					})
 				}
 				
+				// check file extension
+				extension = url.split('.').slice(-1);
+				if (extension != "mp3" || extension != "wav") {
+					embed_error(msg, "File ype not supported!");
+					url = undefined;
+				}
+				
 				// check for undefined URL
 				if (url != undefined) {
 					console.log([true, 2])
@@ -12704,7 +12764,7 @@ bot.on("message", msg => {
 					embed_error(msg, "No song is currently playing!");
 				}
 			} else {
-				embed_error(msg, "There are no songs currently in the queue! type `"+prefix[msg.guild.id]+"`play {url / name}` to play a song");
+				embed_error(msg, "There are no songs currently in the queue! type `"+prefix[msg.guild.id]+"play {url / name}` to play a song");
 			}
 		
 		// - ping (checks the bots response time to discord)
@@ -12733,15 +12793,15 @@ bot.on("message", msg => {
 			embed_queue.setTitle("Song Queue");
 			embed_queue.setTimestamp();
 			embed_queue.setFooter("🎶");
-			embed_queue.setDescription("This is a list of the songs currently in the queue, to remove a song type `"+prefix[msg.guild.id]+"`remove {song index}`, "+
-			"for example `"+prefix[msg.guild.id]+"`remove 1` will remove the first song in the queue.\n\u200B");
+			embed_queue.setDescription("This is a list of the songs currently in the queue, to remove a song type `"+prefix[msg.guild.id]+"remove {song index}`, "+
+			"for example `"+prefix[msg.guild.id]+"remove 1` will remove the first song in the queue.\n\u200B");
 			
 			// check if queue is empty
 			if (song_queus[msg.guild.id] == undefined) {
-				embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"`play {song name or URL}`");
+				embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"play {song name or URL}`");
 				return false;
 			} else if (song_queus[msg.guild.id].length == 0) {
-				embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"`play {song name or URL}`")
+				embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"play {song name or URL}`")
 				return false;
 			}
 			
@@ -12875,7 +12935,7 @@ bot.on("message", msg => {
 					}
 				}
 			} else {
-				embed_error(msg, "Invalid Syntax, the format for the command is `"+prefix[msg.guild.id]+"`move {index 1} {index 2}`.");
+				embed_error(msg, "Invalid Syntax, the format for the command is `"+prefix[msg.guild.id]+"move {index 1} {index 2}`.");
 			}
 		
 		// - loop (loops the current song)
@@ -12883,10 +12943,10 @@ bot.on("message", msg => {
 			// toggle loop
 			if (loop[msg.guild.id] == undefined || loop[msg.guild.id] == false) {
 				loop[msg.guild.id] = true;
-				embed_info_reply(msg, "Loop enabled, the current song will be looped, type `"+prefix[msg.guild.id]+"`loop` to toggle it off.");
+				embed_info_reply(msg, "Loop enabled, the current song will be looped, type `"+prefix[msg.guild.id]+"loop` to toggle it off.");
 			} else {
 				loop[msg.guild.id] = false;
-				embed_info_reply(msg, "Loop disable, the current song will no longer be looped, type `"+prefix[msg.guild.id]+"`loop` to toggle it on.");
+				embed_info_reply(msg, "Loop disable, the current song will no longer be looped, type `"+prefix[msg.guild.id]+"loop` to toggle it on.");
 			}
 		
 		// - loopqueue (loops the whole queue)
@@ -12897,10 +12957,10 @@ bot.on("message", msg => {
 			// toggle loop queue
 			if (loopq[msg.guild.id] == undefined || loopq[msg.guild.id] == false) {
 				loopq[msg.guild.id] = true;
-				embed_info_reply(msg, "Loop Queue enabled, the queue will be looped, type `"+prefix[msg.guild.id]+"`loopq` to toggle it off.");
+				embed_info_reply(msg, "Loop Queue enabled, the queue will be looped, type `"+prefix[msg.guild.id]+"loopq` to toggle it off.");
 			} else {
 				loopq[msg.guild.id] = false;
-				embed_info_reply(msg, "Loop Queue disabled, the queue will not longer be looped, type `"+prefix[msg.guild.id]+"`loopq` to toggle it on.");
+				embed_info_reply(msg, "Loop Queue disabled, the queue will not longer be looped, type `"+prefix[msg.guild.id]+"loopq` to toggle it on.");
 			}
 			
 			
@@ -13044,10 +13104,10 @@ bot.on("message", msg => {
 			if (dj[msg.guild.id] != undefined && song_queus[msg.guild.id] != undefined) {
 				// check if queue is empty
 				if (song_queus[msg.guild.id] == undefined) {
-					embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"`play {song name or URL}`");
+					embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"play {song name or URL}`");
 					return false;
 				} else if (song_queus[msg.guild.id].length == 0) {
-					embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"`play {song name or URL}`")
+					embed_error(msg, "There are no songs currently in the queue, to add a song to the queue type `"+prefix[msg.guild.id]+"play {song name or URL}`")
 					return false;
 				}
 				
@@ -13138,8 +13198,8 @@ bot.on("message", msg => {
 				"JaredBot will leave the voice channel.");
 				
 			} else {
-				embed_error(msg, "Invalid option, the syntax for the command is `"+prefix[msg.guild.id]+"`freeplay [on/off]`, to turn freeplay on type `"+prefix[msg.guild.id]+"`freeplay on`" +
-				", to turn it off type `"+prefix[msg.guild.id]+"`freeplay off`");
+				embed_error(msg, "Invalid option, the syntax for the command is `"+prefix[msg.guild.id]+"freeplay [on/off]`, to turn freeplay on type `"+prefix[msg.guild.id]+"freeplay on`" +
+				", to turn it off type `"+prefix[msg.guild.id]+"freeplay off`");
 			}
 			
 		}
@@ -13340,7 +13400,7 @@ bot.on("message", msg => {
 					embed_error(msg, "Year must be a whole number!");
 				}
 			} else {
-				embed_error(msg, "Invalid Format! The correct format is `"+prefix[msg.guild.id]+"`isleap {year}`!");
+				embed_error(msg, "Invalid Format! The correct format is `"+prefix[msg.guild.id]+"isleap {year}`!");
 			}
 		}
 	}
@@ -13462,7 +13522,7 @@ bot.on("message", msg => {
 					embed_error(msg, "Invalid Input! Your height and weight must be numbers!");
 				}
 			} else {
-				embed_error(msg, "Invalid format! should be `"+prefix[msg.guild.id]+"`bmi {height in cm} {weight in kg}`");
+				embed_error(msg, "Invalid format! should be `"+prefix[msg.guild.id]+"bmi {height in cm} {weight in kg}`");
 			}
 		}
 	}
@@ -13754,7 +13814,7 @@ bot.on("message", msg => {
 			embed_calc_help = new Discord.MessageEmbed();
 			embed_calc_help.setTitle("Calculator");
 			embed_calc_help.setColor(embed_colour_info);
-			embed_calc_help.setDescription("to use the calculator type `"+prefix[msg.guild.id]+"`calc {equation}`! For example: `"+prefix[msg.guild.id]+"`calc 2**10-24` Will return `1000`! " +
+			embed_calc_help.setDescription("to use the calculator type `"+prefix[msg.guild.id]+"calc {equation}`! For example: `"+prefix[msg.guild.id]+"calc 2**10-24` Will return `1000`! " +
 				"Be aware the order of operation is not compliant to BIDMAS, calculations are preformed in the order they are typed! " +
 				"When using the calculator all of the following operators are valid");
 			embed_calc_help.addFields(
@@ -13961,14 +14021,14 @@ function hash_help(msg) {
 		embed_help_hash.setColor(embed_colour_info);
 		embed_help_hash.setTitle("Help Hash");
 		embed_help_hash.addFields(
-			{name: prefix[msg.guild.id]+"hash", value: "Generates checksums for a file, add the comment `"+prefix[msg.guild.id]+"`hash` when uploading a file to discord to display hashs.\n\u200B"},
-			{name: prefix[msg.guild.id]+"md4", value: "Generates an MD4 hash, for example `"+prefix[msg.guild.id]+"`md4 Hello` produces `a58fc871f5f68e4146474ac1e2f07419`.\n\u200B"},
-			{name: prefix[msg.guild.id]+"md5", value: "Generates an MD5 hash, for example `"+prefix[msg.guild.id]+"`md5 Hello` produces `8b1a9953c4611296a827abf8c47804d7`.\n\u200B"},
-			{name: prefix[msg.guild.id]+"sha1", value: "Generates an SHA1 hash, for example `"+prefix[msg.guild.id]+"`sha1 Hello` produces `2cb42271c614a1f32dee3a8cc7d7e4d62dc04be7`.\n\u200B"},
-			{name: prefix[msg.guild.id]+"sha224", value: "Generates an SHA224 hash, for example `"+prefix[msg.guild.id]+"`sha224 Hello` produces `3315a79f00f1179473f3b86aed44f7db56009d14b971d6361e705de2`.\n\u200B"},
-			{name: prefix[msg.guild.id]+"sha256", value: "Generates an SHA256 hash, for example `"+prefix[msg.guild.id]+"`sha256 Hello` produces `62fa62853835a432efe7c8e82723b5e66be7319780033746dcdce168f0ec8554`.\n\u200B"},
-			{name: prefix[msg.guild.id]+"sha384", value: "Generates an SHA384 hash, for example `"+prefix[msg.guild.id]+"`sha384 Hello` produces `6be6ea8b48cebdbf0cd1629b2203b5ba58f754948f2dadb6f006f4b49f89e8eefe1b6dfcd4cb2bbb458783d9e1f13a48`.\n\u200B"},
-			{name: prefix[msg.guild.id]+"sha512", value: "Generates an SHA512 hash, for example `"+prefix[msg.guild.id]+"`sha512 Hello` produces `f6317fb1129b48c616400af50db8b5b458e68eb08555a6289bbb858e91166ce8d51850ee9b4c77da8579f977fd22c2d627bbe471af628309bc1c023a9c4e3718`.\n\u200B"},
+			{name: prefix[msg.guild.id]+"hash", value: "Generates checksums for a file, add the comment `"+prefix[msg.guild.id]+"hash` when uploading a file to discord to display hashs.\n\u200B"},
+			{name: prefix[msg.guild.id]+"md4", value: "Generates an MD4 hash, for example `"+prefix[msg.guild.id]+"md4 Hello` produces `a58fc871f5f68e4146474ac1e2f07419`.\n\u200B"},
+			{name: prefix[msg.guild.id]+"md5", value: "Generates an MD5 hash, for example `"+prefix[msg.guild.id]+"md5 Hello` produces `8b1a9953c4611296a827abf8c47804d7`.\n\u200B"},
+			{name: prefix[msg.guild.id]+"sha1", value: "Generates an SHA1 hash, for example `"+prefix[msg.guild.id]+"sha1 Hello` produces `2cb42271c614a1f32dee3a8cc7d7e4d62dc04be7`.\n\u200B"},
+			{name: prefix[msg.guild.id]+"sha224", value: "Generates an SHA224 hash, for example `"+prefix[msg.guild.id]+"sha224 Hello` produces `3315a79f00f1179473f3b86aed44f7db56009d14b971d6361e705de2`.\n\u200B"},
+			{name: prefix[msg.guild.id]+"sha256", value: "Generates an SHA256 hash, for example `"+prefix[msg.guild.id]+"sha256 Hello` produces `62fa62853835a432efe7c8e82723b5e66be7319780033746dcdce168f0ec8554`.\n\u200B"},
+			{name: prefix[msg.guild.id]+"sha384", value: "Generates an SHA384 hash, for example `"+prefix[msg.guild.id]+"sha384 Hello` produces `6be6ea8b48cebdbf0cd1629b2203b5ba58f754948f2dadb6f006f4b49f89e8eefe1b6dfcd4cb2bbb458783d9e1f13a48`.\n\u200B"},
+			{name: prefix[msg.guild.id]+"sha512", value: "Generates an SHA512 hash, for example `"+prefix[msg.guild.id]+"sha512 Hello` produces `f6317fb1129b48c616400af50db8b5b458e68eb08555a6289bbb858e91166ce8d51850ee9b4c77da8579f977fd22c2d627bbe471af628309bc1c023a9c4e3718`.\n\u200B"},
 			{name: prefix[msg.guild.id]+"rhash", value: "Decrypt a hash using rainbow tables, for example `"+prefix[msg.guild.id]+"rhash 420d97235124da5bf24c51a35edb1119f653ce09` returns the decrypt text `jared`.\n\u200B"},
 		)
 		embed_help_hash.setTimestamp();
@@ -14199,9 +14259,9 @@ bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.guild != null && msg.content.slice(0, 6) == prefix[msg.guild.id]+"shift") {
 			if (msg.guild != null && msg.content == prefix[msg.guild.id]+"shift") {
-				embed_chat_reply(msg, "The syntax for the command is `"+prefix[msg.guild.id]+"`shift{places} {text}` " +
-				"for example `"+prefix[msg.guild.id]+"`shift8 Hello World` will produce the message digest `PWttX.X6tM`, " +
-				"to get back the original string we can then do `"+prefix[msg.guild.id]+"`shift-8 PWttX.X6tM`");
+				embed_chat_reply(msg, "The syntax for the command is `"+prefix[msg.guild.id]+"shift{places} {text}` " +
+				"for example `"+prefix[msg.guild.id]+"shift8 Hello World` will produce the message digest `PWttX.X6tM`, " +
+				"to get back the original string we can then do `"+prefix[msg.guild.id]+"shift-8 PWttX.X6tM`");
 			
 			} else {
 				places = msg.content.slice(6, msg.content.length).split(" ")[0];
@@ -14890,6 +14950,7 @@ bot.on("message", msg => {
 					if (data.indexOf(user_id) > -1) {
 						// format data
 						current_user_data = data.split(user_id)[1].split(";")[0].split(",");
+						console.log([current_user_data]);
 						
 						// fetch member
 						channel_guild = bot.channels.cache.get(msg.channel.id);
@@ -15091,7 +15152,7 @@ bot.on("guildMemberAdd", member => {
 				console_log("User " + username + " joined server " + guild_id, error=false, mod=true);
 				
 				// give user muted role
-				generate_mute_role(member.guild, member, take_action=true, doReply=false, msg_is_guild=true);
+				//generate_mute_role(member.guild, member, take_action=true, doReply=false, msg_is_guild=true);
 				
 			});
 		})
@@ -15137,7 +15198,9 @@ bot.on("guildMemberRemove", member => {
 	if (leave_channels[guild_id] != undefined && leave_channels[guild_id].length > 0) {
 		// send message
 		bot.channels.fetch(leave_channels[guild_id][0]).then(channel => {
-			channel.send("**"+username + "** just left the server!");
+			channel.send("**"+username + "** just left the server!").catch(err => {
+				console_log("Failed to send message! " + err, error=true);
+			})
 			console_log(username + " just left the server " + guild_id, err=false, mod=true);
 			
 		}).catch (error => {
@@ -15146,7 +15209,9 @@ bot.on("guildMemberRemove", member => {
 	} else if (welcome_channel_ids[guild_id] != undefined) {
 		// send message
 		bot.channels.fetch(welcome_channel_ids[guild_id]).then(channel => {
-			channel.send("**"+username + "** just left the server!");
+			channel.send("**"+username + "** just left the server!").catch(err => {
+				console_log("Failed to send message! " + err, error=true);
+			})
 			console_log(username + " just left the server " + guild_id, err=false, mod=true);
 			
 		}).catch (error => {
@@ -15244,15 +15309,15 @@ bot.on("guildCreate", guild => {
 		embed_join = new Discord.MessageEmbed();
 		embed_join.setColor(embed_color_chat);
 		embed_join.setTitle("Welcome");
-		embed_join.setDescription("Thanks for adding JaredBot to your server, the default prefix for the bot is `"+prefix[msg.guild.id]+"`` (you can change this with `"+prefix[msg.guild.id]+"`prefix`), "+
-		"you can type `"+prefix[msg.guild.id]+"`help` for a list of commands! Below are some recommendations on features to setup for your server.\n\u200B");
+		embed_join.setDescription("Thanks for adding JaredBot to your server, the default prefix for the bot is `"+prefix[msg.guild.id]+"` (you can change this with `"+prefix[msg.guild.id]+"prefix`), "+
+		"you can type `"+prefix[msg.guild.id]+"help` for a list of commands! Below are some recommendations on features to setup for your server.\n\u200B");
 		embed_join.setThumbnail(lion_profile_pic);
 		embed_join.setAuthor("JaredBot", lion_profile_pic);
 		embed_join.addFields(
-			{name: "AutoMod", value: "Setup JaredBot to automatically warn, mute, kick, and ban users who break the rules (anti-raid protection) type `"+prefix[msg.guild.id]+"`help automod` for more info.\n\u200B"},
-			{name: "Content Filters", value: "Setup contenting filtering to automatically remove, bad language, phishing, porn links, promotions, and spam. type `"+prefix[msg.guild.id]+"`help filter` for more info.\n\u200B"},
-			{name: "Welcomer", value: "set a welcome channel for your server, type `"+prefix[msg.guild.id]+"`help welcome` for more info.\n\u200B"},
-			{name: "Autopost", value: "setup JaredBot to automatically posts images in a channel, type `"+prefix[msg.guild.id]+"`help autopost` for more info.\n\u200B"},
+			{name: "AutoMod", value: "Setup JaredBot to automatically warn, mute, kick, and ban users who break the rules (anti-raid protection) type `"+prefix[msg.guild.id]+"help automod` for more info.\n\u200B"},
+			{name: "Content Filters", value: "Setup contenting filtering to automatically remove, bad language, phishing, porn links, promotions, and spam. type `"+prefix[msg.guild.id]+"help filter` for more info.\n\u200B"},
+			{name: "Welcomer", value: "set a welcome channel for your server, type `"+prefix[msg.guild.id]+"help welcome` for more info.\n\u200B"},
+			{name: "Autopost", value: "setup JaredBot to automatically posts images in a channel, type `"+prefix[msg.guild.id]+"help autopost` for more info.\n\u200B"},
 		)
 		embed_join.setTimestamp();
 		first_channel.send(embed_join).catch(err => {
