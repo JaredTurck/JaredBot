@@ -189,6 +189,7 @@ const webserver_url_short = log_var("URL Shortner folder location", webserver_ro
 const webserver_floppa_dataset = log_var("Floppa dataset", webserver_root_address + "img/src/small_datasets/floppa");
 const webserver_deleted_files_dir = log_var("Deleted files dir", webserver_root_address + "videos/deleted_attach");
 const webserver_cat_age_dataset = log_var("Cat Age dataset", webserver_root_address + "img/src/small_datasets/cat_age");
+const webserver_mars_dataset = log_var("Mars dataset", webserver_root_address + "img/dataset_mars");
 
 const flip_coin_tails = log_var("Flip Coin Tails", "tails.gif");
 const flip_coin_heads = log_var("Flip Coin Heads", "heads.gif");
@@ -241,6 +242,7 @@ const solver_output = log_var("Maths Solver output", "InputOutput/do_math/output
 const leave_channel_name = log_var("Leave channel filename", "leave_channel_ID.txt");
 const muted_log_file = log_var("Muted members dict", "muted_members.txt");
 const python_execute_filename = log_var("Python Execute filename", "execute.py");
+const mars_channel_filename = log_var("Mars channel filename", "mars_channel_ID.txt");
 
 // Delays (milliseconds)
 const read_output_file_delay_henati = log_var("Delay Hentai", 1000);				// Henati
@@ -315,6 +317,7 @@ const local_blank_white = log_var("White Image", server_folder_location + "img/s
 const local_url_short = log_var("URL Short location", server_folder_location + "a");
 const local_floppa_dataset = log_var("Floppa dataset", server_folder_location + "img/src/small_datasets/floppa");
 const local_deleted_files_dir = log_var("Deleted files dir", server_folder_location + "videos/deleted_attach");
+const local_mars_dataset = log_var("Mars dataset", server_folder_location + "img/dataset_mars");
 
 // Dont change these variables
 var start_game = false; 			// Dont change value
@@ -987,7 +990,7 @@ function sec_to_days_mins_hours(seconds) {
 function get_server_name(msg, type="guild") {
 	banned_chrs = ['\x00', '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07', '\x08', '\t', '\n', '\x0b', '\x0c', '\r', '\x0e', 
 	'\x0f', '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1a', '\x1b', '\x1c', '\x1d', '\x1e', 
-	'\x1f', '"', '*', '<', '>', '?', '|'];
+	'\x1f', '"', '*', '<', '>', '?', '|', '\\', '/'];
 	
 	for (i=0;i<banned_chrs.length;i++) {
 		if (type == "channel") {
@@ -1038,6 +1041,7 @@ function get_dataset_sizes() {
 		count_dir(local_video_dataset, "video");
 		count_dir(local_meow_dataset, "meow");
 		count_dir(local_floppa_dataset, "floppa");
+		count_dir(local_mars_dataset, "mars");
 	} catch (err) {
 		console_log("Error thrown in get_dataset_sizes function! " + err, error=true);
 	}
@@ -1372,13 +1376,15 @@ async function msg_channel_send(msg, msg_embed, file=false) {
 			if (file == false) {
 				await msg.channel.send(msg_embed).then(object => {
 					return object;
-				}).catch(error => {
+				}).catch(err => {
+					console_log("Error thrown in msg_channel_send function! " + err, error=true);
 					return false;
 				})
 			} else {
 				await msg.channel.send(msg_embed, file).then(object => {
 					return object;
-				}).catch(error => {
+				}).catch(err => {
+					console_log("Error thrown in msg_channel_send function! " + err, error=true);
 					return false;
 				})
 			}
@@ -1637,6 +1643,7 @@ bot.on("message", msg => {
 					{name: prefix[msg.guild.id]+"flipcoin", value: "`"+prefix[msg.guild.id]+"help flipcoin`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"roll", value: "`"+prefix[msg.guild.id]+"help roll`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"element {elm num}", value: "`"+prefix[msg.guild.id]+"help element`\n\u200B", inline: true},
+					{name: prefix[msg.guild.id]+"mars", value: "`"+prefix[msg.guild.id]+"help mars`\n\u200B", inline: true},
 				)
 				msg_channel_send(msg, help_module_embed);
 			} else if (module_name == "reaction" || msg.content == prefix[msg.guild.id]+"reaction") {
@@ -1897,6 +1904,8 @@ bot.on("message", msg => {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"hug @user", value: "lets you hug another user.\n\u200B"});
 			} else if (module_name == "photo") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"photo", value: "posts a random photography photo.\n\u200B"});
+			} else if (module_name == "mars") {
+				embed_help_reply(msg, {name: prefix[msg.guild.id]+"mars", value: "posts a photo of Mars.\n\u200B"});
 		
 			// Games
 			} else if (module_name == "rock" || module_name == "paper" || module_name == "scissors" || module_name == "rps") {
@@ -2063,6 +2072,8 @@ bot.on("message", msg => {
 				embed_help_reply(msg, {name: "AutoAnime", value: "Automatically posts an anime photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoanime on 5` will post an anime photo every 5 mins, to turn autoanime off type `"+prefix[msg.guild.id]+"autoanime off`.\n\u200B"});
 			} else if (module_name == "autovideo") {
 				embed_help_reply(msg, {name: "AutoVideo", value: "Automatically posts a video after a specified period of tine, for example `"+prefix[msg.guild.id]+"autovideo on 20` will post a video every 20 mins, to turn autovideo off type `"+prefix[msg.guild.id]+"autovideo off`.\n\u200B"});
+			} else if (module_name == "automars") {
+				embed_help_reply(msg, {name: "AutoMars", value: "Automatically posts a photo of mars after a specified period of tine, for example `"+prefix[msg.guild.id]+"automars on 20` will post a photo of mars every 20 mins, to turn automars off type `"+prefix[msg.guild.id]+"automars off`.\n\u200B"});
 			
 			// autopost NSFW
 			} else if (module_name == "autohentai") {
@@ -3442,6 +3453,7 @@ var ass_intervals = {};
 var anal_intervals = {};
 var blowjob_intervals = {};
 var fingering_intervals = {};
+var mars_intervals = {};
 
 const autopost_filetypes = {
 	"Hentai" : ".png", "Nude" : ".png", "memes" : ".png", "photography" : ".png", "Birds" : ".png",
@@ -3645,112 +3657,38 @@ function configure_autopost(msg, commands, description, intervals, channel_file,
 	}
 }
 
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 12) == prefix[msg.guild.id]+"autohentai ") {
-		configure_autopost(msg, "autohentai ", "Hentai", hentai_intervals, hentai_channel_file, webserver_hentai_dataset, dataset_counts["hentai"], nsfw=true);
+// autopost commands
+function check_autopost(msg, command, description, interval, channel_file, dataset, dataset_count, nsfw=false) {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, command.length+1) == prefix[msg.guild.id]+command) {
+			configure_autopost(msg, command, description, interval, channel_file, dataset, dataset_count, nsfw);
+		}
 	}
-})
+}
 
 bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 10) == prefix[msg.guild.id]+"autonude ") {
-		configure_autopost(msg, "autonude ", "Nude", nude_intervals, nsfw_channel_file, webserver_nude_dataset, dataset_counts["nudes"], nsfw=true);
-	}
-})
-
-
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 10) == prefix[msg.guild.id]+"autoboob ") {
-		configure_autopost(msg, "autoboob ", "Boob", boob_intervals, boob_channel_filename, webserver_boobs_dataset, dataset_counts["boobs"], nsfw=true);
-	}
-})
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"autopussy ") {
-		configure_autopost(msg, "autopussy ", "Pussy", pussy_intervals, pussy_channel_filename, webserver_pussy_dataset, dataset_counts["pussy"], nsfw=true);
-	}
-})
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 9) == prefix[msg.guild.id]+"autoass ") {
-		configure_autopost(msg, "autoass ", "Ass", ass_intervals, ass_channel_filename, webserver_ass_dataset,dataset_counts["ass"], nsfw=true);
-	}
-})
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 10) == prefix[msg.guild.id]+"autoanal ") {
-		configure_autopost(msg, "autoanal ", "Anal", anal_intervals, anal_channel_filename, webserver_anal_dataset, dataset_counts["anal"], nsfw=true);
-	}
-})
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 13) == prefix[msg.guild.id]+"autoblowjob ") {
-		configure_autopost(msg, "autoblowjob ", "Blowjob", blowjob_intervals, blowjob_channel_filename, webserver_blowjob_dataset, dataset_counts["blowjob"], nsfw=true);
-	}
-})
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 15) == prefix[msg.guild.id]+"autofingering ") {
-		configure_autopost(msg, "autofingering ", "Fingering", fingering_intervals, fingering_channel_filename, webserver_fingering_dataset, dataset_counts["fingering"], nsfw=true);
-	}
-})
-
-
-
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 10) == prefix[msg.guild.id]+"automeme ") {
-		configure_autopost(msg, "automeme ", "Meme", meme_intervals, igmemes_channel_file, webserver_memes_dataset, dataset_counts["memes"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"autophoto ") {
-		configure_autopost(msg, "autophoto ", "Photography", photo_intervals, photography_channel_file, webserver_photography_dataset, dataset_counts["photography"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 10) == prefix[msg.guild.id]+"autobird ") {
-		configure_autopost(msg, "autobird ", "Birds", bird_intervals, bird_channel_file, webserver_bird_dataset, dataset_counts["birds"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 9) == prefix[msg.guild.id]+"autocar ") {
-		configure_autopost(msg, "autocar ", "Cars", car_intervals, car_channel_filename, webserver_cars_dataset, dataset_counts["cars"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 9) == prefix[msg.guild.id]+"autocat ") {
-		configure_autopost(msg, "autocat ", "Cats", cat_intervals, cat_channel_filename, webserver_cats_dataset, dataset_counts["cats"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 9) == prefix[msg.guild.id]+"autodog ") {
-		configure_autopost(msg, "autodog ", "Dogs", dog_intervals, dog_channel_filename, webserver_dogs_dataset, dataset_counts["dogs"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"autosnake ") {
-		configure_autopost(msg, "autosnake ", "Snakes", snake_intervals, snake_channel_filename, webserver_snake_dataset, dataset_counts["snakes"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 13) == prefix[msg.guild.id]+"autoporngif ") {
-		configure_autopost(msg, "autoporngif ", "porngif", porngif_intervals, porngif_channel_filename, webserver_porngifs_dataset, dataset_counts["porngif"], nsfw=true);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"autoanime ") {
-		configure_autopost(msg, "autoanime ", "anime", anime_intervals, anime_channel_filename, webserver_anime_dataset, dataset_counts["anime"], nsfw=false);
-	}
-})
-
-bot.on("message", msg => {
-	if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"autovideo ") {
-		configure_autopost(msg, "autovideo ", "video", video_intervals, video_channel_filename, webserver_video_dataset, dataset_counts["video"], nsfw=false, custom_func=post_video);
-	}
+	// autopost NSFW
+	check_autopost(msg, "autohentai ", "Hentai", hentai_intervals, hentai_channel_file, webserver_hentai_dataset, dataset_counts["hentai"], nsfw=true);
+	check_autopost(msg, "autonude ", "Nude", nude_intervals, nsfw_channel_file, webserver_nude_dataset, dataset_counts["nudes"], nsfw=true);
+	check_autopost(msg, "autoboob ", "Boob", boob_intervals, boob_channel_filename, webserver_boobs_dataset, dataset_counts["boobs"], nsfw=true);
+	check_autopost(msg, "autopussy ", "Pussy", pussy_intervals, pussy_channel_filename, webserver_pussy_dataset, dataset_counts["pussy"], nsfw=true);
+	check_autopost(msg, "autoass ", "Ass", ass_intervals, ass_channel_filename, webserver_ass_dataset,dataset_counts["ass"], nsfw=true);
+	check_autopost(msg, "autoanal ", "Anal", anal_intervals, anal_channel_filename, webserver_anal_dataset, dataset_counts["anal"], nsfw=true);
+	check_autopost(msg, "autoblowjob ", "Blowjob", blowjob_intervals, blowjob_channel_filename, webserver_blowjob_dataset, dataset_counts["blowjob"], nsfw=true);
+	check_autopost(msg, "autofingering ", "Fingering", fingering_intervals, fingering_channel_filename, webserver_fingering_dataset, dataset_counts["fingering"], nsfw=true);
+	
+	// autopost SFW
+	check_autopost(msg, "automeme ", "Meme", meme_intervals, igmemes_channel_file, webserver_memes_dataset, dataset_counts["memes"], nsfw=false);
+	check_autopost(msg, "autophoto ", "Photography", photo_intervals, photography_channel_file, webserver_photography_dataset, dataset_counts["photography"], nsfw=false);
+	check_autopost(msg, "autobird ", "Birds", bird_intervals, bird_channel_file, webserver_bird_dataset, dataset_counts["birds"], nsfw=false);
+	check_autopost(msg, "autocar ", "Cars", car_intervals, car_channel_filename, webserver_cars_dataset, dataset_counts["cars"], nsfw=false);
+	check_autopost(msg, "autocat ", "Cats", cat_intervals, cat_channel_filename, webserver_cats_dataset, dataset_counts["cats"], nsfw=false);
+	check_autopost(msg, "autodog ", "Dogs", dog_intervals, dog_channel_filename, webserver_dogs_dataset, dataset_counts["dogs"], nsfw=false);
+	check_autopost(msg, "autosnake ", "Snakes", snake_intervals, snake_channel_filename, webserver_snake_dataset, dataset_counts["snakes"], nsfw=false);
+	check_autopost(msg, "autoporngif ", "porngif", porngif_intervals, porngif_channel_filename, webserver_porngifs_dataset, dataset_counts["porngif"], nsfw=true);
+	check_autopost(msg, "autoanime ", "anime", anime_intervals, anime_channel_filename, webserver_anime_dataset, dataset_counts["anime"], nsfw=false);
+	check_autopost(msg, "autovideo ", "video", video_intervals, video_channel_filename, webserver_video_dataset, dataset_counts["video"], nsfw=false, custom_func=post_video);
+	check_autopost(msg, "automars ", "mars", mars_intervals, mars_channel_filename, webserver_mars_dataset, dataset_counts["mars"], nsfw=false);
 })
 
 function autopost_help(msg) {
@@ -3770,6 +3708,7 @@ function autopost_help(msg) {
 			{name: "AutoSnake", value: "`"+prefix[msg.guild.id]+"help autosnake`.\n\u200B", inline:true},
 			{name: "AutoAnime", value: "`"+prefix[msg.guild.id]+"help autoanime`.\n\u200B", inline: true},
 			{name: "AutoVideo", value: "`"+prefix[msg.guild.id]+"help autovideo`.\n\u200B", inline: true},
+			{name: "AutoMars", value: "`"+prefix[msg.guild.id]+"help automars`.\n\u200B", inline: true}
 		)
 			
 		embed_autocommands_help.setTimestamp();
@@ -4250,6 +4189,7 @@ bot.on("message", msg => {
 	post_photo(msg, "floppa", "flop", "floppa", "floppa", webserver_floppa_dataset); // post floppa
 	post_photo(msg, "catmeme", "catmemes", "catmemes", "catmemes", webserver_catmemes_dataset); // post cat meme
 	post_photo(msg, "meme", "memes", "meme", "memes", webserver_memes_dataset); // post meme
+	post_photo(msg, "mars", "mar", "mars", "mars", webserver_mars_dataset); // post mars
 	
 	// NSFW
 	post_photo(msg, "nude", "nudes", "nude girl", "nudes", webserver_nude_dataset, nsfw=true); // post nude
@@ -4305,7 +4245,8 @@ bot.on("message", msg => {
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"epicgaming" || 
-		msg.content.slice(0, 5) == prefix[msg.guild.id]+"cute" || msg.content.slice(0, 4) == prefix[msg.guild.id]+"aww") {
+		msg.content.slice(0, 5) == prefix[msg.guild.id]+"cute" || msg.content.slice(0, 4) == prefix[msg.guild.id]+"aww" || 
+		msg.content.slice(0, 7) == prefix[msg.guild.id]+"gaming") {
 			// send message
 			get_photo_name("meow", function(file_name) {
 				file = local_meow_dataset + "/" + file_name +".mp4";
@@ -4521,372 +4462,68 @@ bot.on("message", msg => {
 	}
 })
 
+function check_autoreply(msg, word, reply_pcnt=0, msg_reply="", tm=0) {
+	if (msg.content.toLowerCase() == word) {
+		console.log([msg.content, word, reply_pcnt, msg_reply, tm, reply_chance])
+		if (new Date().getMilliseconds() % (reply_chance+reply_pcnt) == 0) {
+			if (DoAutoReply[msg.guild.id] == true) {
+				if (msg.author.bot == false) {
+					console.log([true, 1])
+					setTimeout(function() {
+						console.log([true, 2])
+						// check if reply is array
+						if (typeof(msg_reply) == "object") {
+							if (msg_reply.length > 0) {
+								reply_word = msg_reply[parseInt(Math.random() * 1000) % msg_reply.length];
+								msg_channel_send(msg, reply_word+" \n\u200B");
+							}
+						}
+						
+						// check if reply is string
+						else if (typeof(msg_reply) == "string") {
+							if (msg_reply.length > 0) {
+								msg_channel_send(msg, msg_reply+" \n\u200B");
+							} else {
+								msg_channel_send(msg, word+" \n\u200B");
+							}
+						}
+					}, 1000*tm, msg, word, reply_pcnt, msg_reply)
+				}
+			}
+		}
+	}
+}
+
+var autoreply_responses = [
+	["f", 0, "", 0], ["jared", 0, "", 0], ["lol", 0, "", 0], ["xD", 0, "", 0], [":3", 0, "", 0], ["what", 0, "", 0], ["no u", 0, "", 0],
+	["no you", 0, "", 0], [":0", 0, "", 0], [":o", 0, "", 0], [":v", 0, "", 0], ["owo", 0, "", 0], ["yeah", 0, "", 0], ["ye", 0, "", 0],
+	["ah ok", 0, "", 0], ["nice", 0, "", 0], ["o", 0, "", 0], ["Ã¶", 0, "", 0], ["thanks", 0, "", 0], ["ty", 0, "", 0], ["oof", 0, "", 0],
+	["ok", 2, "", 0], ["bruh", 0, "", 0], ["you", 0, "no you", 0], ["u", 0, "no you", 0], ["?", 0, "", 0], [":d", 0, ":D", 0], ["rip", 0, "", 0],
+	["ree", 0, "", 0], ["haha", 0, "", 0], ["lmao", 0, "", 0], ["yes", 0, "", 0], ["no", 0, "", 0], ["yay", 0, "", 0], ["friend", 0, 
+	"im your friend!", 0], ["i love you", 0, "i love you too!", 0], ["i love u", 0, "i love you too!", 0], ["ily", 0, "i love you too!", 0], 
+	["wow", 0, "", 0], ["brb", 2, "no you wont!", 0], [":/", 2, "", 0], [":)", 2, "", 0], [":(", 2, "", 0], ["kek", 2, "", 0], ["hello", 3, 
+	['Hello', 'Hey', 'Hi'], 0], ["hey", 3, ['Hello', 'Hey', 'Hi'], 0],  ["penis", 0, ["Ewww NO!", "gross!", "Ewww", "Ewww Penis", "Penis No", 
+	"🤮"], 0], ["penis", 8, ["fuck me harder daddy", ";)", "yes please", "you make me so wet ;)", "yes daddy"], 0], ["fuck me", 8, ["Ok daddy ;)", 
+	"Sounds good", "Yes plz"], 0], ["fuck you", 0, "no you", 0], ["fuck off", 0, "NO!", 0], ["fuck", 10, "why you mad bruh?", 0], ["random", 0, 
+	"your random", 0], ["night", 0, ['Night!', 'Sleep Well!', 'Good Night!'], 0], ["morning", 0, ['Morning', 'How did you sleep?', 'Good Morning!'], 
+	0], ["one second", 0, "It's been one Second!", 1], ["1 sec", 0, "It's been one Second!", 1], ["give me a sec", 0, "It's been one Second!", 1],
+	["give me a second", 0, "It's been one Second!", 1], ["second", 0, "It's been one Second!", 1], ["second plz", 0, "It's been one Second!", 1],
+	["one min", 0, "It's been one min!", 60]
+]
+
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (DoAutoReply[msg.guild.id] == true && msg.author.bot == false) {
-			// responses
-			if (msg.content.toLowerCase() == "f") {
-				msg_channel_send(msg, "f ");
-			}
-
-			if (msg.content.toLowerCase().indexOf("jared") > -1) {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "Jared ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "lol") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "lol ");
-				}
-			}
-
-			if (msg.content.toLowerCase() =="xd") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "xD ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == ":3") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, ":3 ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == ":)") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, ":) ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "what") {
-				if (new Date().getMilliseconds() % (reply_chance+5) == 0) {
-					msg_channel_send(msg, "what ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "no u") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "no u ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "no you") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "no you ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == ":o") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, ":o ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == ":v") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, ":v ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "owo") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "owo ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "yeah") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "yeah ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "ye") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "ye ");
-				}
-			}
-		
-		
-			if (msg.content.toLowerCase() == "ah ok") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "ah ok ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "nice") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "nice ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "o") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "o ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "Ã¶") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "Ã¶ ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "thanks") {
-				if (new Date().getMilliseconds() % (reply_chance+1) == 0) {
-					msg_channel_send(msg, "thanks ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "ty") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "ty ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "oof") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "oof ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "ok") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					msg_channel_send(msg, "ok ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "bruh") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "bruh ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "you") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "no you ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "u") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "no u ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "?") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "? ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == ":d") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, ":D ");
-				}
-			}
-
-			if (msg.content.toLowerCase() == "rip") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "rip ");
-				}
-			}
-		
-			if (msg.content.toLowerCase().slice(0,3) == "ree") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "ree ");
-				}
-			}
-		
-			if (msg.content.toLowerCase().slice(0,4) == "haha") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "haha ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "lmao") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "lmao ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "yes") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "yes ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "no") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "no ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "yay") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "yay ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "friend") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "im your friend! ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "i love you" || msg.content.toLowerCase() == "i love u") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "I love you too! ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "ily") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "I love you too! ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "wow") {
-				if (new Date().getMilliseconds() % reply_chance == 0) {
-					msg_channel_send(msg, "wow!");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "brb") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					msg_channel_send(msg, "no you wont");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == ":/") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					msg_channel_send(msg, ":/ ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == ":)") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					msg_channel_send(msg, ":) ");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == ":(") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					msg_channel_send(msg, ":( ");
-				}
-			}
 			
-			if (msg.content.toLowerCase() == "kek") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					msg_channel_send(msg, "kek ");
-				}
+			// responses
+			for (i=0;i<autoreply_responses.length;i++) {
+				check_autoreply(msg, autoreply_responses[i][0], reply_pcnt=autoreply_responses[i][1], 
+				msg_reply=autoreply_responses[i][2], tm=autoreply_responses[i][3]);
 			}
-		
-			if (msg.content.toLowerCase() == "hello" || msg.content.toLowerCase() == "hi") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					if (parseInt(Math.random() * 10) % 3 == 0) {
-						msg_channel_send(msg, "Hello ");
-					} else if (parseInt(Math.random() * 10) % 3 == 1) {
-						msg_channel_send(msg, "Hey ");
-					} else {
-						msg_channel_send(msg, "Hi ");
-					}
-				}
-			}
-		
-			if (msg.content.toLowerCase().slice(0,3) == "hey") {
-				if (new Date().getMilliseconds() % (reply_chance+2) == 0) {
-					if (parseInt(Math.random() * 10) % 3 == 0) {
-						msg_channel_send(msg, "Hello ");
-					} else if (parseInt(Math.random() * 10) % 3 == 1) {
-						msg_channel_send(msg, "Hey ");
-					} else {
-						msg_channel_send(msg, "Hi ");
-					}
-				}
-			}
-		
-			if (msg.content.toLowerCase().indexOf("penis") > -1) {
-				penis_replys = ["Ewww NO!", "gross!", "Ewww", "Ewww Penis", "Penis No", "🤮"];
-				penis_reply2 = ["fuck me harder daddy", ";)", "yes please", "you make me so wet ;)", "yes daddy"];
-				if (new Date().getMilliseconds() % 10 == 0) {
-					msg_channel_send(msg, penis_reply2[parseInt(Math.random()*10) % penis_replys.length]);
-				} else {
-					msg_channel_send(msg, penis_replys[parseInt(Math.random()*10) % penis_reply2.length]);
-				}
-			}
-		
-			if (msg.content.toLowerCase().indexOf("fuck me") > -1) {
-				fuckme_replies = ["Ok daddy ;)", "Sounds good", "Yes plz"];
-				msg_channel_send(msg, fuckme_replies[parseInt(Math.random()*10) % fuckme_replies.length]);
-			}
-		
-			if (msg.content.toLowerCase().indexOf("fuck you") > -1 || msg.content.toLowerCase().indexOf("fuck u") > -1) {
-				msg_channel_send(msg, "no you");
-			}
-		
-			if (msg.content.toLowerCase().indexOf("fuck off") > -1) {
-				msg_channel_send(msg, "NO!");
-			}
-		
-			if (msg.content.toLowerCase() === "fuck") {
-				if (parseInt(Math.random() * 10) % (reply_chance+5) == 0) {
-					msg_channel_send(msg, "why you mad bruh?");
-				}
-			}
-		
-			if (msg.content.toLowerCase() === "random") {
-				msg_channel_send(msg, "your random");
-			}
-		
-			if (msg.content.toLowerCase() === "night") {
-				if (parseInt(Math.random() * 10) % 3 == 0) {
-					msg_channel_send(msg, "Night!");
-				} else if (parseInt(Math.random() * 10) % 3 == 1) {
-					msg_channel_send(msg, "Sleep Well!");
-				} else {
-					msg_channel_send(msg, "Good Night!");
-				}
-			}
-		
-			if (msg.content.toLowerCase() === "morning") {
-				if (parseInt(Math.random() * 10) % 3 == 0) {
-					msg_channel_send(msg, "Morning!");
-				} else if (parseInt(Math.random() * 10) % 3 == 1) {
-					msg_channel_send(msg, "How did you sleep?");
-				} else {
-					msg_channel_send(msg, "Good Morning!");
-				}
-			}
-		
-			if (msg.content.toLowerCase() == "one second" || msg.content.toLowerCase() == "one sec") {
-				setTimeout(function(){
-					msg_channel_send(msg, "It's been one Second!");
-				},1000);
-			}
-		
-			if (msg.content.toLowerCase() == "1 second" || msg.content.toLowerCase() == "1 sec" || msg.content.toLowerCase() == "sec ") {
-				setTimeout(function(){
-					msg_channel_send(msg, "It's been one Second!");
-				},1000);
-			}
-		
-			if (msg.content.toLowerCase() == "give me a sec" || msg.content.toLowerCase() == "give me a second") {
-				setTimeout(function(){
-					msg_channel_send(msg, "It's been one Second!");
-				},1000);
-			}
-		
-			if (msg.content.toLowerCase() == "one min" || msg.content.toLowerCase() == "1 min") {
-				setTimeout(function(){
-					msg_channel_send(msg, "It's been one min!");
-				},60*1000);
-			}
-		
 		
 			// turn off
 			DoAutoReply[msg.guild.id] = false;
-			setTimeout(function(){
+			setTimeout(function() {
 				DoAutoReply[msg.guild.id] = true;
 			}, anti_spam_delay);
 		}
@@ -6650,18 +6287,20 @@ bot.on("message", msg => {
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.content.slice(0, 4) == prefix[msg.guild.id]+"id ") {
-			user_id = encodeURI(msg.content.slice(3, msg.content.length));
+			user_id = encodeURI(msg.content.slice(4, msg.content.length));
 			console.log(user_id);
 			get_html("https://steamidfinder.com/lookup/" + user_id, function(html) {
 				pfp = remove_html_tags(format_html(e(html, [['class="img-rounded avatar"', 1], ['src="', 1], ['"', 0]])));
 				body = remove_html_tags(format_html(e(html, [['class="col-md-12"', 1], ['class="panel-body"', 1], ['<a target="_blank"', 0]])));
-				body = remove_dup_chars(remove_dup_chars(remove_dup_chars(body.replace(/[\r\t>]/g, ''), '  ', ' '), '\n\n', '\n'), ' \n', '');
+				body2 = remove_dup_chars(remove_dup_chars(remove_dup_chars(body.replace(/[\r\t>]/g, ''), '  ', ' '), '\n\n', '\n'), ' \n', '');
+				body2 = body2.replace('profile http', '\nprofile http');
+				console.log([html, pfp, body, body2]);
 				
 				// embed
 				embed_user_id = new Discord.MessageEmbed();
 				embed_user_id.setColor(embed_color_chat);
 				embed_user_id.setThumbnail(pfp);
-				embed_user_id.addField('Steam User Info', body);
+				embed_user_id.addField('Steam User Info', body2);
 				embed_user_id.setTimestamp();
 				msg_channel_send(msg, embed_user_id);
 				
@@ -12409,7 +12048,7 @@ bot.on("message", msg => {
 			msg.content == prefix[msg.guild.id]+"skip" || msg.content.slice(0, 7) == prefix[msg.guild.id]+"skipto" || msg.content.slice(0, 10) == prefix[msg.guild.id]+"playskip "
 			|| msg.content.slice(0, 6) == prefix[msg.guild.id]+"seek " || msg.content.slice(0, 6) == prefix[msg.guild.id]+"seek " || msg.content.slice(0, 9) == prefix[msg.guild.id]+"forward "
 			|| msg.content.slice(0, 8) == prefix[msg.guild.id]+"rewind " || msg.content.slice(0, 8) == prefix[msg.guild.id]+"volume " || msg.content == prefix[msg.guild.id]+"fs"
-			|| msg.content.slice(0, 2) == prefix[msg.guild.id]+"p") {
+			|| msg.content.slice(0, 3) == prefix[msg.guild.id]+"p ") {
 			command = msg.content.slice(msg.content.split(" ")[0].length+1, msg.content.length);
 			
 			// check for forceplay
