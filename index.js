@@ -81,6 +81,7 @@ const music_sharring_channel = "747884314204700752";
 const game_invite_channel = "751782587382628372";
 const selfroles_channel_ID = "780212725388673036";
 const img_only_channel_id = "784604713244688454";
+const jared_network_guild_id = "738484352568262747";
 var user_who_broke_rules_dict = {};
 var authrosied_server_IDs = [];
 
@@ -242,6 +243,7 @@ const solver_output = log_var("Maths Solver output", "InputOutput/do_math/output
 const leave_channel_name = log_var("Leave channel filename", "leave_channel_ID.txt");
 const muted_log_file = log_var("Muted members dict", "muted_members.txt");
 const python_execute_filename = log_var("Python Execute filename", "execute.py");
+const javascript_execute_filename = log_var("JavaScript Execute filename", "execute.js");
 const mars_channel_filename = log_var("Mars channel filename", "mars_channel_ID.txt");
 
 // Delays (milliseconds)
@@ -992,6 +994,11 @@ function get_server_name(msg, type="guild") {
 	'\x0f', '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1a', '\x1b', '\x1c', '\x1d', '\x1e', 
 	'\x1f', '"', '*', '<', '>', '?', '|', '\\', '/'];
 	
+	// put Jared Network at top of logs
+	if (type == "guild" && msg.guild.id == jared_network_guild_id) {
+		return "!" + msg.guild.name.replace(" ","_")+"_"+msg.guild.id;
+	}
+	
 	for (i=0;i<banned_chrs.length;i++) {
 		if (type == "channel") {
 			if (msg.channel.name.indexOf(banned_chrs[i]) > -1) {
@@ -1302,7 +1309,7 @@ async function embed_modderation(msg, txt, header_txt, color="red") {
 	}
 }
 
-async function embed_input_output_reply(msg, input_data, output_data, title, description="", url="") {
+async function embed_input_output_reply(msg, input_data, output_data, title, description="", url="", lan="") {
 	try {
 		// check for undefined guild
 		if (msg == undefined || msg.guild == undefined || msg.guild == null) {
@@ -1320,8 +1327,8 @@ async function embed_input_output_reply(msg, input_data, output_data, title, des
 					embed_IO.setDescription(description.slice(0, 2048));
 				}
 				embed_IO.addFields(
-					{name: "Input", value: "```"+input_data+"```"},
-					{name: "Output", value: "``` "+output_data+" ```"}
+					{name: "Input", value: "```\n"+lan+input_data+"```"},
+					{name: "Output", value: "```\n"+lan+" "+output_data+" ```"}
 				)
 				embed_IO.setTimestamp();
 				embed_IO.setFooter("JaredBot", webserver_root_address+"img/lion.png");
@@ -3532,6 +3539,7 @@ function auto_post_timeout(channel_file, webserver_dataset, database_count, data
 	try {
 		setTimeout(function() {
 			post_auto_image(channel_file, webserver_dataset, database_count, dataset_description, intervals, nsfw, custom_func);
+			console_log("autopost " + dataset_description + " timeoutset!");
 		}, timeout*1000, channel_file, webserver_dataset, database_count, dataset_description, intervals);
 	} catch (err) {
 		console_log("Error thrown in auto_post_timeout function! " + err, error=true);
@@ -3790,6 +3798,17 @@ function check_harmful_code(code) {
 	return [true, ""];
 }
 
+function check_harmful_code_js(code) {
+	dangerious_keywords = ["require", "request", "fs", "os", "exec", "child_process", "module", "process", "eval", "import"];
+	
+	for (i=0;i<dangerious_keywords.length;i++) {
+		if (code.indexOf(dangerious_keywords[i]) > -1) {
+			return [false, dangerious_keywords[i] + " is not allowed!"];
+		}
+	}
+	return [true, ""];
+}
+
 function embed_execute_output(msg, input_code, output) {
 	//send message
 	embed_execute = new Discord.MessageEmbed();
@@ -3818,10 +3837,31 @@ bot.on("message", msg => {
 			
 			if (execute_start[msg.guild.id] == false) {
 				execute_start[msg.guild.id] = true;
+				// check if code is python or javascript
 				var input_code = msg.content.slice(9, msg.length);
-				input_code = input_code.replace(/```python/g, "").split("```").join("").split("`").join("");
+				if (input_code.indexOf("```js") > -1 || input_code.indexOf("```javascript") > -1) {
+					// code is javascript
+					input_code = input_code.replace(/```js/g, "").replace(/```javascript/g, "").split("```").join("").split("`").join("");
+					console_log("Execute input code is JavaScript!");
+					execute_filename = javascript_execute_filename;
+					execute_command = 'node "';
+					check_code_func = check_harmful_code_js;
+					language_name = "javascript";
+					is_python = false;
+					
+				} else {
+					// code is python
+					input_code = input_code.replace(/```python/g, "").split("```").join("").split("`").join("");
+					console_log("Execute input code is Python!");
+					execute_filename = python_execute_filename;
+					execute_command = 'python "';
+					check_code_func = check_harmful_code;
+					language_name = "python";
+					is_python = true;
+				}
 				
-				result = check_harmful_code(input_code);
+				// check for harmful code
+				result = check_code_func(input_code);
 				if (result[0] == false) {
 					embed_execute_output(msg, input_code, result[1]);
 					setTimeout(function(){
@@ -3831,13 +3871,13 @@ bot.on("message", msg => {
 					}, execute_code_cooldown, msg);
 				} else {
 					// write code to file
-					create_file_then_append_data(msg, python_execute_filename, input_code, function(cb) {
+					create_file_then_append_data(msg, execute_filename, input_code, function(cb) {
 						if (cb == false) {
-							console_log('Wrote Python code to file for ' + msg.guild.name + "!");
+							console_log('Wrote '+language_name+' code to file for ' + msg.guild.name + "!");
 							
 							// script location
 							server_name = get_server_name(msg); // server folder
-							server_file = logging_path +"/"+ server_name +"/" + python_execute_filename;
+							server_file = logging_path +"/"+ server_name +"/" + execute_filename;
 							full_path = jaredbot_folder_location + "/" + server_file;
 							
 							// check if pid array undefined
@@ -3846,18 +3886,30 @@ bot.on("message", msg => {
 							}
 							
 							// run code
-							console_log('Started running python execute script!')
-							execute_pids[msg.guild.id].push(exec('python "' + full_path + '"', (err, stdout, stderr) => {
-								console_log('Finished running python execute script!');
+							console_log('Started running '+language_name+' execute script!')
+							execute_pids[msg.guild.id].push(exec(execute_command + full_path + '"', (err, stdout, stderr) => {
+								console_log('Finished running '+language_name+' execute script!');
 								if (err != null && err != undefined) {
-									output_error = err.toString().split('Traceback')[1];
-									if (output_error != undefined) {
-										embed_execute_output(msg, input_code, "Traceback" + output_error);
+									if (is_python == true) {
+										output_error = err.toString().split('Traceback')[1];
+										if (output_error != undefined) {
+											embed_execute_output(msg, input_code, "Traceback" + output_error, lan="python");
+										}
+									} else {
+										output_error = err.toString().split('\n\n')[1];
+										if (output_error != undefined) {
+											embed_execute_output(msg, input_code, output_error, lan="javascript");
+										} else {
+											output_error = err.toString().split('\r\n\r\n')[1];
+											if (output_error != undefined) {
+												embed_execute_output(msg, input_code, output_error, lan="javascript");
+											}
+										}
 									}
 								} else {
 									embed_execute_output(msg, input_code, stdout);
 								}
-								create_file_then_append_data(msg, python_execute_filename, "", endl="", overwrite=true);
+								create_file_then_append_data(msg, execute_filename, "", endl="", overwrite=true);
 							}))
 							
 							// kill process
@@ -3866,7 +3918,7 @@ bot.on("message", msg => {
 									exec("taskkill /F /T /PID " + execute_pids[msg.guild.id][i].pid, (err, stdout, stderr) => {
 										if (stdout.indexOf("has been terminated.") > -1) {
 											embed_execute_output(msg, input_code, "Script terminated as it ran for too long!");
-											create_file_then_append_data(msg, python_execute_filename, "", endl="", overwrite=true);
+											create_file_then_append_data(msg, execute_filename, "", endl="", overwrite=true);
 											execute_start[msg.guild.id] = false;
 										}
 									})
@@ -4464,13 +4516,10 @@ bot.on("message", msg => {
 
 function check_autoreply(msg, word, reply_pcnt=0, msg_reply="", tm=0) {
 	if (msg.content.toLowerCase() == word) {
-		console.log([msg.content, word, reply_pcnt, msg_reply, tm, reply_chance])
 		if (new Date().getMilliseconds() % (reply_chance+reply_pcnt) == 0) {
 			if (DoAutoReply[msg.guild.id] == true) {
 				if (msg.author.bot == false) {
-					console.log([true, 1])
 					setTimeout(function() {
-						console.log([true, 2])
 						// check if reply is array
 						if (typeof(msg_reply) == "object") {
 							if (msg_reply.length > 0) {
@@ -6288,13 +6337,11 @@ bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.content.slice(0, 4) == prefix[msg.guild.id]+"id ") {
 			user_id = encodeURI(msg.content.slice(4, msg.content.length));
-			console.log(user_id);
 			get_html("https://steamidfinder.com/lookup/" + user_id, function(html) {
 				pfp = remove_html_tags(format_html(e(html, [['class="img-rounded avatar"', 1], ['src="', 1], ['"', 0]])));
 				body = remove_html_tags(format_html(e(html, [['class="col-md-12"', 1], ['class="panel-body"', 1], ['<a target="_blank"', 0]])));
 				body2 = remove_dup_chars(remove_dup_chars(remove_dup_chars(body.replace(/[\r\t>]/g, ''), '  ', ' '), '\n\n', '\n'), ' \n', '');
 				body2 = body2.replace('profile http', '\nprofile http');
-				console.log([html, pfp, body, body2]);
 				
 				// embed
 				embed_user_id = new Discord.MessageEmbed();
@@ -10396,19 +10443,17 @@ bot.on("message", msg => {
 										}, 2000, output_file, msg);
 										
 										// encode
-										console.log([cmd]);
 										run_command[msg.guild.id] = exec(cmd, (err, stdout, stderr) => {
 											console_log("Finished encoding file for " + msg.guild.name + "!", error=false, mod=true);
 									
 											// check if file exists
-											console.log([output_file]);
 											if (fs_read.existsSync(output_file) == true) {
 												if (msg.content.slice(0, 7) == prefix[msg.guild.id]+"mp4low" || msg.content.slice(0, 7) == prefix[msg.guild.id]+"movlow" || 
 													msg.content.slice(0, 8) == prefix[msg.guild.id]+"webmlow") {
 													if (file2large == false) {
 														msg_channel_send(msg, "Uploading file to discord servers!").then(uploading_reply => {
 															input_extension = url.split(".")[url.split(".").length-1].replace(prefix[msg.guild.id],"");
-															msg.channel.send("Converted `"+input_extension+"` to `"+extension+"`", { files: [output_file] }).then (sent_file => {
+															msg.channel.send("Converted `"+input_extension+"` to `"+(msg.content+" ").split(" ")[0].slice(1)+"`", { files: [output_file] }).then (sent_file => {
 																console_log("File sent to server " + msg.guild.name + "!");
 																mov2mp4_timeout[msg.guild.id] = false;
 																clearInterval(edit_interval);
@@ -10449,7 +10494,7 @@ bot.on("message", msg => {
 													} else {
 														// upload file
 														input_extension = url.split(".")[url.split(".").length-1].replace(prefix[msg.guild.id],"");
-														msg.channel.send("Converted `"+input_extension+"` to `"+extension+"`", { files: [output_file] }).then (sent_file => {
+														msg.channel.send("Converted `"+input_extension+"` to `"+(msg.content+" ").split(" ")[0].slice(1)+"`", { files: [output_file] }).then (sent_file => {
 															console_log("File sent to server " + msg.guild.name + "!");
 															mov2mp4_timeout[msg.guild.id] = false;
 															clearInterval(edit_interval);
@@ -11813,10 +11858,7 @@ function song_manager(msg, channel, forceplay_url, seek, volume, connection) {
 			}
 			
 			// check if the song is an mp3 file
-			console.log([true, 9])
-			console.log([song_queus[msg.guild.id]]);
 			if (song_queus[msg.guild.id][2] == true) {
-				console.log([true, 10, "song is mp3"]);
 				dj[msg.guild.id] = connection.play(stream[msg.guild.id], steamOptions[msg.guild.id]);
 			} else {
 				// play the song
@@ -11880,18 +11922,14 @@ function song_manager(msg, channel, forceplay_url, seek, volume, connection) {
 }
 
 function play_song(msg, channel, forceplay=false, forceplay_url="", seek=0, volume=1) {
-	console.log([true, 5])
 	try {
 		steamOptions[msg.guild.id] = {seek: seek, volume: volume};
 		if (channel != null && channel != undefined) {
 			// when the user joins the channel
 			try {
-				console.log([true, 6])
 				channel.join().then(connection => {
-					console.log([true, 7])
 					try {
 						// play song
-						console.log([true, 8, "starting song manager"])
 						song_manager(msg, channel, forceplay_url, seek, volume, connection);
 				
 					} catch (err) {
@@ -12231,14 +12269,11 @@ bot.on("message", msg => {
 			// find song by URL
 			if (msg.content.slice(0, 6) == prefix[msg.guild.id]+"play " || msg.content.slice(0, 3) == prefix[msg.guild.id]+"p ") {
 				part_url = command.replace("https://","http://");
-				console.log([false, 1])
 				if (part_url.slice(0, 12) == "http://youtu" || part_url.slice(0, 18) == "http://www.youtube") {
 					if (part_url.indexOf(".") > -1 && part_url.indexOf(" ") == -1) {
-						console.log([false, 2])
 						// YouTube URL
 						song_url = encodeURI(command);
 						song_id = song_url.replace("watch?v=","").split("/").slice(-1).slice(0, 20);
-						console.log([false, 3])
 						if (forceplay == false) {
 							if (song_queus[msg.guild.id] == undefined) {
 								song_queus[msg.guild.id] = [[song_url, msg.author.id]];
@@ -12247,11 +12282,9 @@ bot.on("message", msg => {
 							}
 							forced_song[msg.guild.id] = undefined;
 							console_log("Added song '" + song_id + "' to queue on server " + msg.guild.id + "!");
-							console.log([false, 4])
 						} else if (forceplay == true) {
 							forced_song[msg.guild.id] = [song_url, msg.author.id];
 							console_log("Force playing song '" + song_id + "' on server " + msg.guild.id + "!");
-							console.log([false, 4])
 						}
 					} else {
 						embed_error(msg, "Not a valid YouTube URL!");
@@ -12313,7 +12346,6 @@ bot.on("message", msg => {
 			
 			// play audio file
 			} else if (msg.content == prefix[msg.guild.id]+"play" || msg.content.slice(0, 10) == prefix[msg.guild.id]+"play http") {
-				console.log([true, 1])
 				url = undefined;
 				if (msg.content.split(" ").length == 2) {
 					if (msg.content.split(" ")[1].replace("https","http").slice(0, 38) == "http://cdn.discordapp.com/attachments/" ||
@@ -12335,7 +12367,6 @@ bot.on("message", msg => {
 				
 				// check for undefined URL
 				if (url != undefined) {
-					console.log([true, 2])
 					// add song to queue
 					if (forceplay == false) {
 						if (song_queus[msg.guild.id] == undefined) {
@@ -12345,18 +12376,15 @@ bot.on("message", msg => {
 						}
 						forced_song[msg.guild.id] = undefined;
 						console_log("Added song '" + url + "' to queue on server " + msg.guild.id + "!");
-						console.log([true, 3])
 					} else if (forceplay == true) {
 						forced_song[msg.guild.id] = [url, msg.author.id];
 						console_log("Force playing song '" + url + "' on server " + msg.guild.id + "!");
-						console.log([true, 3])
 					}
 					
 					// play the song
 					if (song_player[msg.guild.id] != true || forceplay == true) {
 						song_player[msg.guild.id] = true;
 						play_song(msg, channel, forceplay=forceplay, forceplay_url=url);
-						console.log([true, 4])
 					}
 				}
 				
@@ -14589,7 +14617,6 @@ bot.on("message", msg => {
 					if (data.indexOf(user_id) > -1) {
 						// format data
 						current_user_data = data.split(user_id)[1].split(";")[0].split(",");
-						console.log([current_user_data]);
 						
 						// fetch member
 						channel_guild = bot.channels.cache.get(msg.channel.id);
