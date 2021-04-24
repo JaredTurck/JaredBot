@@ -165,14 +165,11 @@ const webserver_root_address = log_var("Webserver root", "https://jaredbot.uk/")
 const webserver_memes_dataset = log_var("Webserver memes dataset", webserver_root_address + "img/dataset_memes");
 const webserver_catmemes_dataset = log_var("Webserver catmemes dataset", webserver_root_address + "img/dataset_catmemes");
 const webserver_cats_dataset = log_var("Webserver cats dataset", webserver_root_address + "img/dataset_cats");
-const webserver_boobs_dataset = log_var("Webserver boobs dataset", webserver_root_address + "img/dataset_boobs");
 const webserver_dogs_dataset = log_var("Webserver dogs dataset", webserver_root_address + "img/datasets_dogs");
 const webserver_heli_dataset = log_var("Webserver helicopters dataset", webserver_root_address + "img/datasets_helicopters/");
 const webserver_elms_dataset = log_var("Webserver element photos directory", webserver_root_address + "img/src/elm_photos");
 const webserver_pokemon_dataset = log_var("Webserver pokemon dataset", webserver_root_address + "img/src/pokemon");
 const webserver_dogmeme_dataset = log_var("Webserver dogmemes dataset", webserver_root_address + "img/datasets_dogmeme");
-const webserver_nude_dataset = log_var("Webserver nudes dataset", webserver_root_address + "img/dataset_nudes");
-const webserver_hentai_dataset = log_var("Webserver hentai dataset", webserver_root_address + "img/dataset_hentai");
 const webserver_car_dataset = log_var("Webserver cars dataset", webserver_root_address + "img/dataset_cars");
 const webserver_owo_dataset = log_var("Webserver owo dataset", webserver_root_address + "img/src/emotion");
 const webserver_snake_dataset = log_var("Webserver snakes dataset", webserver_root_address + "img/dataset_snake");
@@ -186,12 +183,6 @@ const webserver_photography_dataset = log_var("Photography dataset", webserver_r
 const webserver_bird_dataset = log_var("Bird dataset", webserver_root_address + "img/dataset_birds");
 const webserver_cars_dataset = log_var("Cars dataset", webserver_root_address + "img/dataset_cars");
 const webserver_leaderboard_dir = log_var("Leaderboard dir", webserver_root_address + "leaderboard");
-const webserver_ass_dataset = log_var("Webserver ass dataset", webserver_root_address + "img/nsfw_datasets/dataset_ass");
-const webserver_pussy_dataset = log_var("Webserver pussy dataset", webserver_root_address + "img/nsfw_datasets/dataset_pussy");
-const webserver_anal_dataset = log_var("Webserver Anal dataset", webserver_root_address + "img/nsfw_datasets/dataset_anal");
-const webserver_blowjob_dataset = log_var("Webserver Blowjob dataset", webserver_root_address + "img/nsfw_datasets/dataset_blowjob");
-const webserver_fingering_dataset = log_var("Webserver Fingering dataset", webserver_root_address + "img/nsfw_datasets/dataset_fingering");
-const webserver_porngifs_dataset = log_var("Porn Gifs dataset", webserver_root_address + "img/nsfw_datasets/dataset_porngifs");
 const webserver_anime_dataset = log_var("Anime dataset", webserver_root_address + "img/src/anime");
 const webserver_meow_dataset = log_var("Cat videos", webserver_root_address + "videos/datasets/meow");
 const webserver_video_dataset = log_var("Videos dataset", webserver_root_address + "videos/vid");
@@ -215,15 +206,6 @@ const authorised_servers = log_var("Authorised Servers file", "authorised_server
 const filenames_higherlower = log_var("Higher Lower scoreboard", "higherlower_scoreboard.txt");
 const automod_filename = log_var("Automod filename", "automod.txt");
 const warnings_filename = log_var("Warnings filename", "warnings.txt");
-const hentai_channel_file = log_var("Hentai channel filename", "hentai_channel_ID.txt");
-const nsfw_channel_file = log_var("NSFW channel IDs filename", "nsfw_channel_ID.txt");
-const porngif_channel_filename = log_var("Porn Gif filename", "porngif_channel_ID.txt");
-const boob_channel_filename = log_var("Boob filename", "boob_channel_ID.txt");
-const pussy_channel_filename = log_var("Pussy filename", "pussy_channel_ID.txt");
-const ass_channel_filename = log_var("Ass filename", "ass_channel_ID.txt");
-const anal_channel_filename = log_var("Anal filename", "anal_channel_ID.txt");
-const blowjob_channel_filename = log_var("Blowjob filename", "bj_channel_ID.txt");
-const fingering_channel_filename = log_var("fingering filename", "finger_channel_ID.txt");
 const igmemes_channel_file = log_var("Igmemes channel filename", "igmemes_channel_ID.txt");
 const photography_channel_file = log_var("photography channel filename", "photo_channel_ID.txt");
 const bird_channel_file = log_var("Bird channel filename", "bird_channel_ID.txt");
@@ -255,7 +237,9 @@ const leave_channel_name = log_var("Leave channel filename", "leave_channel_ID.t
 const muted_log_file = log_var("Muted members dict", "muted_members.txt");
 const python_execute_filename = log_var("Python Execute filename", "execute.py");
 const javascript_execute_filename = log_var("JavaScript Execute filename", "execute.js");
+const cpp_execute_filename = log_var("C++ Execute filename", "execute.cpp");
 const mars_channel_filename = log_var("Mars channel filename", "mars_channel_ID.txt");
+const gpp_location = log_var("Location of g++.exe", "C:/Users/Jared/WinWG/bin/g++.exe");
 
 // Delays (milliseconds)
 const read_output_file_delay_henati = log_var("Delay Hentai", 1000);				// Henati
@@ -293,14 +277,11 @@ const jaredbot_folder_location = log_var ("Absolute JaredBot folder path", "C:/O
 const local_memes_dataset = log_var("Local memes dataset", server_folder_location + "img/dataset_memes");
 const local_catmemes_dataset = log_var("Local catmemes dataset", server_folder_location + "img/dataset_catmemes");
 const local_cats_dataset = log_var("Local cats dataset", server_folder_location + "img/dataset_cats");
-const local_boobs_dataset = log_var("Local boobs dataset", server_folder_location + "img/dataset_boobs");
 const local_dogs_dataset = log_var("Local dogs dataset", server_folder_location + "img/datasets_dogs");
 const local_heli_dataset = log_var("Local Helicopters dataset", server_folder_location + "img/datasets_helicopters");
 const local_elms_dataset = log_var("Local Elements dataset", server_folder_location + "img/src/elm_photos");
 const local_pokemon_dataset = log_var("Local Pokemon dataset", server_folder_location + "img/src/pokemon");
 const local_dogmeme_dataset = log_var("Local dogmemes dataset", server_folder_location + "img/datasets_dogmeme");
-const local_nude_dataset = log_var("Local nudes dataset", server_folder_location + "img/dataset_nudes");
-const local_hentai_dataset = log_var("Local Hentai dataset", server_folder_location + "img/dataset_hentai");
 const local_car_dataset = log_var("Local cars dataset", server_folder_location + "img/dataset_cars");
 const local_owo_dataset = log_var("Local owo dataset", server_folder_location + "img/src/emotion");
 const local_snake_dataset = log_var("Local snakes dataset", server_folder_location + "img/dataset_snake");
@@ -314,12 +295,6 @@ const local_photography_dataset = log_var("Photography dataset", server_folder_l
 const local_anime_dataset = log_var("Anime dataset", server_folder_location + "img/src/anime");
 const local_msg_template = log_var("Message LeaderBoard Template", server_folder_location + "leaderboard_template.html");
 const local_leaderboard_dir = log_var("LeaderBoard Directory", server_folder_location + "leaderboard");
-const local_ass_dataset = log_var("Local ass dataset", server_folder_location + "img/nsfw_datasets/dataset_ass");
-const local_pussy_dataset = log_var("Local pussy dataset", server_folder_location + "img/nsfw_datasets/dataset_pussy");
-const local_anal_dataset = log_var("Local anal dataset", server_folder_location + "img/nsfw_datasets/dataset_anal");
-const local_blowjob_dataset = log_var("Local blowjob dataset", server_folder_location + "img/nsfw_datasets/dataset_blowjob");
-const local_fingering_dataset = log_var("Local fingering dataset", server_folder_location + "img/nsfw_datasets/dataset_fingering");
-const local_porngifs_dataset = log_var("Local porngifs dataset", server_folder_location + "img/nsfw_datasets/dataset_porngifs");
 const local_hash_log = log_var("Local file and text Hash log", server_folder_location + "docs/src/crypto.txt");
 const local_video_dataset = log_var("Local video folder", server_folder_location + "videos/vid");
 const local_meow_dataset = log_var("Local cat videos", server_folder_location + "videos/datasets/meow");
@@ -3570,6 +3545,37 @@ function auto_post_timeout(channel_file, webserver_dataset, database_count, data
 	}
 }
 
+// NSFW dataset locations
+const webserver_boobs_dataset = log_var("Webserver boobs dataset", webserver_root_address + "img/dataset_boobs");
+const webserver_nude_dataset = log_var("Webserver nudes dataset", webserver_root_address + "img/dataset_nudes");
+const webserver_hentai_dataset = log_var("Webserver hentai dataset", webserver_root_address + "img/dataset_hentai");
+const webserver_ass_dataset = log_var("Webserver ass dataset", webserver_root_address + "img/nsfw_datasets/dataset_ass");
+const webserver_pussy_dataset = log_var("Webserver pussy dataset", webserver_root_address + "img/nsfw_datasets/dataset_pussy");
+const webserver_anal_dataset = log_var("Webserver Anal dataset", webserver_root_address + "img/nsfw_datasets/dataset_anal");
+const webserver_blowjob_dataset = log_var("Webserver Blowjob dataset", webserver_root_address + "img/nsfw_datasets/dataset_blowjob");
+const webserver_fingering_dataset = log_var("Webserver Fingering dataset", webserver_root_address + "img/nsfw_datasets/dataset_fingering");
+const webserver_porngifs_dataset = log_var("Porn Gifs dataset", webserver_root_address + "img/nsfw_datasets/dataset_porngifs");
+
+const hentai_channel_file = log_var("Hentai channel filename", "hentai_channel_ID.txt");
+const nsfw_channel_file = log_var("NSFW channel IDs filename", "nsfw_channel_ID.txt");
+const porngif_channel_filename = log_var("Porn Gif filename", "porngif_channel_ID.txt");
+const boob_channel_filename = log_var("Boob filename", "boob_channel_ID.txt");
+const pussy_channel_filename = log_var("Pussy filename", "pussy_channel_ID.txt");
+const ass_channel_filename = log_var("Ass filename", "ass_channel_ID.txt");
+const anal_channel_filename = log_var("Anal filename", "anal_channel_ID.txt");
+const blowjob_channel_filename = log_var("Blowjob filename", "bj_channel_ID.txt");
+const fingering_channel_filename = log_var("fingering filename", "finger_channel_ID.txt");
+
+const local_boobs_dataset = log_var("Local boobs dataset", server_folder_location + "img/dataset_boobs");
+const local_nude_dataset = log_var("Local nudes dataset", server_folder_location + "img/dataset_nudes");
+const local_hentai_dataset = log_var("Local Hentai dataset", server_folder_location + "img/dataset_hentai");
+const local_ass_dataset = log_var("Local ass dataset", server_folder_location + "img/nsfw_datasets/dataset_ass");
+const local_pussy_dataset = log_var("Local pussy dataset", server_folder_location + "img/nsfw_datasets/dataset_pussy");
+const local_anal_dataset = log_var("Local anal dataset", server_folder_location + "img/nsfw_datasets/dataset_anal");
+const local_blowjob_dataset = log_var("Local blowjob dataset", server_folder_location + "img/nsfw_datasets/dataset_blowjob");
+const local_fingering_dataset = log_var("Local fingering dataset", server_folder_location + "img/nsfw_datasets/dataset_fingering");
+const local_porngifs_dataset = log_var("Local porngifs dataset", server_folder_location + "img/nsfw_datasets/dataset_porngifs");
+
 bot.on("ready", msg => {
 	setTimeout(function(){
 		// NSFW
@@ -3882,22 +3888,78 @@ function check_harmful_code_js(code) {
 	return [true, ""];
 }
 
+function check_harmful_code_cpp(code) {
+	trust_modules = ["<iostream>", "<vector>", "<string>"];
+	dangerious_keywords = ["system", "cin"];
+	
+	// include
+	code_lines = code.split('\n');
+	for (i=0;i<code_lines.length;i++) {
+		if (code_lines[i].indexOf('#include') > -1) {
+			line = code_lines[i].replace('#include', '').replace(/ /g, '').split(',');
+			
+			// check each include line
+			for (x=0;x<line.length;x++) {
+				// check if module in trusted modules list
+				if (trust_modules.indexOf(line[x]) == -1) {
+					return [false, "Attempted to load untrusted module!"];
+				}
+			}
+		}
+	}
+	
+	// check dangerious keywords
+	for (i=0;i<dangerious_keywords.length;i++) {
+		if (code.indexOf(dangerious_keywords[i]) > -1) {
+			return [false, dangerious_keywords[i] + " is not allowed!"];
+		}
+		
+	}
+	
+	// to be added
+	return [true, ""];
+}
+
 function embed_execute_output(msg, input_code, output, lan) {
+	// check for blank output
+	if (output.length == 0) {
+		output += "\u200B";
+	}
+	
 	//send message
 	embed_execute = new Discord.MessageEmbed();
 	if (lan == "javascript") {
 		embed_execute.setTitle("JavaScript Output");
 		embed_execute.setURL("https://en.wikipedia.org/wiki/JavaScript"); // set this to URL of the message
 		embed_execute.setDescription("This is the output from JavaScript terminal");
+		embed_execute.setColor(embed_color_chat);
+		input_code = "```js\n" + input_code + "```";
+		output = "```js\n" + output + "```";
+	} else if (lan == "g++") {
+		embed_execute.setTitle("G++ Compiler Error");
+		embed_execute.setURL("https://en.wikipedia.org/wiki/C%2B%2B");
+		embed_execute.setDescription("The g++.exe compiler threw an error while trying to compile the C++ code!");
+		embed_execute.setColor(embed_colour_error);
+		input_code = "```c++\n" + input_code + "```";
+		output = "```c++\n" + output.split('-static-libstdc++')[1] + "```";
+	} else if (lan == "c++") {
+		embed_execute.setTitle("C++ Output");
+		embed_execute.setURL("https://en.wikipedia.org/wiki/C%2B%2B");
+		embed_execute.setDescription("This is the output from C++ exe file!");
+		embed_execute.setColor(embed_color_chat);
+		input_code = "```c++\n" + input_code + "```";
+		output = "```c++\n" + output + "```";
 	} else {
 		embed_execute.setTitle("Python Output");
 		embed_execute.setURL("https://www.python.org/"); // set this to URL of the message
 		embed_execute.setDescription("This is the output from Python terminal");
+		embed_execute.setColor(embed_color_chat);
+		input_code = "```py\n" + input_code + "```";
+		output = "```py\n" + output + "```";
 	}
-	embed_execute.setColor(embed_color_chat);
 	embed_execute.addFields(
-		{name: "Input", value: "```"+input_code.slice(0, 1000)+"```"},
-		{name: "Output", value: "``` "+output.slice(0, 1000)+" ```"}
+		{name: "Input", value: input_code.slice(0, 1000)},
+		{name: "Output", value: output.slice(0, 1000)}
 	)
 	embed_execute.setTimestamp();
 	embed_execute.setFooter("JaredBot", webserver_root_address+"img/lion.png");
@@ -3911,7 +3973,8 @@ bot.on("message", msg => {
 		if (msg.guild != null && msg.content.slice(0,9).toLowerCase() == prefix[msg.guild.id]+"execute " ||
 			msg.guild != null && msg.content.slice(0,6).toLowerCase() == prefix[msg.guild.id]+"exec " ||
 			msg.guild != null && msg.content.slice(0,4).toLowerCase() == prefix[msg.guild.id]+"py " ||
-			msg.guild != null && msg.content.slice(0,4).toLowerCase() == prefix[msg.guild.id]+"js ") {
+			msg.guild != null && msg.content.slice(0,4).toLowerCase() == prefix[msg.guild.id]+"js " ||
+			msg.guild != null && msg.content.slice(0,5).toLowerCase() == prefix[msg.guild.id]+"c++ ") {
 			// timeout
 			if (execute_start[msg.guild.id] == undefined) {
 				execute_start[msg.guild.id] = false;
@@ -3921,6 +3984,7 @@ bot.on("message", msg => {
 			
 			if (execute_start[msg.guild.id] == false) {
 				execute_start[msg.guild.id] = true;
+				cpp_error = false;
 				// check if code is python or javascript
 				var input_code = msg.content.slice(msg.content.split(" ")[0].length+1, msg.length);
 				if (input_code.indexOf("```js") > -1 || input_code.indexOf("```javascript") > -1
@@ -3930,9 +3994,24 @@ bot.on("message", msg => {
 					console_log("Execute input code is JavaScript!");
 					execute_filename = javascript_execute_filename;
 					execute_command = 'node "';
+					flags = "";
 					check_code_func = check_harmful_code_js;
 					language_name = "javascript";
 					is_python = false;
+					is_cpp = false;
+				
+				} else if (input_code.indexOf("```c") > -1 || input_code.indexOf("```c++") > -1
+					|| msg.content.slice(0,5) == prefix[msg.guild.id]+"c++ ") {
+					// code is C++
+					input_code = input_code.replace("```c++","").replace("```cpp","").replace(/```c/g, "").split("```").join("").split("`").join("");
+					console_log("Execute input code is C++!");
+					execute_filename = cpp_execute_filename;
+					execute_command = 'g++ "';
+					flags = " -static-libgcc -static-libstdc++";
+					check_code_func = check_harmful_code_cpp;
+					language_name = "C++";
+					is_python = false;
+					is_cpp = true;
 					
 				} else {
 					// code is python
@@ -3940,9 +4019,11 @@ bot.on("message", msg => {
 					console_log("Execute input code is Python!");
 					execute_filename = python_execute_filename;
 					execute_command = 'python "';
+					flags = "";
 					check_code_func = check_harmful_code;
 					language_name = "python";
 					is_python = true;
+					is_cpp = false;
 				}
 				
 				// check for harmful code
@@ -3966,22 +4047,37 @@ bot.on("message", msg => {
 							server_file = logging_path +"/"+ server_name +"/" + execute_filename;
 							full_path = jaredbot_folder_location + "/" + server_file;
 							
+							// check for C++ add flags
+							if (is_cpp == true) {
+								cpath = full_path.split('/').slice(0, -1).join('/') +'/'+ full_path.split('/').slice(-1)[0];
+								flags = ' -o "'+cpath.replace('.cpp','.exe')+'"' + flags;
+							}
+							
 							// check if pid array undefined
 							if (execute_pids[msg.guild.id] == undefined) {
 								execute_pids[msg.guild.id] = [];
 							}
 							
 							// run code
-							console_log('Started running '+language_name+' execute script!')
-							execute_pids[msg.guild.id].push(exec(execute_command + full_path + '"', (err, stdout, stderr) => {
+							console_log('Started running '+language_name+' execute script!');
+							execute_pids[msg.guild.id].push(exec(execute_command + full_path + '"' + flags, (err, stdout, stderr) => {
 								console_log('Finished running '+language_name+' execute script!');
 								if (err != null && err != undefined) {
 									if (is_python == true) {
+										// python output
 										output_error = err.toString().split('Traceback')[1];
 										if (output_error != undefined) {
 											embed_execute_output(msg, input_code, "Traceback" + output_error, language_name);
 										}
+									} else if (is_cpp == true) {
+										// G++ compiler output
+										output_error = err.toString();
+										if (output_error != undefined) {
+											embed_execute_output(msg, input_code, output_error, lan="g++");
+										}
+										
 									} else {
+										// JavaScript output
 										output_error = err.toString().split('\n\n')[1];
 										if (output_error != undefined) {
 											embed_execute_output(msg, input_code, output_error, language_name);
@@ -3993,7 +4089,26 @@ bot.on("message", msg => {
 										}
 									}
 								} else {
-									embed_execute_output(msg, input_code, stdout, language_name);
+									if (is_cpp == true) {
+										// run code
+										execute_pids[msg.guild.id].push(exec('"'+cpath.replace('.cpp','.exe')+'"', (err, stdout, stderr) => {
+											if (err != null && err != undefined) {
+												cpp_error = err.toString();
+												if (cpp_error != undefined) {
+													embed_execute_output(msg, input_code, cpp_error, lan="c++");
+													console_log("C++ output error! " + cpp_error);
+													cpp_error = true;
+												}
+											} else {
+												embed_execute_output(msg, input_code, stdout, lan="c++");
+											}
+										}))
+										
+										// shutdown script after 5 seconds
+										
+									} else {
+										embed_execute_output(msg, input_code, stdout, language_name);
+									}
 								}
 								create_file_then_append_data(msg, execute_filename, "", endl="", overwrite=true);
 								execute_input_check[msg.guild.id] = [false, msg.channel.id];
@@ -4004,13 +4119,15 @@ bot.on("message", msg => {
 								for (i=0;i<execute_pids[msg.guild.id].length;i++) {
 									exec("taskkill /F /T /PID " + execute_pids[msg.guild.id][i].pid, (err, stdout, stderr) => {
 										if (stdout.indexOf("has been terminated.") > -1) {
-											embed_execute_output(msg, input_code, "Script terminated as it ran for too long!", language_name);
+											if (cpp_error == false) {
+												embed_execute_output(msg, input_code, "Script terminated as it ran for too long!", language_name);
+											}
 											create_file_then_append_data(msg, execute_filename, "", endl="", overwrite=true);
 											execute_start[msg.guild.id] = false;
 										}
 									})
 								}
-							}, execute_code_cooldown, msg, input_code);
+							}, execute_code_cooldown, msg, input_code, cpp_error);
 							
 							// clear timeout
 							setTimeout(function(){
@@ -4560,6 +4677,12 @@ bot.on("message", msg => {
 		"Since the creation of this server, it has developed a lot and is so much more than just a testing server, it’s now a place where "+
 		"friends can chat with each other, ask for help with anything, give improvements for workshop maps, give new ideas on how to improve "+
 		"JaredBot, a place to share gameplay, videos, images, or just chat about random stuff.");
+	}
+})
+
+bot.on("message", msg => {
+	if (msg.guild != null && msg.content.toLowerCase() === prefix[msg.guild.id]+"github") {
+		embed_chat_reply(msg, "https://github.com/JaredTurck/JaredBot");
 	}
 })
 
