@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2020  Jared Turck.
+Copyright (C) 2021  Jared Turck.
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -2589,16 +2589,14 @@ bot.on("ready", msg => {
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.guild != null && msg.content == prefix[msg.guild.id]+"letteremoji on") {
-			//if (msg.member.hasPermission("MANAGE_MESSAGES") == true) {
-			if (authorised_IDs.indexOf(msg.author.id) > -1) {
+			if (msg.member.hasPermission("MANAGE_MESSAGES") == true) {
 				// write guild ID to file
 				create_file_then_append_data(msg, letteremoji_filename, "true", endl="", overwrite=true);
 				embed_chat_reply(msg, "turned letter emojis on, type `"+prefix[msg.guild.id]+"letteremoji off` to turn off!");
 				letter_emojis[msg.guild.id] = "true";
 				
 			} else {
-				//embed_error(msg, "You dont have permission to turn on letter emojis, " + mod_error_text + " manage messages permission!");
-				embed_error(msg, "This feature is still in development and can only be used by Jared! I hope to get it complete soon");
+				embed_error(msg, "You dont have permission to turn on letter emojis, " + mod_error_text + " manage messages permission!");
 			}
 		} else if (msg.guild != null && msg.content == prefix[msg.guild.id]+"letteremoji off") {
 			if (msg.member.hasPermission("MANAGE_MESSAGES") == true) {
@@ -6339,7 +6337,7 @@ bot.on("message", msg => {
 								best_games = e(html, [["<h5>Games stats</h5>", 1], ['<div class="long">World</div>', 1], ["</td>", 0], ['<td>', 1]]).replace(/[ \n]/g, "");
 						
 								// format
-								total_cost = "$" + String(parseFloat(Est_cost.replace(/[$,]/g,"")) + parseFloat(Est_game_cost.replace(/[$,]/g,""))).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+								total_cost = "$" + String( Math.round((parseFloat(Est_cost.replace(/[$,]/g,"")) + parseFloat(Est_game_cost.replace(/[$,]/g,""))) * 100 ) / 100).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 								Public = Public.replace("check_circle", "yes").replace("cancel", "no").replace('pos">', "").replace('neg">', "");
 								Donator = Donator.replace("cancel", "no");
 								avg_playtime = avg_playtime.replace("minutes", "mins");
