@@ -2379,6 +2379,16 @@ bot.on("message", msg => {
 			}
 			msg_channel_send(msg, letters.join(""));
 			
+		} else if (msg.guild != null && msg.content.slice(0, 3).toLowerCase() == prefix[msg.guild.id]+"t ") {
+			message = msg.content.slice(3, msg.content.length);
+			txt = [];
+			for (i=0;i<message.length;i++) {
+				txt.push(message.slice(0, i));
+			}
+			for (i=message.length;i>0;i--) {
+				txt.push(message.slice(0, i));
+			}
+			msg_channel_send(msg, txt.join('\n'));
 		}
 	}
 })
@@ -7681,6 +7691,70 @@ bot.on("message", msg => {
 				}
 			} else {
 				embed_error(msg, "You dont have permission to tempmute, "+mod_error_text+" mute members permission!");
+			}
+		}
+	}
+})
+
+// tempunmute
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, 11).toLowerCase() == prefix[msg.guild.id]+"tempunmute") {
+			if (msg.member.hasPermission("MUTE_MEMBERS") == true) {
+				let member = msg.mentions.members.first();
+				if (member != undefined) {
+					message = msg.content.split(" ");
+					console.log([message, message[2]])
+					if (message.length == 3 && message[0] == prefix[msg.guild.id]+"tempunmute") {
+						if (isInt(msg, message[2], 0, 1440, "tempmute", ErrorMessageEnd="") == true) {
+							if (member.hasPermission("MUTE_MEMBERS") == false) {
+								if (msg.guild.me.hasPermission("MUTE_MEMBERS") == true) {
+									// mins
+									mins = parseInt(message[2]) * 60 * 1000;
+									
+									// unmute the user
+									let old_mute = msg.guild.roles.cache.find(role => role.name == "mute");
+									if (old_mute != undefined) {
+										member.roles.remove(old_mute);
+										embed_modderation(msg, "<@"+ member + "> This user can talk again, they have been temporerly unmuted for "+message[2]+" mins!", "User Unmuted!", color="green");
+										console_log("user "+member.user.tag+" temp unmuted on server "+msg.guild.id+"!", error=false, mod=true);
+									} else {
+										// messge mute role doesn't exist create it
+										remove_muted_role(msg, member);
+									}
+									
+									// mute the user
+									setTimeout(function() {
+										// take action
+										let old_mute = msg.guild.roles.cache.find(role => role.name == "mute");
+										if (old_mute != undefined) {
+											// mute user
+											member.roles.add(old_mute);
+											embed_modderation(msg, "<@"+ member + "> This user can no longer talk, they have been muted!", "User Temporarily Muted!");
+											console_log("user "+member.user.tag+" temp muted on server "+msg.guild.id+"!", error=false, mod=true);
+										} else {
+											// generate muted role
+											generate_mute_role(msg, member);
+										}
+									}, mins, member, msg);
+								} else {
+									embed_error(msg, "Failed to tempmute the specified user, JaredBot does not have the right permissions," +
+									"please go to server settings --> roles, then assign JaredBot the mute members permission!");
+								}
+							} else {
+								embed_error(msg, "Admins and Moderators cannot be muted!");
+							}
+						} else {
+							embed_error(msg, "Invalid Format! Mute length must be a number!");
+						}
+					} else {
+						embed_error(msg, "Invalid Format! Please use -tempunmute @user {length in mins}");
+					}
+				} else {
+					embed_error(msg, "Failed to mute! The specified User could not be found!");
+				}
+			} else {
+				embed_error(msg, "You dont have permission to tempunmute, "+mod_error_text+" mute members permission!");
 			}
 		}
 	}
