@@ -873,12 +873,130 @@ function count_dir(dir, dataset_name) {
 	}
 }
 
+// generate user_agent
+var arch = [32, 64];
+var webkit_ver = ['534.30', '420+', '537.36', '604.1.38', '537.73',
+                      '537.36','605.1.15','536.30', '528.5+', '604.1.34',
+                      '602.1.50', '601.3.9', '531.2+']
+
+var browser = {
+	"Chrome" : ['60.0.3112.107', '47.0.2526.80', '52.0.2743.116',
+				'51.0.2704.79', '62.0.3202.84', '42.0.2311.135',
+				'59.0.3071.125', '60.0.3112.116', '31.0.1650.0',
+				'58.0.3029.83', '34.0.1847.118', '47.0.2526.111',
+				'52.0.2743.98', '55.0.2883.91', '38.0.2125.102',
+				'46.0.2486.0', '61.0.3163.98', '47.0.2526.83',
+				'51.0.2704.64', '41.99900.2250.0242', '90.0.4430.212'],
+	"Safari" : ['601.3.9', '533.2+', '537.3', '605.1', '537.36', '604.1', '602.1',
+				'419.3', '605.1.15','528.5', '534.30'],
+	"Edge" : ['12.10536', '14.14393', '13.10586', '12.246', '13.1058', '15.15254']
+};
+
+var Linux_device_IDs = ["SM-G960F Build/R16NW", "SM-G892A Build/NRD90M; wv",
+				"SM-G930VC Build/NRD90M; wv", "SM-G935S Build/MMB29K; wv",
+				"SM-G920V Build/MMB29K", "SM-G928X Build/LMY47X",
+				"Nexus 6P Build/MMB29P", "G8231 Build/41.2.A.0.219; wv",
+				"E6653 Build/32.2.A.0.253", "HTC One X10 Build/MRA58K; wv",
+				"HTC One M9 Build/MRA58K"];
+
+var browser_os = {
+	"Windows NT" : [7.0, 8.0, 8.1, 10.0],
+	"Linux; Android" : ["8.0.0", "7.0", "6.0.1", "5.1.1", "6.0.1", "7.1.1", "6.0"],
+	"iPhone; CPU iPhone" : ["10_0_1", "11_0", "12_0", "10_0_1"],
+	"Mac OS X" : ["10_11_2", "10.10"]
+};
+
+var iphone_harware_ver = ['15A5341f', '15A5370a', '16A366', '15E148', '14A403', '15A372', '1A543'];
+var iphone_browser_ver = ["12.0", "11.0"];
+var android_ver = ['4.2.1', '5.1', '7.0', '6.0.1', '5.1.1', '6.0', '4.4.3', '4.2.2', '8.0.0', '5.0.2', '7.1.1'];
+var windows_phone_ver = ["10.0"];
+var windows_phone_hardware_ver = ["RM-1152", "RM-1127_16056", "Lumia 950"];
+
+var tablet_builds = ["Pixel C Build/NRD90M; wv", "SGP771 Build/32.2.A.0.253; wv",
+				"SHIELD Tablet K1 Build/MRA58K; wv", "SM-T827R4 Build/NRD90M",
+				"SAMSUNG SM-T550 Build/LRX22G", "KFTHWI Build/KTU84M",
+				"LG-V410/V41020c Build/LRX22G"];
+
+function random_choice(array) {
+	return array[parseInt(Math.random() * 1000) % array.length];
+}
+
+function get_user_agent() {
+	// Browser
+	current_webkit = random_choice(webkit_ver);
+	current_chrome_ver = random_choice(browser["Chrome"]);
+	current_safari_ver = random_choice(browser["Safari"]);
+
+	// Windows
+	windows_os_ver = random_choice(browser_os["Windows NT"]);
+	windows_arch = random_choice(arch);
+
+    // Linux
+	linux_phone_os_ver = random_choice(browser_os["Linux; Android"]);
+	linux_phone_device_ID = random_choice(Linux_device_IDs);
+
+    // Iphone
+	iphone_os_ver = random_choice(browser_os["iPhone; CPU iPhone"]);
+	iphone_hard_ver = random_choice(iphone_harware_ver);
+	iphone_browser_ver = random_choice(iphone_browser_ver);
+
+    // Windows Phone
+	win_phone_android_ver = random_choice(android_ver);
+	win_phone_ver = random_choice(windows_phone_ver);
+	win_phone_hard_ver = random_choice(windows_phone_hardware_ver);
+	win_phone__edge_ver = random_choice(browser["Edge"]);
+
+    // Tablet
+	tablet_os_ver = random_choice(browser_os["Linux; Android"]);
+	tablet_build = random_choice(tablet_builds);
+	
+	user_agent_formats = {
+		// windows useragent
+		"windows_user_agent" : `Mozilla/5.0 (Windows NT ${windows_os_ver}; Win${windows_arch}; ` +
+			`x${windows_arch}) AppleWebKit/${current_webkit} (KHTML, like Gecko) Chrome/` +
+			`${current_chrome_ver} Safari/${current_safari_ver}`,
+		
+		// linux phone useragent
+		"linux_phone_useragent" : `Mozilla/5.0 (Linux; Android ${linux_phone_os_ver}; ${linux_phone_device_ID}) ` +
+			`AppleWebKit/${current_webkit} (KHTML, like Gecko) Chrome/${current_chrome_ver} Mobile Safari/` +
+			`${current_safari_ver}`,
+		
+		// iphone useragent
+		"iphone_useragent" : `Mozilla/5.0 (iPhone; CPU iPhone OS ${iphone_os_ver} like Mac OS X) ` +
+			`AppleWebKit/${current_webkit} (KHTML, like Gecko) Version/${iphone_browser_ver} ` +
+			`Mobile/${iphone_hard_ver} Safari/${current_safari_ver}`,
+		
+		// windows phone
+		"windows_phone_useragent" : `Mozilla/5.0 (Windows Phone ${win_phone_ver}; Android ${win_phone_android_ver}; `+
+			`Microsoft; ${win_phone_hard_ver}) AppleWebKit/${current_webkit} (KHTML, like Gecko) Chrome/` +
+			`${current_chrome_ver} Mobile Safari/${current_safari_ver} Edge/${win_phone__edge_ver}`,
+		
+		// tablet
+		"tablet_useragent" : `Mozilla/5.0 (Linux; Android ${tablet_os_ver}; ${tablet_build}) ` +
+			`AppleWebKit/${current_webkit} (KHTML, like Gecko) Chrome/${current_chrome_ver} Safari/` +
+			`${current_safari_ver}`,
+	}
+	
+	// pick a user agent
+	user_agent_keys = Object.keys(user_agent_formats);
+	final_user_agent = user_agent_formats[random_choice(user_agent_keys)];
+	return final_user_agent;
+	
+}
+
 // gets HTML from a URL
 async function get_html(url, callback) {
 	// get html
 	await request(url, {
 		headers: {
-			"User-Agent": user_agent
+			"User-Agent": get_user_agent(),
+			"Connection" : "keep-alive",
+			"Pragma" : "no-cache",
+			"Cache-Control" : "no-cache",
+			"DNT" : "1",
+			//"Accept" : "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+			"Accept-Encoding" : "gzip, deflate",
+			"Accept-Language" : "en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7",
 		},
 		body: "",
 		method: "GET"
@@ -2388,7 +2506,9 @@ bot.on("message", msg => {
 			for (i=message.length;i>0;i--) {
 				txt.push(message.slice(0, i));
 			}
-			msg_channel_send(msg, txt.join('\n'));
+			msg.channel.send(txt.join('\n')).catch(err => {
+				embed_error(msg, "Failed to send message, the text is too long!");
+			});
 		}
 	}
 })
@@ -3855,6 +3975,14 @@ function check_harmful_code(code) {
 		
 	}
 	
+	// check for builtins
+	words = code.split(".");
+	for (i=0;i<words.length;i++) {
+		if (words[i].slice(0, 2) == "__" || words[i].slice(words[i].length-2, words[i].length) == "__") {
+			return [false, "Builtins are not allowed! You cannot use "+words[i]+"!"];
+		}
+	}
+	
 	// time.sleep
 	sleep_lines = code.split('time.sleep(');
 	for (i=0;i<sleep_lines.length;i++) {
@@ -3898,7 +4026,7 @@ function check_harmful_code_js(code) {
 
 function check_harmful_code_cpp(code) {
 	trust_modules = ["<iostream>", "<vector>", "<string>"];
-	dangerious_keywords = ["system", "cin"];
+	dangerious_keywords = ["system", "cin", "__"];
 	
 	// include
 	code_lines = code.split('\n');
@@ -4254,6 +4382,26 @@ function split_list_dot(data) {
 	}
 }
 
+// currency
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, 5) == prefix[msg.guild.id]+"usd ") {
+			parts = msg.content.slice(5, msg.content.length).split(' ');
+			amount = parts[0];
+			from = parts[1].toUpperCase();
+			url = "https://www.xe.com/currencyconverter/convert/?Amount="+amount+"&From="+from+"&To=USD";
+			
+			get_html(url, function(html) {
+				txt = html.split('class="tab-box__ContentContainer')[1].split('class="result__')[1];
+				console.log([txt]);
+				
+				
+			})
+			
+		}
+	}
+})
+
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.guild != null && msg.content.slice(0, 8) == prefix[msg.guild.id]+"choose " || msg.content.slice(0, 8) == prefix[msg.guild.id]+"choice ") {
@@ -4428,6 +4576,48 @@ bot.on("message", msg => {
 
 
 // post photo
+var reddit_url = "https://www.reddit.com/r/";
+var subreddit_names = {
+	"cat" : "cat",
+	"dog" : "dog",
+	"dogmeme" : "dogmemes",
+	"car" : "classiccars",
+	"snake" : "snake",
+	"bird" : "parrots",
+	"racoon" : "racoon",
+	"floppa" : "Floppa",
+	"catmeme" : "Catmeme",
+	"meme" : "meme",
+	"mars" : "Mars"
+}
+
+function get_reddit_img(command) {
+	url = reddit_url + subreddit_names[command];
+	get_html(url, function(html) {
+		console.log(html);
+		
+	})
+}
+
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content == prefix[msg.guild.id]+"useragent") {
+			embed_chat_reply(msg, get_user_agent());
+		}
+	}
+})
+
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, 9) == prefix[msg.guild.id]+"gethtml ") {
+			url = msg.content.slice(9, msg.content.length);
+			get_html(url, function(html) {
+				embed_chat_reply(msg, html);
+			})
+		}
+	}
+})
+
 function get_photo_name(database, callback) {
 	if (typeof(database) == "string") {
 		file_name = ("00000" + parseInt(Math.random() * 10000) % dataset_counts[database]).slice(-5);
@@ -4510,12 +4700,14 @@ function post_video(msg, guild="msg") {
 				embed_error(msg, "Failed to upload video file!");
 			})
 		} else if (guild == "channel") {
-			msg.send("\u200B", { files: [file] }).then(fobject => {
-				console_log("video sent to server " + msg.guild.name);
-			}).catch(err => {
-				console_log("Failed to send video file to server! " + err, error=true);
-				embed_error(msg, "Failed to upload video file!");
-			})
+			if (msg != null || msg != undefined) {
+				msg.channel.send("\u200B", { files: [file] }).then(fobject => {
+					console_log("video sent to server " + msg.guild.name);
+				}).catch(err => {
+					console_log("Failed to send video file to server! " + err, error=true);
+					embed_error(msg, "Failed to upload video file!");
+				})
+			}
 		}
 	})
 }
@@ -13397,6 +13589,15 @@ bot.on("message", msg => {
 	}
 })
 
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.content.slice(0, 11) == prefix[msg.guild.id]+"wordcount ") {
+			txt = msg.content.slice(11, msg.content.length);
+			embed_chat_reply(msg, "The text contains: "+txt.split(" ").length+" words!");
+		}
+	}
+})
+
 
 // maths functions
 function is_leap(msg, year) {
@@ -13904,6 +14105,7 @@ bot.on("message", msg => {
 			if (query.length > 0) {
 				get_html("https://www.google.co.uk/search?q="+query+"&tbm=isch&safe=active", function(html) {
 					urls = get_urls(html);
+					console.log(html);
 					if (urls.length == 0) {
 						embed_error(msg, "Failed to fetch image, JaredBot has **safe search** enabled! this means NSFW content won't be shown. "+
 						"If your search contains NSFW terms, then this could be the reason for the bot failling to find a photo, else if your "+
