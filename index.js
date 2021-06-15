@@ -1131,15 +1131,6 @@ function get_dataset_sizes() {
 		count_dir(local_dogs_dataset, "dogs");
 		count_dir(local_heli_dataset, "helicopters");
 		count_dir(local_dogmeme_dataset, "dogmemes");
-		count_dir(local_nude_dataset, "nudes");
-		count_dir(local_hentai_dataset, "hentai");
-		count_dir(local_boobs_dataset, "boobs");
-		count_dir(local_ass_dataset, "ass");
-		count_dir(local_pussy_dataset, "pussy");
-		count_dir(local_anal_dataset, "anal");
-		count_dir(local_blowjob_dataset, "blowjob");
-		count_dir(local_fingering_dataset, "fingering");
-		count_dir(local_porngifs_dataset, "porngif");
 		count_dir(local_car_dataset, "cars");
 		count_dir(local_snake_dataset, "snakes");
 		count_dir(local_igmemes_dataset, "igmemes");
@@ -1695,7 +1686,6 @@ bot.on("message", msg => {
 				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"help autopost`!\n\u200B");
 				help_module_embed.addFields (
 					{name: "Animals", value: "`"+prefix[msg.guild.id]+"help animal`", inline: true},
-					{name: "NSFW", value: "`"+prefix[msg.guild.id]+"help nsfw`", inline: true},
 					{name: "Meme", value: "`"+prefix[msg.guild.id]+"help meme`", inline: true},
 					{name: "Photo", value: "`"+prefix[msg.guild.id]+"help photos`", inline: true},
 					{name: "Reaction", value: "`"+prefix[msg.guild.id]+"help reaction`", inline: true},
@@ -1718,22 +1708,6 @@ bot.on("message", msg => {
 					{name: prefix[msg.guild.id]+"aww", value: "`"+prefix[msg.guild.id]+"help aww`\n\u200B", inline: true},
 					{name: prefix[msg.guild.id]+"floppa", value: "`"+prefix[msg.guild.id]+"help floppa`\n\u200B", inline: true},
 					{name: "\n\u200B", value: "\n\u200B", inline: true},
-				)
-				msg_channel_send(msg, help_module_embed);
-			} else if (module_name == "nsfw" || msg.content == prefix[msg.guild.id]+"nsfw") {
-				// nsfw
-				help_module_embed.setTitle("Help NSFW Image Commands");
-				help_module_embed.setDescription("To see help for automatic image posting type `"+prefix[msg.guild.id]+"help autopost`!\n\u200B");
-				help_module_embed.addFields (
-					{name: prefix[msg.guild.id]+"hentai", value: "`"+prefix[msg.guild.id]+"help hentai`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"boob", value: "`"+prefix[msg.guild.id]+"help boob`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"nude", value: "`"+prefix[msg.guild.id]+"help nude`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"pussy", value: "`"+prefix[msg.guild.id]+"help pussy`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"ass", value: "`"+prefix[msg.guild.id]+"help ass`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"anal", value: "`"+prefix[msg.guild.id]+"help anal`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"blowjob", value: "`"+prefix[msg.guild.id]+"help bj`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"fingering", value: "`"+prefix[msg.guild.id]+"help finger`\n\u200B", inline: true},
-					{name: prefix[msg.guild.id]+"porngif", value: "`"+prefix[msg.guild.id]+"help porngif`\n\u200B", inline: true},
 				)
 				msg_channel_send(msg, help_module_embed);
 			} else if (module_name == "meme") {
@@ -1972,24 +1946,6 @@ bot.on("message", msg => {
 			// Image
 			} else if (module_name == "random animal") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"random animal", value: "Shows a photo of a random animal.\n\u200B"});
-			} else if (module_name == "hentai") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"hentai", value: "Shows a random hentai photo, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "boob") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"boob", value: "posts a photo of some boobs, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "nude") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"nude", value: "posts a photo of a nude girl, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "ass") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"ass", value: "posts a photo of a nude girls ass, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "pussy") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"pussy", value: "posts a photo of a vagina, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "anal") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"anal", value: "posts a photo of anal, or something being inserted into the ass, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "bj" || module_name == "blowjob") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"bj", value: "posts a photo of a blowjob, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "finger" || module_name == "fingering") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"fingering", value: "posts a photo of a girl fingering her pussy, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
-			} else if (module_name == "porngif" || module_name == "porn") {
-				embed_help_reply(msg, {name: prefix[msg.guild.id]+"porngif", value: "posts a porn gif, this is an NSFW command and can only be used in NSFW channels.\n\u200B"});
 			} else if (module_name == "meme") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"meme", value: "Shows a random meme.\n\u200B"});
 			} else if (module_name == "catmeme") {
@@ -2117,12 +2073,6 @@ bot.on("message", msg => {
 					msg.content == prefix[msg.guild.id]+"autopost" || msg.content == prefix[msg.guild.id]+"autoporngif" || 
 					msg.content == prefix[msg.guild.id]+"autoanime" || msg.content == prefix[msg.guild.id]+"autovideo") {
 				autopost_help(msg);
-			} else if (msg.content == prefix[msg.guild.id]+"autoboob" || msg.content == prefix[msg.guild.id]+"autopussy" ||
-					msg.content == prefix[msg.guild.id]+"autoass" || msg.content == prefix[msg.guild.id]+"autoanal" || 
-					msg.content == prefix[msg.guild.id]+"autoblowjob" || msg.content == prefix[msg.guild.id]+"autofingering" ||
-					msg.content == prefix[msg.guild.id]+"autonude" || msg.content == prefix[msg.guild.id]+"autohentai" ||
-					msg.content == prefix[msg.guild.id]+"autonude" || msg.content == prefix[msg.guild.id]+"autonsfw") {
-				autopost_nsfw(msg);
 			} else if (module_name == "slowmode" || msg.content == prefix[msg.guild.id]+"slowmode") {
 				embed_help_reply(msg, {name: prefix[msg.guild.id]+"slowmode", value: "Enables slow mode on the channel you type it in, the syntax for the command is `"+prefix[msg.guild.id]+"slowmode {MM:SS}` for example `"+prefix[msg.guild.id]+"slowmode 5:45` would set slowmode to 5 mins and 45 seconds.\n\u200B"});
 			} else if (module_name == "banurl" || msg.content == prefix[msg.guild.id]+"banurl") {
@@ -2194,28 +2144,6 @@ bot.on("message", msg => {
 				embed_help_reply(msg, {name: "AutoVideo", value: "Automatically posts a video after a specified period of tine, for example `"+prefix[msg.guild.id]+"autovideo on 20` will post a video every 20 mins, to turn autovideo off type `"+prefix[msg.guild.id]+"autovideo off`.\n\u200B"});
 			} else if (module_name == "automars") {
 				embed_help_reply(msg, {name: "AutoMars", value: "Automatically posts a photo of mars after a specified period of tine, for example `"+prefix[msg.guild.id]+"automars on 20` will post a photo of mars every 20 mins, to turn automars off type `"+prefix[msg.guild.id]+"automars off`.\n\u200B"});
-			
-			// autopost NSFW
-			} else if (module_name == "autohentai") {
-				embed_help_reply(msg, {name: "AutoHentai", value: "Automatically posts Hentai after a specified period of time, for example `"+prefix[msg.guild.id]+"autohentai on 5` will post a Hentai photo every 5 mins, to turn autohentai off type `"+prefix[msg.guild.id]+"autohentai off`.\n\u200B"});
-			} else if (module_name == "autonude") {
-				embed_help_reply(msg, {name: "AutoNude", value: "Automatically posts a nude after a specified period of time, for example `"+prefix[msg.guild.id]+"autonude on 5` will post a nude photo every 5 mins, to turn autonude off type `"+prefix[msg.guild.id]+"autonude off`.\n\u200B"});
-			} else if (module_name == "autoporngif") {
-				embed_help_reply(msg, {name: "AutoPornGif", value: "Automatically posts a porn gif after a specified period of time, for example `"+prefix[msg.guild.id]+"autoporngif on 5` will post a Porn gif every 5 mins, to turn autoporngif off type `"+prefix[msg.guild.id]+"autoporngif off`.\n\u200B"});
-			} else if (module_name == "autoboob") {
-				embed_help_reply(msg, {name: "AutoBoob", value: "Automatically posts boob photos after a specified period of time, for example `"+prefix[msg.guild.id]+"autoboob on 5` will post a boobs every 5 mins, to turn autoboob off type `"+prefix[msg.guild.id]+"autoboob off`.\n\u200B"});
-			} else if (module_name == "autopussy") {
-				embed_help_reply(msg, {name: "AutoPussy", value: "Automatically posts vagina photos after a specified period of time, for example `"+prefix[msg.guild.id]+"autopussy on 5` will post pussy photo every 5 mins, to turn autopussy off type `"+prefix[msg.guild.id]+"autopussy off`.\n\u200B"});
-			} else if (module_name == "autoass") {
-				embed_help_reply(msg, {name: "AutoAss", value: "Automatically posts an ass photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoass on 5` will post an ass every 5 mins, to turn autoass off type `"+prefix[msg.guild.id]+"autoass off`.\n\u200B"});
-			} else if (module_name == "autoanal") {
-				embed_help_reply(msg, {name: "AutoAnal", value: "Automatically posts an anal photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoanal on 5` will post an anal photo every 5 mins, to turn autoanal off type `"+prefix[msg.guild.id]+"autoanal off`.\n\u200B"});
-			} else if (module_name == "autoblowjob") {
-				embed_help_reply(msg, {name: "AutoBlowjob", value: "Automatically posts a blowjob photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autoblowjob on 5` will post a blowjob photo every 5 mins, to turn autoblowjob off type `"+prefix[msg.guild.id]+"autoblowjob off`.\n\u200B"});
-			} else if (module_name == "autofingering") {
-				embed_help_reply(msg, {name: "AutoFingering", value: "Automatically posts a fingering pussy photo after a specified period of time, for example `"+prefix[msg.guild.id]+"autofingering on 5` will post a fingering photo every 5 mins, to turn autofingering off type `"+prefix[msg.guild.id]+"autofingering off`.\n\u200B"});
-			} else if (module_name == prefix[msg.guild.id]+"autonsfw") {
-				autopost_nsfw(msg);
 			
 			// Music
 			} else if (module_name == "play" || msg.content == prefix[msg.guild.id]+"play") {
@@ -3448,29 +3376,6 @@ bot.on("message", msg => {
 	}
 })
 
-// other NSFW commands
-bot.on("message", msg => {
-	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
-		if (msg.author.bot == false) {
-			// dick
-			if (msg.guild != null && msg.content == prefix[msg.guild.id]+"dick" || msg.content == prefix[msg.guild.id]+"milf" || msg.content == prefix[msg.guild.id]+"theesome" || 
-			msg.content == prefix[msg.guild.id]+"bondage" || msg.content == prefix[msg.guild.id]+"trans" || msg.content == prefix[msg.guild.id]+"creampie" || 
-			msg.content == prefix[msg.guild.id]+"bigdick" || msg.content == prefix[msg.guild.id]+"gangbang" || msg.content == prefix[msg.guild.id]+"orgy" || 
-			msg.content == prefix[msg.guild.id]+"fisting" || msg.content == prefix[msg.guild.id]+"sfw" || msg.content == prefix[msg.guild.id]+"cock" || 
-			msg.content == prefix[msg.guild.id]+"errect" || msg.content == prefix[msg.guild.id]+"balls" || msg.content == prefix[msg.guild.id]+"foursome" || 
-			msg.content == prefix[msg.guild.id]+"beastiality" || msg.content == prefix[msg.guild.id]+"ruffsex" || msg.content == prefix[msg.guild.id]+"ruff" ||
-			msg.content.slice(0, 7) == prefix[msg.guild.id]+"wiener" || msg.content == prefix[msg.guild.id]+"pp") {
-				if (msg.channel.nsfw == true) {
-					msg_channel_send(msg, "EWW No!");
-				} else {
-					embed_error(msg, "This command can only be used in NSFW channels!");
-					console_log("User " + msg.member.user.tag + " tried to run an NSFW command in a non NSFW channel in server " + msg.guild.id, error=true);
-				}
-			}
-		}
-	}
-})
-
 // owo
 function help_owo(msg) {
 	try {
@@ -3581,12 +3486,6 @@ var snake_intervals = {};
 var porngif_intervals = {};
 var anime_intervals = {};
 var video_intervals = {};
-var boob_intervals = {};
-var pussy_intervals = {};
-var ass_intervals = {};
-var anal_intervals = {};
-var blowjob_intervals = {};
-var fingering_intervals = {};
 var mars_intervals = {};
 
 const autopost_filetypes = {
@@ -3673,50 +3572,8 @@ function auto_post_timeout(channel_file, webserver_dataset, database_count, data
 	}
 }
 
-// NSFW dataset locations
-const webserver_boobs_dataset = log_var("Webserver boobs dataset", webserver_root_address + "img/dataset_boobs");
-const webserver_nude_dataset = log_var("Webserver nudes dataset", webserver_root_address + "img/dataset_nudes");
-const webserver_hentai_dataset = log_var("Webserver hentai dataset", webserver_root_address + "img/dataset_hentai");
-const webserver_ass_dataset = log_var("Webserver ass dataset", webserver_root_address + "img/nsfw_datasets/dataset_ass");
-const webserver_pussy_dataset = log_var("Webserver pussy dataset", webserver_root_address + "img/nsfw_datasets/dataset_pussy");
-const webserver_anal_dataset = log_var("Webserver Anal dataset", webserver_root_address + "img/nsfw_datasets/dataset_anal");
-const webserver_blowjob_dataset = log_var("Webserver Blowjob dataset", webserver_root_address + "img/nsfw_datasets/dataset_blowjob");
-const webserver_fingering_dataset = log_var("Webserver Fingering dataset", webserver_root_address + "img/nsfw_datasets/dataset_fingering");
-const webserver_porngifs_dataset = log_var("Porn Gifs dataset", webserver_root_address + "img/nsfw_datasets/dataset_porngifs");
-
-const hentai_channel_file = log_var("Hentai channel filename", "hentai_channel_ID.txt");
-const nsfw_channel_file = log_var("NSFW channel IDs filename", "nsfw_channel_ID.txt");
-const porngif_channel_filename = log_var("Porn Gif filename", "porngif_channel_ID.txt");
-const boob_channel_filename = log_var("Boob filename", "boob_channel_ID.txt");
-const pussy_channel_filename = log_var("Pussy filename", "pussy_channel_ID.txt");
-const ass_channel_filename = log_var("Ass filename", "ass_channel_ID.txt");
-const anal_channel_filename = log_var("Anal filename", "anal_channel_ID.txt");
-const blowjob_channel_filename = log_var("Blowjob filename", "bj_channel_ID.txt");
-const fingering_channel_filename = log_var("fingering filename", "finger_channel_ID.txt");
-
-const local_boobs_dataset = log_var("Local boobs dataset", server_folder_location + "img/dataset_boobs");
-const local_nude_dataset = log_var("Local nudes dataset", server_folder_location + "img/dataset_nudes");
-const local_hentai_dataset = log_var("Local Hentai dataset", server_folder_location + "img/dataset_hentai");
-const local_ass_dataset = log_var("Local ass dataset", server_folder_location + "img/nsfw_datasets/dataset_ass");
-const local_pussy_dataset = log_var("Local pussy dataset", server_folder_location + "img/nsfw_datasets/dataset_pussy");
-const local_anal_dataset = log_var("Local anal dataset", server_folder_location + "img/nsfw_datasets/dataset_anal");
-const local_blowjob_dataset = log_var("Local blowjob dataset", server_folder_location + "img/nsfw_datasets/dataset_blowjob");
-const local_fingering_dataset = log_var("Local fingering dataset", server_folder_location + "img/nsfw_datasets/dataset_fingering");
-const local_porngifs_dataset = log_var("Local porngifs dataset", server_folder_location + "img/nsfw_datasets/dataset_porngifs");
-
 bot.on("ready", msg => {
 	setTimeout(function(){
-		// NSFW
-		auto_post_timeout(hentai_channel_file, webserver_hentai_dataset, dataset_counts["hentai"], "Hentai", hentai_intervals, 5, nsfw=true);
-		auto_post_timeout(nsfw_channel_file, webserver_nude_dataset, dataset_counts["nudes"], "Nude", nude_intervals, 5, nsfw=true);
-		auto_post_timeout(porngif_channel_filename, webserver_porngifs_dataset, dataset_counts["porngif"], "PornGif", porngif_intervals, 5, nsfw=true);
-		auto_post_timeout(boob_channel_filename, webserver_boobs_dataset, dataset_counts["boobs"], "Boobs", boob_intervals, 5, nsfw=true);
-		auto_post_timeout(pussy_channel_filename, webserver_pussy_dataset, dataset_counts["pussy"], "Pussy", pussy_intervals, 5, nsfw=true);
-		auto_post_timeout(ass_channel_filename, webserver_ass_dataset, dataset_counts["ass"], "Ass", ass_intervals, 5, nsfw=true);
-		auto_post_timeout(anal_channel_filename, webserver_anal_dataset, dataset_counts["anal"], "Anal", anal_intervals, 5, nsfw=true);
-		auto_post_timeout(blowjob_channel_filename, webserver_blowjob_dataset, dataset_counts["blowjob"], "Blowjob", blowjob_intervals, 5, nsfw=true);
-		auto_post_timeout(fingering_channel_filename, webserver_fingering_dataset, dataset_counts["fingering"], "Fingering", fingering_intervals, 5, nsfw=true);
-		
 		// SFW
 		auto_post_timeout(igmemes_channel_file, webserver_igmemes_dataset, dataset_counts["igmemes"], "Meme", meme_intervals, 5, nsfw=false);
 		auto_post_timeout(photography_channel_file, webserver_photography_dataset, dataset_counts["photography"], "Photography", photo_intervals, 5, nsfw=false);
@@ -3833,16 +3690,6 @@ function check_autopost(msg, command, description, interval, channel_file, datas
 }
 
 bot.on("message", msg => {
-	// autopost NSFW
-	check_autopost(msg, "autohentai ", "Hentai", hentai_intervals, hentai_channel_file, webserver_hentai_dataset, dataset_counts["hentai"], nsfw=true);
-	check_autopost(msg, "autonude ", "Nude", nude_intervals, nsfw_channel_file, webserver_nude_dataset, dataset_counts["nudes"], nsfw=true);
-	check_autopost(msg, "autoboob ", "Boob", boob_intervals, boob_channel_filename, webserver_boobs_dataset, dataset_counts["boobs"], nsfw=true);
-	check_autopost(msg, "autopussy ", "Pussy", pussy_intervals, pussy_channel_filename, webserver_pussy_dataset, dataset_counts["pussy"], nsfw=true);
-	check_autopost(msg, "autoass ", "Ass", ass_intervals, ass_channel_filename, webserver_ass_dataset,dataset_counts["ass"], nsfw=true);
-	check_autopost(msg, "autoanal ", "Anal", anal_intervals, anal_channel_filename, webserver_anal_dataset, dataset_counts["anal"], nsfw=true);
-	check_autopost(msg, "autoblowjob ", "Blowjob", blowjob_intervals, blowjob_channel_filename, webserver_blowjob_dataset, dataset_counts["blowjob"], nsfw=true);
-	check_autopost(msg, "autofingering ", "Fingering", fingering_intervals, fingering_channel_filename, webserver_fingering_dataset, dataset_counts["fingering"], nsfw=true);
-	
 	// autopost SFW
 	check_autopost(msg, "automeme ", "Meme", meme_intervals, igmemes_channel_file, webserver_memes_dataset, dataset_counts["memes"], nsfw=false);
 	check_autopost(msg, "autophoto ", "Photography", photo_intervals, photography_channel_file, webserver_photography_dataset, dataset_counts["photography"], nsfw=false);
@@ -3851,7 +3698,6 @@ bot.on("message", msg => {
 	check_autopost(msg, "autocat ", "Cats", cat_intervals, cat_channel_filename, webserver_cats_dataset, dataset_counts["cats"], nsfw=false);
 	check_autopost(msg, "autodog ", "Dogs", dog_intervals, dog_channel_filename, webserver_dogs_dataset, dataset_counts["dogs"], nsfw=false);
 	check_autopost(msg, "autosnake ", "Snakes", snake_intervals, snake_channel_filename, webserver_snake_dataset, dataset_counts["snakes"], nsfw=false);
-	check_autopost(msg, "autoporngif ", "porngif", porngif_intervals, porngif_channel_filename, webserver_porngifs_dataset, dataset_counts["porngif"], nsfw=true);
 	check_autopost(msg, "autoanime ", "anime", anime_intervals, anime_channel_filename, webserver_anime_dataset, dataset_counts["anime"], nsfw=false);
 	check_autopost(msg, "autovideo ", "video", video_intervals, video_channel_filename, webserver_video_dataset, dataset_counts["video"], nsfw=false, custom_func=post_video);
 	check_autopost(msg, "automars ", "mars", mars_intervals, mars_channel_filename, webserver_mars_dataset, dataset_counts["mars"], nsfw=false);
@@ -3877,31 +3723,6 @@ function autopost_help(msg) {
 			{name: "AutoMars", value: "`"+prefix[msg.guild.id]+"help automars`.\n\u200B", inline: true}
 		)
 			
-		embed_autocommands_help.setTimestamp();
-		msg_channel_send(msg, embed_autocommands_help);
-	} catch (err) {
-		console_log("Error thrown in autopost_help function! " + err, error=true);
-	}
-}
-
-function autopost_nsfw(msg) {
-	try {
-		embed_autocommands_help = new Discord.MessageEmbed();
-		embed_autocommands_help.setColor(embed_colour_info);
-		embed_autocommands_help.setTitle("Auto Image Commands Help");
-		embed_autocommands_help.setThumbnail(lion_profile_pic);
-		embed_autocommands_help.addFields(
-			{name: "AutoNude", value: "`"+prefix[msg.guild.id]+"help autonude`.\n\u200B", inline:true},
-			{name: "AutoHentai", value: "`"+prefix[msg.guild.id]+"help autohentai`.\n\u200B", inline:true},
-			{name: "AutoPornGif", value: "`"+prefix[msg.guild.id]+"help autoporngif`.\n\u200B", inline: true},
-			{name: "AutoBoobs", value: "`"+prefix[msg.guild.id]+"help autoboob`.\n\u200B", inline: true},
-			{name: "AutoPussy", value: "`"+prefix[msg.guild.id]+"help autopussy`.\n\u200B", inline: true},
-			{name: "AutoAss", value: "`"+prefix[msg.guild.id]+"help autoass`.\n\u200B", inline: true},
-			{name: "AutoAnal", value: "`"+prefix[msg.guild.id]+"help autoanal`.\n\u200B", inline: true},
-			{name: "AutoBlowjob", value: "`"+prefix[msg.guild.id]+"help autoblowjob`.\n\u200B", inline: true},
-			{name: "AutoFingering", value: "`"+prefix[msg.guild.id]+"help autofingering`.\n\u200B", inline: true},
-		)
-		
 		embed_autocommands_help.setTimestamp();
 		msg_channel_send(msg, embed_autocommands_help);
 	} catch (err) {
@@ -4667,23 +4488,6 @@ bot.on("message", msg => {
 	post_photo(msg, "catmeme", "catmemes", "catmemes", "catmemes", webserver_catmemes_dataset); // post cat meme
 	post_photo(msg, "meme", "memes", "meme", "memes", webserver_memes_dataset); // post meme
 	post_photo(msg, "mars", "mar", "mars", "mars", webserver_mars_dataset); // post mars
-	
-	// NSFW
-	post_photo(msg, "nude", "nudes", "nude girl", "nudes", webserver_nude_dataset, nsfw=true); // post nude
-	post_photo(msg, "boob", "boobs", "Boobs!", "boobs", webserver_boobs_dataset, nsfw=true); // post boobs
-	post_photo(msg, "nsfw", "nsfw", "Boobs!", "boobs", webserver_boobs_dataset, nsfw=true); // post boobs
-	post_photo(msg, "tit", "tity", "Boobs!", "boobs", webserver_boobs_dataset, nsfw=true); // post boobs
-	post_photo(msg, "ass", "asshole", "Ass!", "ass", webserver_ass_dataset, nsfw=true); // post ass
-	post_photo(msg, "but", "bottom", "Ass!", "ass", webserver_ass_dataset, nsfw=true); // post ass
-	post_photo(msg, "pussy", "puss", "Pussy!", "pussy", webserver_pussy_dataset, nsfw=true); // post vagina
-	post_photo(msg, "fanny", "vag", "Pussy!", "pussy", webserver_pussy_dataset, nsfw=true); // post vagina
-	post_photo(msg, "thingy", "muff", "Pussy!", "pussy", webserver_pussy_dataset, nsfw=true); // post vagina
-	post_photo(msg, "anal", "anal", "Anal!", "anal", webserver_anal_dataset, nsfw=true); // post anal
-	post_photo(msg, "blowjob", "bj", "Blowjob!", "blowjob", webserver_blowjob_dataset, nsfw=true); // post blowjob
-	post_photo(msg, "handjob", "hj", "Blowjob!", "blowjob", webserver_blowjob_dataset, nsfw=true); // post blowjob
-	post_photo(msg, "finger", "touch", "Fingering!", "fingering", webserver_fingering_dataset, nsfw=true); // post fingering
-	post_photo(msg, "porn", "porngif", "Porn Gif!", "porngif", webserver_porngifs_dataset, nsfw=true, extension=".gif"); // post porngif
-	post_photo(msg, "hentai", "henati", "hentai", "hentai", webserver_hentai_dataset, nsfw=true); // post henati
 })
 
 
