@@ -3474,8 +3474,6 @@ bot.on("message", msg => {
 })
 
 // --- Auto Post ---
-var hentai_intervals = {};
-var nude_intervals = {};
 var meme_intervals = {};
 var photo_intervals = {};
 var bird_intervals = {};
@@ -3489,8 +3487,13 @@ var video_intervals = {};
 var mars_intervals = {};
 
 const autopost_filetypes = {
-	"Hentai" : ".png", "Nude" : ".png", "memes" : ".png", "photography" : ".png", "Birds" : ".png",
-	"Cars" : ".png", "Cats" : ".png", "Dogs" : ".png", "Snakes" : ".png", "PornGif" : ".gif"
+	"memes" : ".png", 
+	"photography" : ".png", 
+	"Birds" : ".png",
+	"Cars" : ".png", 
+	"Cats" : ".png", 
+	"Dogs" : ".png", 
+	"Snakes" : ".png", 
 }
 
 function post_auto_image(channel_file, webserver_dataset, database_count, dataset_description, intervals, nsfw, custom_func=undefined) {
@@ -13318,8 +13321,6 @@ bot.on("message", msg => {
 
 					// auto post
 					output += "\n// --- Auto Post ---";
-					output += "\n\n// hentai_intervals\n" + dict2string(hentai_intervals);
-					output += "\n\n// nude_intervals\n" + dict2string(nude_intervals);
 					output += "\n\n// meme_intervals\n" + dict2string(meme_intervals);
 					output += "\n\n// photo_intervals\n" + dict2string(photo_intervals);
 					output += "\n\n// bird_intervals\n" + dict2string(bird_intervals);
@@ -13327,7 +13328,6 @@ bot.on("message", msg => {
 					output += "\n\n// cat_intervals\n" + dict2string(cat_intervals);
 					output += "\n\n// dog_intervals\n" + dict2string(dog_intervals);
 					output += "\n\n// snake_intervals\n" + dict2string(snake_intervals);
-					output += "\n\n// porngif_intervals\n" + dict2string(porngif_intervals);
 
 					// justone
 					output += "\n// --- JustOne ---";
@@ -13890,6 +13890,21 @@ bot.on("message", msg => {
 		}
 	}
 })
+
+// among us
+
+var among_us_quotes = ["You are sus!", "I saw you vent in electrical", "I saw Green in O2", "Why is no one fixing O2", "Oh your crewmate? Name every task",
+	"Where?", "You sus", "I think it was purple", "It wasn’t me I was in vents", "Red is susssssssss", "Green is so sus",
+	"Come to medbay and watch me scan"]
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.content.slice(0, 8).toLowerCase() == prefix[msg.guild.id]+"amongus" ||
+			msg.content.slice(0, 4).toLowerCase() == prefix[msg.guild.id]+"sus") {
+			embed_chat_reply(msg, among_us_quotes[parseInt(Math.random() * 100) % among_us_quotes.length]);
+		}
+	}
+})
+
 
 // google
 function get_urls(html) {
