@@ -11512,7 +11512,6 @@ bot.on("message", msg => {
 })
 
 // Instagram download
-// - support for posts containing multiple photos and videos
 function help_ig(msg) {
 	embed_ig = new Discord.MessageEmbed();
 	embed_ig.setColor(embed_color_chat);
