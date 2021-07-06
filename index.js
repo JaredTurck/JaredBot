@@ -79,7 +79,7 @@ const os = require('os');
 // IDs Pez, Skittle, Jared, Elyxia
 const authorised_IDs = ["497067274428219423", "268394063550611456", "364787379518701569", "714207191573463102"]; 
 const user_ID = "364787379518701569"; // Jared ID
-const hentai_channel_ID = "756291926277357600"; // hentai channel ID
+const h_channel_ID = "756291926277357600";
 const channel_IDs = ["751827086137622658", "762103168061538315", "667882044134653983"]; // announcement channel IDs
 const bot_ID = "767561850404864071";
 const adds_channel_ID = "751825387243307059";
@@ -109,7 +109,7 @@ var audio_test_video_url = "https://youtu.be/9daq_eG09ik"; // test video for -au
 const xp_per_msg = 20; // amount of XP awarded per message
 const xp_per_level = 100; // amount of messages to send before reaching next level
 const bot_invite_link = "https://discord.com/oauth2/authorize?client_id=767561850404864071&permissions=201849927&scope=bot";
-const user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0";
+const user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36";
 const large_numb = 2**64;	// generates large number
 
 // Tokens
@@ -989,7 +989,7 @@ async function get_html(url, callback) {
 	// get html
 	await request(url, {
 		headers: {
-			"User-Agent": get_user_agent(),
+			"User-Agent": user_agent,//get_user_agent(),
 			"Connection" : "keep-alive",
 			"Pragma" : "no-cache",
 			"Cache-Control" : "no-cache",
@@ -3838,13 +3838,25 @@ function check_input(msg, code) {
 }
 
 function check_harmful_code_js(code) {
-	dangerious_keywords = ["require", "request", "fs", "exec", "child_process", "module", "process", "eval", "import"];
+	dangerious_keywords = ["require", "request", "fs", "exec", "child_process", "module", "process", "eval", "import", "arguments"];
 	
+	// check for dangerious keywords
 	for (i=0;i<dangerious_keywords.length;i++) {
 		if (code.indexOf(dangerious_keywords[i]) > -1) {
 			return [false, dangerious_keywords[i] + " is not allowed!"];
 		}
 	}
+	
+	// remove all quotes from text
+	code = code.replace(/["'+ ]+/g, "");
+	
+	// check for dangerious keywords a second time
+	for (i=0;i<dangerious_keywords.length;i++) {
+		if (code.indexOf(dangerious_keywords[i]) > -1) {
+			return [false, dangerious_keywords[i] + " is not allowed!"];
+		}
+	}
+	
 	return [true, ""];
 }
 
@@ -8066,7 +8078,7 @@ bot.on("message", msg => {
 var global_logging_var = {};
 bot.on("message", msg => {
 	if (msg.guild != null && logging == true) {
-		if (msg.channel.id != hentai_channel_ID) {
+		if (msg.channel.id != h_channel_ID) {
 			try {
 				// make directory if it does not exist
 				var channel_name = get_server_name(msg, type="channel");	// channel folder

@@ -11,7 +11,7 @@
   "dependencies": {
     "-": "0.0.1",
     "@google-cloud/translate": "^6.0.3",
-    "after-load": "^1.0.4",
+    "after-load": "^1.0.2",
     "city-timezones": "^1.2.0",
     "discord.js": "^12.3.1",
     "extract-zip": "^2.0.1",
@@ -27,6 +27,6 @@
     "socket.io": "^3.0.4",
     "youstream": "^0.1.2",
     "youtube-audio-stream": "^0.3.6",
-    "ytdl-core": "^4.8.2"
+    "ytdl-core": "^4.8.3"
   }
 }
