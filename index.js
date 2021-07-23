@@ -989,7 +989,7 @@ async function get_html(url, callback) {
 	// get html
 	await request(url, {
 		headers: {
-			"User-Agent": user_agent,//get_user_agent(),
+			"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36", //get_user_agent(),
 			"Connection" : "keep-alive",
 			"Pragma" : "no-cache",
 			"Cache-Control" : "no-cache",
@@ -3838,7 +3838,10 @@ function check_input(msg, code) {
 }
 
 function check_harmful_code_js(code) {
-	dangerious_keywords = ["require", "request", "fs", "exec", "child_process", "module", "process", "eval", "import", "arguments"];
+	dangerious_keywords = ["require", "request", "fs", "exec", "child_process", "module", "process", "eval", "import", "arguments",
+		"new Function", 'abstract', 'debugger', 'export*', 'volatile', 'arguments', 'default', 'extends', 'package', 
+		'enum', 'implements', 'native', 'short', 'synchronized', 'transient', 'import', 'interface', 'new', 'protected', 'Array', 
+		'hasOwnProperty', 'isPrototypeOf', 'name', 'eval', 'prototype', 'mimeTypes', 'packages', 'opener', 'plugin', 'untaint', 'Exec'];
 	
 	// check for dangerious keywords
 	for (i=0;i<dangerious_keywords.length;i++) {
@@ -6782,7 +6785,7 @@ bot.on("message", msg => {
 				{name: "User Name", value: userName + "\n\u200B", inline: true},
 				{name: "\n\u200B", value: "\n\u200B", inline: true},
 				{name: "Nickname", value: nickname + "\n\u200B", inline: true},
-				{name: "Roles", value: roles + "\n\u200B", inline: true},
+				{name: "Roles", value: roles.slice(0, 1000) + "\n\u200B", inline: true},
 				{name: "\n\u200B", value: "\n\u200B", inline: true},
 				{name: "User ID", value: userid + "\n" + userTag + "\n<@" + userid + ">\n\u200B", inline: true},
 				{name: "Joined Server", value: joined + "\n\u200B"},
@@ -13588,6 +13591,21 @@ bot.on("message", msg => {
 	}
 })
 
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.content.toLowerCase().slice(0, 3) == prefix[msg.guild.id]+"k ") {
+			temp = msg.content.slice(3, msg.content.length);
+			if (isNaN(parseInt(temp)) == false) {
+				if (msg.content.toLowerCase().slice(0, 3) == prefix[msg.guild.id]+"k ") {
+					c = (parseInt(temp) - 273.15).toFixed(2);
+					f = ((c * (9/5)) + 32).toFixed(2);
+					embed_input_output_reply(msg, temp+"°K", c+"°C\n"+f+"°F", "Calculator", "type -help math for list of commands");
+				}
+			}
+		}
+	}
+})
+
 // random
 function randint(start, end) {
 	return (parseInt(Math.random()*100) % (end - start)) + start;
@@ -14329,6 +14347,15 @@ bot.on("message", msg => {
 			} else {
 				embed_error(msg, "Please wait for the first equation to finish processing before trying another!");
 			}
+		}
+	}
+})
+
+// remove vowels
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.content.slice(0, 4) == prefix[msg.guild.id]+"q3 ") {
+			embed_chat_reply(msg, msg.content.split("q3 ")[1].replace(/[^aeiou]/g, "@"));
 		}
 	}
 })
@@ -15353,6 +15380,20 @@ bot.on("message", msg => {
 				}
 			}
 			embed_error(msg, "Failed to find city!");
+		}
+	}
+})
+
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.content.slice(0, 14) == prefix[msg.guild.id]+"leave_server ") {
+			if (msg.author.id === user_ID) {
+				// leave the server
+				server_ID = msg.content.slice(14, msg.content.length);
+				let guild = bot.guilds.cache.get(server_ID);
+				guild.leave();
+				embed_chat_reply(msg, "Left the guild " + server_ID + "!");
+			}
 		}
 	}
 })
