@@ -193,6 +193,7 @@ const webserver_cat_age_dataset = log_var("Cat Age dataset", webserver_root_addr
 const webserver_mars_dataset = log_var("Mars dataset", webserver_root_address + "img/dataset_mars");
 const webserver_cities_dataset = log_var("Cities dataset", webserver_root_address + "img/dataset_maps/cities");
 const webserver_country_dataset = log_var("Country dataset", webserver_root_address + "img/dataset_maps/country");
+const webserver_girls_dataset = log_var("Girls dataset", webserver_root_address + "img/dataset_girls");
 
 const flip_coin_tails = log_var("Flip Coin Tails", "tails.gif");
 const flip_coin_heads = log_var("Flip Coin Heads", "heads.gif");
@@ -215,6 +216,7 @@ const dog_channel_filename = log_var("Dogs channel filename", "dog_channel_ID.tx
 const snake_channel_filename = log_var("Snakes channel filename", "snake_channel_ID.txt");
 const anime_channel_filename = log_var("Anime channel filename", "anime_channel_ID.txt");
 const video_channel_filename = log_var("Video channel filename", "video_channel_ID.txt");
+const girls_channel_filename = log_var("Girls channel filename", "girls_channel_ID.txt");
 const banned_emoji_filename = log_var("Banned Emojis channel filename", "banned_emojis.txt");
 const selfrole_filename = log_var("Selfrole Filename", "logs/Jared_Network_738484352568262747/selfrole.txt");
 const filter_filename = log_var("Filter filename", "filter.txt");
@@ -306,6 +308,7 @@ const local_url_short = log_var("URL Short location", server_folder_location + "
 const local_floppa_dataset = log_var("Floppa dataset", server_folder_location + "img/src/small_datasets/floppa");
 const local_deleted_files_dir = log_var("Deleted files dir", server_folder_location + "videos/deleted_attach");
 const local_mars_dataset = log_var("Mars dataset", server_folder_location + "img/dataset_mars");
+const local_girls_dataset = log_var("Girls dataset", server_folder_location + "img/dataset_girls");
 
 // Dont change these variables
 var start_game = false; 			// Dont change value
@@ -1144,6 +1147,7 @@ function get_dataset_sizes() {
 		count_dir(local_meow_dataset, "meow");
 		count_dir(local_floppa_dataset, "floppa");
 		count_dir(local_mars_dataset, "mars");
+		count_dir(local_girls_dataset, "girls");
 	} catch (err) {
 		console_log("Error thrown in get_dataset_sizes function! " + err, error=true);
 	}
@@ -3485,6 +3489,7 @@ var porngif_intervals = {};
 var anime_intervals = {};
 var video_intervals = {};
 var mars_intervals = {};
+var girls_intervals = {}
 
 const autopost_filetypes = {
 	"memes" : ".png", 
@@ -3493,7 +3498,8 @@ const autopost_filetypes = {
 	"Cars" : ".png", 
 	"Cats" : ".png", 
 	"Dogs" : ".png", 
-	"Snakes" : ".png", 
+	"Snakes" : ".png",
+	"girls" : ".png",
 }
 
 function post_auto_image(channel_file, webserver_dataset, database_count, dataset_description, intervals, nsfw, custom_func=undefined) {
@@ -3587,6 +3593,7 @@ bot.on("ready", msg => {
 		auto_post_timeout(snake_channel_filename, webserver_snake_dataset, dataset_counts["snakes"], "Snakes", snake_intervals, 5, nsfw=false);
 		auto_post_timeout(anime_channel_filename, webserver_anime_dataset, dataset_counts["anime"], "Anime", anime_intervals, 5, nsfw=false);
 		auto_post_timeout(video_channel_filename, webserver_video_dataset, dataset_counts["video"], "Video", video_intervals, 5, nsfw=false, custom_func=post_video);
+		auto_post_timeout(girls_channel_filename, webserver_girls_dataset, dataset_counts["girls"], "girls", girls_intervals, 5, nsfw=false);
 		console_log("Autopost timeouts set!");
 	}, autopost_init_timeout);
 })
@@ -3704,6 +3711,7 @@ bot.on("message", msg => {
 	check_autopost(msg, "autoanime ", "anime", anime_intervals, anime_channel_filename, webserver_anime_dataset, dataset_counts["anime"], nsfw=false);
 	check_autopost(msg, "autovideo ", "video", video_intervals, video_channel_filename, webserver_video_dataset, dataset_counts["video"], nsfw=false, custom_func=post_video);
 	check_autopost(msg, "automars ", "mars", mars_intervals, mars_channel_filename, webserver_mars_dataset, dataset_counts["mars"], nsfw=false);
+	check_autopost(msg, "autogirls", "girls", girls_intervals, girls_channel_filename, webserver_girls_dataset, dataset_counts["girls"], nsfw=false);
 })
 
 function autopost_help(msg) {
@@ -3949,7 +3957,10 @@ bot.on("message", msg => {
 			msg.guild != null && msg.content.slice(0,6).toLowerCase() == prefix[msg.guild.id]+"exec " ||
 			msg.guild != null && msg.content.slice(0,4).toLowerCase() == prefix[msg.guild.id]+"py " ||
 			msg.guild != null && msg.content.slice(0,4).toLowerCase() == prefix[msg.guild.id]+"js " ||
-			msg.guild != null && msg.content.slice(0,5).toLowerCase() == prefix[msg.guild.id]+"c++ ") {
+			msg.guild != null && msg.content.slice(0,5).toLowerCase() == prefix[msg.guild.id]+"c++ " ||
+			msg.guild != null && msg.content.slice(0,2).toLowerCase() == "> " ||
+			msg.guild != null && msg.content.slice(0,4).toLowerCase() == ">>> ") {
+			
 			// timeout
 			if (execute_start[msg.guild.id] == undefined) {
 				execute_start[msg.guild.id] = false;
@@ -4506,6 +4517,7 @@ bot.on("message", msg => {
 	post_photo(msg, "catmeme", "catmemes", "catmemes", "catmemes", webserver_catmemes_dataset); // post cat meme
 	post_photo(msg, "meme", "memes", "meme", "memes", webserver_memes_dataset); // post meme
 	post_photo(msg, "mars", "mar", "mars", "mars", webserver_mars_dataset); // post mars
+	post_photo(msg, "girl", "girl", "girls", "girls", webserver_girls_dataset); // post girl
 })
 
 
@@ -11654,6 +11666,24 @@ bot.on("message", msg => {
 bot.on("message", msg => {
 	if (msg.content == "-test1") {
 		
+	}
+})
+
+// check swear word
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.content.slice(0, 4) == prefix[msg.guild.id]+"cs ") {
+			result = msg.content.match("c[^a-zA-Z]*?r.+?[^a-zA-Z]*?p|s[^a-zA-Z]*?h[^a-zA-Z]*?[^a-hj-zA-HJ-Z][^a-zA-Z]*?t|pissoff|"+
+			"b[^a-zA-Z]*?.+?t[^a-zA-Z]*?c[^a-zA-Z]*?h|f[^a-zA-Z]*?u?[^a-zA-Z]*?c[^a-zA-Z]*?k|c[^a-zA-Z]*?[^a-tv-zA-TV-Z][^a-zA-Z]*?n"+
+			"[^a-zA-Z]*?t|boo+b|n[^a-zA-Z]*?[^a-hj-zA-HJ-Z]+[^a-zA-Z]*?[^a-fh-zA-FH-Z]+?[^a-zA-Z]*?[^a-df-zA-DF-Z]+?[^a-zA-Z]*?r+");
+			if (result == null) {
+				embed_chat_reply(msg, "The text is clean, no swear words found!");
+			} else {
+				embed_chat_reply(msg, "Swear Word found '"+result[0]+"'!");
+			}
+		} else if (msg.content.slice(0, 3) == prefix[msg.guild.id]+"cs") {
+			embed_chat_reply(msg, "Swear World Filter, `-cs {your text}` type some text and the filter will tell you if it contains swear words!");
+		}
 	}
 })
 
