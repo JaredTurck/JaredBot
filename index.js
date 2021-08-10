@@ -230,7 +230,7 @@ const banned_urls_channel_file = log_var("Banned URLs file name", "banned_urls.t
 const welcome_channel_name = log_var("Welcome channel file name", "welcome_channel_ID.txt");
 const autotranslate_filename = log_var("Autotranslate file name", "autotranslate_channel_ID.txt");
 const leaderboard_raw = log_var("Raw leaderboard channel file name", "raw_ranks.txt");
-const shotcut_melt_location = log_var("ShotCut melt.exe local file path", "C:/Program Files/Shotcut/melt.exe");
+const shotcut_melt_location = log_var("ShotCut melt.exe local file path", "D:/Program Files/Shotcut/melt.exe");
 const online_hash_log = log_var("Online file and text Hash log", webserver_root_address + "docs/src/crypto.txt");
 const custom_wellcome_filename = log_var("Welcome message filename", "welcome_message.txt");
 const solver_filename = log_var("Maths solver filename", "InputOutput/do_math/question.txt");
@@ -241,7 +241,7 @@ const python_execute_filename = log_var("Python Execute filename", "execute.py")
 const javascript_execute_filename = log_var("JavaScript Execute filename", "execute.js");
 const cpp_execute_filename = log_var("C++ Execute filename", "execute.cpp");
 const mars_channel_filename = log_var("Mars channel filename", "mars_channel_ID.txt");
-const gpp_location = log_var("Location of g++.exe", "C:/Users/Jared/WinWG/bin/g++.exe");
+const gpp_location = log_var("Location of g++.exe", "D:/Users/Jared/WinWG/bin/g++.exe");
 
 // Delays (milliseconds)
 const read_output_file_delay_henati = log_var("Delay Hentai", 1000);				// Henati
@@ -274,8 +274,8 @@ const execute_code_cooldown = log_var("Execute Cooldown", 5000);					// Execute 
 const random_animal_cooldown = log_var("Cooldow Random Animal", 5000)				// Cooldown for random animal command to prevent spam
 
 // Local Database locations
-const server_folder_location = log_var("Web Server Root", "C:/WebServer/");
-const jaredbot_folder_location = log_var ("Absolute JaredBot folder path", "C:/OneDrive/Backup/Jared's Desktop 2/Desktop/Discord bot");
+const server_folder_location = log_var("Web Server Root", "D:/WebServer/");
+const jaredbot_folder_location = log_var ("Absolute JaredBot folder path", "D:/OneDrive/Backup/Jared's Desktop 2/Desktop/Discord bot");
 const local_memes_dataset = log_var("Local memes dataset", server_folder_location + "img/dataset_memes");
 const local_catmemes_dataset = log_var("Local catmemes dataset", server_folder_location + "img/dataset_catmemes");
 const local_cats_dataset = log_var("Local cats dataset", server_folder_location + "img/dataset_cats");
@@ -992,14 +992,14 @@ async function get_html(url, callback) {
 	// get html
 	await request(url, {
 		headers: {
-			"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36", //get_user_agent(),
-			"Connection" : "keep-alive",
-			"Pragma" : "no-cache",
-			"Cache-Control" : "no-cache",
-			"DNT" : "1",
+			"User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5 (ErgÃ¤nzendes Update)) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Safari/605.1.15"
+			//"Connection" : "keep-alive",
+			//"Pragma" : "no-cache",
+			//"Cache-Control" : "no-cache",
+			//"DNT" : "1",
 			//"Accept" : "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-			"Accept-Encoding" : "gzip, deflate",
-			"Accept-Language" : "en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7",
+			//"Accept-Encoding" : "gzip, deflate",
+			//"Accept-Language" : "en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7",
 		},
 		body: "",
 		method: "GET"
@@ -7023,9 +7023,9 @@ function geoip_lookup(msg) {
 			
 				// process HTML
 				if (ipv6 == true) {
-					table = html.split('id="result"')[1].split('<td>Country')[1].split('href="https://www.google.com/maps/')[0];
+					table = html.split('IP Geolocation Information')[1].split('Geo Location')[0];
 					output = {
-						Continent: e(table, [['<td>Region:', 1], ['<td>', 1], ['</td>', 0]]),
+						Continent: table.match('Continent:.+\n.+class="ipdata".+(\w+.+)</div>'),
 						Country: e(table, [['<td>Country:', 1], ['<span class=', 1], ['<span class', 0]]),
 						CountryCode: e(table, [['<td>Country:', 1], ['<span class=', 1], ['"', 0]]),
 						Region: e(table, [['<td>Region:', 1], ['<td>', 1], ['</td>', 0]]),
@@ -7197,12 +7197,7 @@ bot.on("message", msg => {
 			if (authorised_IDs.indexOf(msg.author.id) > -1) {
 				execute_cmd(msg, "Ipconfig", msg.content);
 			} else {
-				embed_error(msg, "Only Jared can run the ipconfig command, ipconfig is used to display the IP configuration information " +
-				"for the JaredBot servers, knowing the IP would make it easier for an attacker to locate the exact computer the " +
-				"server is running on. To prevent aiding an attacker, the command has been locked. Why have this command in the bot at all? " +
-				"Sometimes i need to know the IP address of the server, so that i can remotly connect to the machine using a remote desktop " +
-				"application, to do maintenance. The server is 'headless' this means it does not have a screen, keyboard, or mouse. The only " +
-				" way to interact with it is using remote desktop software, and you have to know the IP in order to connect to the server.");
+				embed_error(msg, "Only Jared can run the ipconfig command");
 			}
 		} else if (msg.guild != null && msg.content.slice(0, 7).toLowerCase() == prefix[msg.guild.id]+"whois ") {
 			execute_cmd(msg, "Whois", msg.content);
@@ -7329,6 +7324,21 @@ bot.on("message", msg => {
 					}
 				}
 			})
+		}
+	}
+})
+
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, 12).toLowerCase() == prefix[msg.guild.id]+"publicip") {
+			if (authorised_IDs.indexOf(msg.author.id) > -1) {
+				get_html("https://www.expressvpn.com/what-is-my-ip", function(html) {
+					ip = html.match(/class=['"]ip-address['"].+[\n]?.+red['"]>([\w.]+)</)[1];
+					embed_chat_reply(msg, "JaredBot servers Public IPv4 address is: " + ip);
+				})
+			} else {
+				embed_error(msg, "Only Jared can run this command!");
+			}
 		}
 	}
 })
@@ -7730,7 +7740,6 @@ bot.on("message", msg => {
 				let member = msg.mentions.members.first();
 				if (member != undefined) {
 					message = msg.content.split(" ");
-					console.log([message, message[2]])
 					if (message.length == 3 && message[0] == prefix[msg.guild.id]+"tempunmute") {
 						if (isInt(msg, message[2], 0, 1440, "tempmute", ErrorMessageEnd="") == true) {
 							if (member.hasPermission("MUTE_MEMBERS") == false) {
@@ -13654,16 +13663,6 @@ bot.on("message", msg => {
 })
 
 // calc
-function check_eval_input(txt) {
-	allow_chars = "0123456789+-*/%&|!~^<>(). ";
-	for (i=0;i<txt.length;i++) {
-		if (allow_chars.indexOf(txt[i]) == -1) {
-			return false;
-		}
-	}
-	return true;
-}
-
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.guild != null && msg.content.slice(0, 6) == prefix[msg.guild.id]+"calc ") {
@@ -13676,10 +13675,16 @@ bot.on("message", msg => {
 				return true;
 			}
 			
+			// replace constants
+			command = msg.content
+			command = command.replace("pi", "3.141592653589793");
+			command = command.replace("e", "2.718281828459045");
+			
 			// Calculate using eval
-			command = msg.content.slice(6, msg.content.length);
+			command = command.slice(6, command.length);
 			try {
-				if (check_eval_input(command) == true) {
+				
+				if (command.match(/^[0123456789\*+\-/%&|!~^<>(). ]+$/) != null) {
 					answer = eval(command);
 					// send message to user
 					if (isNaN(answer) == true) {
@@ -13983,7 +13988,6 @@ bot.on("message", msg => {
 			if (query.length > 0) {
 				get_html("https://www.google.co.uk/search?q="+query+"&tbm=isch&safe=active", function(html) {
 					urls = get_urls(html);
-					console.log(html);
 					if (urls.length == 0) {
 						embed_error(msg, "Failed to fetch image, JaredBot has **safe search** enabled! this means NSFW content won't be shown. "+
 						"If your search contains NSFW terms, then this could be the reason for the bot failling to find a photo, else if your "+
