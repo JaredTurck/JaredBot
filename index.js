@@ -77,7 +77,7 @@ const os = require('os');
 
 // --- Init Vars ---
 // IDs Pez, Skittle, Jared, Elyxia
-const authorised_IDs = ["497067274428219423", "268394063550611456", "364787379518701569", "714207191573463102"]; 
+const authorised_IDs = ["497067274428219423", "268394063550611456", "364787379518701569", "714207191573463102", "774743568975265802"]; 
 const user_ID = "364787379518701569"; // Jared ID
 const h_channel_ID = "756291926277357600";
 const channel_IDs = ["751827086137622658", "762103168061538315", "667882044134653983"]; // announcement channel IDs
@@ -136,6 +136,7 @@ const output_file_translate = log_var("Translate output", "InputOutput/translate
 
 const dataset_imbored = log_var("Im Bored dataset", "datasets/imbored.txt");
 const dataset_firstname = log_var("First Name dataset", "datasets/firstname.txt");
+const dataset_joke = log_var("Joke", "datasets/jokes.txt");
 const dataset_surname = log_var("Surname dataset", "datasets/surname.txt");
 const default_dance_dir = log_var("Default Dance Directory", "datasets/deafult_dance/");
 const dataset_methods_of_death = log_var("Methods of Death dataset", "datasets/methods_of_death.txt");
@@ -3849,7 +3850,8 @@ function check_harmful_code_js(code) {
 	dangerious_keywords = ["require", "request", "fs", "exec", "child_process", "module", "process", "eval", "import", "arguments",
 		"new Function", 'abstract', 'debugger', 'export*', 'volatile', 'arguments', 'default', 'extends', 'package', 
 		'enum', 'implements', 'native', 'short', 'synchronized', 'transient', 'import', 'interface', 'new', 'protected', 'Array', 
-		'hasOwnProperty', 'isPrototypeOf', 'name', 'eval', 'prototype', 'mimeTypes', 'packages', 'opener', 'plugin', 'untaint', 'Exec'];
+		'hasOwnProperty', 'isPrototypeOf', 'name', 'eval', 'prototype', 'mimeTypes', 'packages', 'opener', 'plugin', 'untaint', 'Exec',
+		'map', 'constructor'];
 	
 	// check for dangerious keywords
 	for (i=0;i<dangerious_keywords.length;i++) {
@@ -4167,6 +4169,25 @@ bot.on("message", msg => {
 				embed_chat_reply(msg, current);
 			});
 		}
+	}
+})
+
+// joke
+jokes_file = 
+bot.on("message", msg => {
+	if (msg.content.toLowerCase() === prefix[msg.guild.id]+"joke") {
+		fs_read.readFile(dataset_joke, "utf-8", function(err, data) {
+			if (err) {
+				return console_log("Failed to read jokes dataset!", error=true);
+			}
+			
+			//send message
+			//results = data.match(/\d+\..+\n\n.+/g);
+			results = data.match(/\d+.+\r\n\r\n.+/g); ///\d+\..+\n\n.+/g
+			if (results == null){ return}
+			current = results[parseInt(Math.random() * 1000) % results.length]
+			embed_chat_reply(msg, current.split(".")[1])
+		})
 	}
 })
 
@@ -13484,6 +13505,36 @@ bot.on("message", msg => {
 			} else {
 				embed_error(msg, "Invalid Format! The correct format is `"+prefix[msg.guild.id]+"isleap {year}`!");
 			}
+		}
+	}
+})
+
+// pez command
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, 4) == prefix[msg.guild.id]+"pez") {
+			msg_channel_send(msg, "https://jaredbot.uk/videos/samples/pez.mov");
+		}
+	}
+})
+
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.toLowerCase() == "ily") {
+			if (msg.author.bot == false) {
+				msg.channel.send("I love You too!");
+			}
+		}
+	}
+})
+
+// random screenshot
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"screenshot") {
+			digits = String(parseInt(Math.random() * 10000)).padStart(4, "0");
+			letters = "";for (i=0;i<2;i++) {letters += "abcdefghijklmnopqrstuvwxyz"[parseInt(Math.random() * 100) % 26]};
+			msg.channel.send("https://prnt.sc/" + letters + digits);
 		}
 	}
 })
