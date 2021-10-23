@@ -71,7 +71,7 @@ const youtube = require('scrape-youtube').default;
 const jimp = require('jimp');
 const {exec} = require('child_process');
 const net = require('net');
-const node_fetch = require('node-fetch');
+//const node_fetch = require('node-fetch');
 const zip_extract = require('extract-zip');
 const os = require('os');
 
@@ -1511,7 +1511,7 @@ fs_read.readFile(authorised_servers, "utf8", function(err, data) {
 			
 	} else {
 		// append each ID to authorised IDs array
-		raw_data = data.split("\n").join("").split(";");
+		raw_data = data.replace(/\r/g,"").split("\n").join("").split(";");
 		for (i=0;i<raw_data.length;i++) {
 			if (isNaN(parseInt(raw_data[i])) == false) {
 				authrosied_server_IDs.push(raw_data[i]);
@@ -3015,7 +3015,7 @@ bot.on("messageReactionAdd", async(reaction, user) => {
 		try {
 			await reaction.fetch();
 		} catch (error) {
-			console_log("error");
+			return false;
 		}
 	} else {
 		// give user role
@@ -4319,7 +4319,7 @@ bot.on("message", msg => {
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.content.toLowerCase().slice(0, 14) == prefix[msg.guild.id]+"default dance") {
-			if (authorised_IDs.indexOf(msg.author.id) > -1) {
+			if (msg.member.hasPermission("BAN_MEMBERS") == true) {
 				// message reply
 				for (i=1;i<11;i++) {
 					fs_read.readFile(default_dance_dir+i+".txt", "utf-8", function(err, data) {
@@ -8269,7 +8269,6 @@ bot.on("messageDelete", msg => {
 					channel = msg.channel.name;
 					msg_content = msg.content.split("@everyone").join("{everyone}").split("@here").join("{here}").split("@").join("");
 				} else {
-					console_log("Failed to write deleted message to log file, member is null!", error=true);
 					return false;
 				}
 				
@@ -10781,7 +10780,7 @@ bot.on("message", msg => {
 							msg_channel_send(msg, "Getting file meta data!");
 							exec('ffprobe -i "'+url+'" -show_entries format=duration -v quiet -of csv="p=0"', (err, stdout_size, stderr) => {
 								if (err) {
-									embed_error("Failed to get video meta data!");
+									embed_error(msg, "Failed to get video meta data!");
 									console_log("Failed to get video meta data!", error=true);
 								}
 								
@@ -13531,11 +13530,37 @@ bot.on("message", msg => {
 // random screenshot
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
-		if (msg.guild != null && msg.content.slice(0, 11) == prefix[msg.guild.id]+"screenshot") {
+		if (msg.guild != null && msg.content == prefix[msg.guild.id]+"screenshot" ||
+			msg.guild != null && msg.content == prefix[msg.guild.id]+"s") {
 			digits = String(parseInt(Math.random() * 10000)).padStart(4, "0");
 			letters = "";for (i=0;i<2;i++) {letters += "abcdefghijklmnopqrstuvwxyz"[parseInt(Math.random() * 100) % 26]};
 			msg.channel.send("https://prnt.sc/" + letters + digits);
 		}
+	}
+})
+
+bot.on("message", msg => {
+	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
+		if (msg.guild != null && msg.content.slice(0, 12) == prefix[msg.guild.id]+"screenshot ") {
+			n = parseInt(msg.content.slice(11, msg.content.length));
+			if (isNaN(n) == false && n < 11) {
+				for (i=0;i<n;i++) {
+					setTimeout(function() {
+						digits = String(parseInt(Math.random() * 10000)).padStart(4, "0");
+						letters = "";for (i=0;i<2;i++) {letters += "abcdefghijklmnopqrstuvwxyz"[parseInt(Math.random() * 100) % 26]};
+						msg.channel.send("https://prnt.sc/" + letters + digits);
+					}, i*2000);
+				}
+			} else {
+				msg.channel.send("Invalid Input! The maximum number of screenshots is 10!");
+			}
+		}
+	}
+})
+
+bot.on("message", msg => {
+	if (msg.content == "jared") {
+		msg_channel_send(msg, "Gamer");
 	}
 })
 
