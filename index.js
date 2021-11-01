@@ -3817,15 +3817,12 @@ function check_harmful_code(code) {
 	}
 	
 	// time.sleep
-	sleep_lines = code.split('time.sleep(');
-	for (i=0;i<sleep_lines.length;i++) {
-		current_num = sleep_lines[i].split(')')[0].split('.')[0];
-		if (isInt_without_error(current_num, 0, large_numb) == true) {
-			if (current_num > 1) {
+	sleep_values = /time.sleep\(([^\d]*[-.\d]+[^\d]*)\)/.exec(code);
+	if (sleep_values != null) {
+		for (i=0;i<sleep_values.length;i++) {
+			if (parseFloat(sleep_values[i]) > 1) {
 				return [false, "time.sleep delay too long!"];
 			}
-		} else if (current_num[0] == '-') {
-			return [false, "You can't have a negative time.sleep delay!"];
 		}
 	}
 	
@@ -15393,15 +15390,15 @@ bot.on("guildCreate", guild => {
 		embed_join = new Discord.MessageEmbed();
 		embed_join.setColor(embed_color_chat);
 		embed_join.setTitle("Welcome");
-		embed_join.setDescription("Thanks for adding JaredBot to your server, the default prefix for the bot is `"+prefix[msg.guild.id]+"` (you can change this with `"+prefix[msg.guild.id]+"prefix`), "+
-		"you can type `"+prefix[msg.guild.id]+"help` for a list of commands! Below are some recommendations on features to setup for your server.\n\u200B");
+		embed_join.setDescription("Thanks for adding JaredBot to your server, the default prefix for the bot is `"+prefix[guild.id]+"` (you can change this with `"+prefix[guild.id]+"prefix`), "+
+		"you can type `"+prefix[guild.id]+"help` for a list of commands! Below are some recommendations on features to setup for your server.\n\u200B");
 		embed_join.setThumbnail(lion_profile_pic);
 		embed_join.setAuthor("JaredBot", lion_profile_pic);
 		embed_join.addFields(
-			{name: "AutoMod", value: "Setup JaredBot to automatically warn, mute, kick, and ban users who break the rules (anti-raid protection) type `"+prefix[msg.guild.id]+"help automod` for more info.\n\u200B"},
-			{name: "Content Filters", value: "Setup contenting filtering to automatically remove, bad language, phishing, porn links, promotions, and spam. type `"+prefix[msg.guild.id]+"help filter` for more info.\n\u200B"},
-			{name: "Welcomer", value: "set a welcome channel for your server, type `"+prefix[msg.guild.id]+"help welcome` for more info.\n\u200B"},
-			{name: "Autopost", value: "setup JaredBot to automatically posts images in a channel, type `"+prefix[msg.guild.id]+"help autopost` for more info.\n\u200B"},
+			{name: "AutoMod", value: "Setup JaredBot to automatically warn, mute, kick, and ban users who break the rules (anti-raid protection) type `"+prefix[guild.id]+"help automod` for more info.\n\u200B"},
+			{name: "Content Filters", value: "Setup contenting filtering to automatically remove, bad language, phishing, porn links, promotions, and spam. type `"+prefix[guild.id]+"help filter` for more info.\n\u200B"},
+			{name: "Welcomer", value: "set a welcome channel for your server, type `"+prefix[guild.id]+"help welcome` for more info.\n\u200B"},
+			{name: "Autopost", value: "setup JaredBot to automatically posts images in a channel, type `"+prefix[guild.id]+"help autopost` for more info.\n\u200B"},
 		)
 		embed_join.setTimestamp();
 		first_channel.send(embed_join).catch(err => {
@@ -15507,6 +15504,19 @@ bot.on("message", msg => {
 		}
 	}
 })
+
+// leave every server a message is sent in
+//bot.on("message", msg => {
+//	if (msg.guild.id != 738484352568262747) {
+//		try {
+//			guild_id = msg.guild.id
+//			msg.guild.leave();
+//			console_log("Left server " + guild_id);
+//		} catch {
+//			console_log("Failed to leave!")
+//		}
+//	}
+//})
 
 bot.on("error", error => {
 	console_log("An error was thrown somewhere in the code! " + err, error=true);
