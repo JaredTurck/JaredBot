@@ -77,7 +77,7 @@ const os = require('os');
 
 // --- Init Vars ---
 // IDs Pez, Skittle, Jared, Elyxia
-const authorised_IDs = ["497067274428219423", "268394063550611456", "364787379518701569", "714207191573463102", "774743568975265802"]; 
+const authorised_IDs = ["209607873787985920", "268394063550611456", "364787379518701569", "714207191573463102", "774743568975265802"]; 
 const user_ID = "364787379518701569"; // Jared ID
 const h_channel_ID = "756291926277357600";
 const channel_IDs = ["751827086137622658", "762103168061538315", "667882044134653983"]; // announcement channel IDs
@@ -2731,7 +2731,7 @@ bot.on("message", msg => {
 	if (msg.guild != null && msg.content.toLowerCase() == prefix[msg.guild.id]+"selfroles") {
 		async function selfroles(msg) {
 			// only Jared can use selfroles command
-			if (msg.author.id == "364787379518701569") {
+			if (msg.author.id == "364787379518701569" || msg.author.id == "209607873787985920") {
 				//relationship status
 				embed_selfroles_relationship = new Discord.MessageEmbed();
 				embed_selfroles_relationship.setColor(embed_color_chat);
@@ -3780,7 +3780,7 @@ def input(*args):
 `;
 
 function check_harmful_code(code) {
-	trust_modules = ["datetime", "math", "random", "hashlib", "time", "getpass", "socket", "urllib", "requests"];
+	trust_modules = ["datetime", "math", "random", "hashlib", "time", "getpass", "socket", "urllib", "requests", "re"];
 	dangerious_keywords = ["exec", "eval", "compile", "open", "builtins", ".os", "globals", "os.", 
 		"locals", "breakpoint", "dir", "delattr", "getattr", "repr", "vars"];
 	
@@ -3984,6 +3984,10 @@ bot.on("message", msg => {
 					language_name = "javascript";
 					is_python = false;
 					is_cpp = false;
+					
+					// disable JS for now
+					embed_chat_reply(msg, "JavaScript command has been disabled for security reasons, until Jared can find a way to prevent module importing. Maybe use the Python command instead.");
+					return;
 				
 				} else if (input_code.indexOf("```c") > -1 || input_code.indexOf("```c++") > -1
 					|| msg.content.slice(0,5) == prefix[msg.guild.id]+"c++ ") {
@@ -4012,7 +4016,11 @@ bot.on("message", msg => {
 				}
 				
 				// check for harmful code
-				result = check_code_func(input_code);
+				if (msg.author.id === user_ID) {
+					result = [true, ""];
+				} else {
+					result = check_code_func(input_code);
+				}
 				if (result[0] == false) {
 					embed_execute_output(msg, input_code, result[1], language_name);
 					setTimeout(function(){
@@ -4092,6 +4100,7 @@ bot.on("message", msg => {
 										// shutdown script after 5 seconds
 										
 									} else {
+										// sent output
 										embed_execute_output(msg, input_code, stdout, language_name);
 									}
 								}
@@ -4293,7 +4302,7 @@ bot.on("message", msg => {
 bot.on("message", msg => {
 	if (msg.guild != null && msg.content.toLowerCase().slice(0,10) === prefix[msg.guild.id]+"announce ") {
 		if (msg.channel.type == 'dm') {
-			if (msg.author.id === user_ID) {
+			if (msg.author.id === user_ID || msg.author.id == "209607873787985920") {
 				console_log("Message from Jared recived!");
 				var TheMessage = msg.content.slice(10, msg.content.length);
 			
@@ -15494,7 +15503,7 @@ bot.on("message", msg => {
 bot.on("message", msg => {
 	if (msg.guild != null && authrosied_server_IDs.indexOf(msg.guild.id) > -1) {
 		if (msg.content.slice(0, 14) == prefix[msg.guild.id]+"leave_server ") {
-			if (msg.author.id === user_ID) {
+			if (msg.author.id === user_ID || msg.author.id == "209607873787985920") {
 				// leave the server
 				server_ID = msg.content.slice(14, msg.content.length);
 				let guild = bot.guilds.cache.get(server_ID);
